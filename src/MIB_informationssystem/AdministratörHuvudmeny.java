@@ -9,12 +9,12 @@ package MIB_informationssystem;
  *
  * @author adamd
  */
-public class Administratör_huvudmeny extends javax.swing.JFrame {
+public class AdministratörHuvudmeny extends javax.swing.JFrame {
 
     /**
      * Creates new form Administratörmeny
      */
-    public Administratör_huvudmeny() {
+    public AdministratörHuvudmeny() {
         initComponents();
     }
 
@@ -185,21 +185,23 @@ public class Administratör_huvudmeny extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Administratör_huvudmeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministratörHuvudmeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Administratör_huvudmeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministratörHuvudmeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Administratör_huvudmeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministratörHuvudmeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Administratör_huvudmeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministratörHuvudmeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Administratör_huvudmeny().setVisible(true);
+                new AdministratörHuvudmeny().setVisible(true);
             }
         });
     }
