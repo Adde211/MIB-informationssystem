@@ -78,7 +78,8 @@ public class Alienfunktioner {
             System.out.println("Internt felmeddelande: " + ex.getMessage());
         }
         
-        fraga = "SELECT Registreringsdatum FROM alien Where Alien_ID = " + id.getText();try {
+        fraga = "SELECT Registreringsdatum FROM alien Where Alien_ID = " + id.getText();
+        try {
         alienInfo.add(mibdb.fetchSingle(fraga));
         }
         catch(InfException ex) {
@@ -90,9 +91,44 @@ public class Alienfunktioner {
         
     }
     
+    public static void laggTillEnAlien(ArrayList<String> alienData) {
+        
+        try {
+        String agentID = mibdb.fetchSingle("SELECT Agent_ID FROM Agent WHERE Namn = " + alienData.get(1));
+        }
+        catch(InfException ex) {
+            JOptionPane.showMessageDialog(null, "Antingen så skrev du in fel eller så finns inte agenten i systemet än.");
+            System.out.println("Internt felmeddelande: " + ex.getMessage());
+        }
+        
+        try {
+            String platsID = "mibdb.fetchSingle(SELECT Plats_ID FROM Plats WHERE Benamning = " + alienData.get(3);
+        }
+        catch(InfException ex) {
+            JOptionPane.showMessageDialog(null, "Antingen så skrev du in fel eller så finns inte platsen i systemet än.");
+            System.out.println("Internt felmeddelande: " + ex.getMessage());
+        }
+        
+        String query = "INSERT INTO Alien Values(" + alienData.get(1) + ", " + alienData.get(6) + ", " + alienData.get(5) + ", " + alienData.get(1)
+                 + ", " + alienData.get(2) + ", " + platsID  + ", " + agentID;
+        
+        
+        try {
+            mibdb.insert(query);
+        }
+        catch(InfException ex) {
+            JOptionPane.showMessageDialog(null, "Antingen så skrev du in fel eller så finns inte platsen i systemet än.");
+            System.out.println("Internt felmeddelande: " + ex.getMessage());
+        }
+        
+    }
     
     
     
+    
+    String fraga = "SELECT telefon FROM agent WHERE Namn = " + tfAnvandarnamn.getText();
+    
+    fraga = "SELECT losenord FROM alien WHERE Namn = " + tfAnvandarnamn.getText();
     
     
     
