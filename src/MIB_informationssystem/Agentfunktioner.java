@@ -19,6 +19,8 @@ public class Agentfunktioner {
         
         System.out.println("tja Grabbar!");
         
+        System.out.println("hej hej");
+        
     }
     
 }
