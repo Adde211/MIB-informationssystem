@@ -5,17 +5,32 @@
  */
 package MIB_informationssystem;
 
+import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+import oru.inf.InfException;
+
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author adamd
  */
 public class Inloggningssida extends javax.swing.JFrame {
 
+      private InfDB idb;
     /**
      * Creates new form Inloggningssida
      */
     public Inloggningssida() {
         initComponents();
+        
+         
+        try {
+       idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
+    }
+        catch(InfException ettUndantag){
+            JOptionPane.showMessageDialog(null, "Något gick fel" + ettUndantag);
+        }
     }
 
     /**
@@ -29,12 +44,13 @@ public class Inloggningssida extends javax.swing.JFrame {
 
         lblInloggning = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        tfAnvandarnamn = new javax.swing.JTextField();
-        pfLosenord = new javax.swing.JPasswordField();
+        txtWindowUser = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
         btnLoggaIn = new javax.swing.JButton();
         lblFelmeddelande = new javax.swing.JLabel();
         lblAnvandarnamn = new javax.swing.JLabel();
         lblLosenord = new javax.swing.JLabel();
+        txtWindowPassword = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +71,8 @@ public class Inloggningssida extends javax.swing.JFrame {
 
         lblLosenord.setText("Lösenord");
 
+        txtWindowPassword.setText("jTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,14 +89,15 @@ public class Inloggningssida extends javax.swing.JFrame {
                             .addComponent(lblLosenord))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addComponent(btnLoggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(tfAnvandarnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtWindowUser, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtWindowPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(352, 352, 352)
                         .addComponent(lblFelmeddelande)))
@@ -93,13 +112,15 @@ public class Inloggningssida extends javax.swing.JFrame {
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfAnvandarnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtWindowUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAnvandarnamn))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblLosenord))
                 .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblLosenord)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtWindowPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLoggaIn)
                 .addGap(47, 47, 47)
                 .addComponent(lblFelmeddelande)
@@ -112,19 +133,84 @@ public class Inloggningssida extends javax.swing.JFrame {
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
         // TODO add your handling code here:
         
-        String usernamn = tfAnvandarnamn.getText();
-        char[] passwordChars = pfLosenord.getPassword();
-        String password = "";
+         String namn = txtWindowUser.getText();
+         String password = txtWindowPassword.getText();
         
-        for(char character : passwordChars) {
-            password += character;
+        String input = "SELECT Administrator FROM agent WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + password + "';";
+
+        JOptionPane.showMessageDialog(null, input + "  att frågan ser rätt ut" );
+        
+        // B) Ställer frågan till DB om Admin J / N      
+        try {
+            String adminJaNej = idb.fetchSingle(input);
+
+// JOptionPane.showMessageDialog(null, adminJaNej + "  är det en admin eller inte");
+
+            // C) Retunerar den Null kollar vi i alien columnen 
+            if (adminJaNej == null) {
+                String input2 = "SELECT Namn FROM alien WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + password + "';";
+                try {
+                    String alienNamn = idb.fetchSingle(input2);
+
+                    // D) Retunerar den fortarande null = ruta att användaern inte finns
+                    if (alienNamn == null) {
+
+                        JOptionPane.showMessageDialog(null, "Försök igen");
+
+                    } // E) Öpnnar Alien rutan och välkomnar Alien
+                    else {
+                        
+
+                      //  Alien Alienfonster = new Alien();
+                      //  Alienfonster.setVisible(true);
+                       // Alienfonster.getLosen(password);
+                       // Alienfonster.setNamn(alienNamn);
+                       //alien fönster set namn på menyn ?
+
+                    }
+
+                } catch (Exception e) {
+                    txtWindowUser.setText("något gick fel i alien frågan");
+                }
+
+            }
+
+            //  F) Om Admin retuneras J
+            if ("J".equals(adminJaNej)) {
+                // Välkomen Administratör,
+                // F -- 2) kör en till fråga och frågar efter namn på agenten tillstring
+                String inputAdmin = "SELECT namn FROM agent WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + password + "';";
+                try {
+                    String adminNamn = idb.fetchSingle(inputAdmin);
+                    JOptionPane.showMessageDialog(null, "Välkomen Administrator " + adminNamn);
+
+                } catch (Exception e) {
+                    txtWindowUser.setText("något gick fel i adminNamn frågan");
+                }
+
+                // F -- 3) startar Adminklass-rutan
+            }
+
+            // G) om AdminJaNej = N
+            if ("N".equals(adminJaNej)) {
+
+                // G -- 2) kör en till fråga och frågar efter namn på agenten tillstring
+                String inputAgent = "SELECT namn FROM agent WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + password + "';";
+                try {
+                    String agentNamn = idb.fetchSingle(inputAgent);
+                    JOptionPane.showMessageDialog(null, "Välkomen  " + agentNamn);
+
+                } catch (Exception e) {
+                    txtWindowUser.setText("något gick fel i agentFrågan frågan");
+                }
+
+                // G -- 3) startar Agentklass-rutan
+            }
+
+        } catch (Exception e) {
+            txtWindowUser.setText("något gick feli adminfrågan");
         }
-        
-        lblFelmeddelande.setText(password);
-        
-        
-        
-        
+       
         
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
@@ -170,7 +256,8 @@ public class Inloggningssida extends javax.swing.JFrame {
     private javax.swing.JLabel lblFelmeddelande;
     private javax.swing.JLabel lblInloggning;
     private javax.swing.JLabel lblLosenord;
-    private javax.swing.JPasswordField pfLosenord;
-    private javax.swing.JTextField tfAnvandarnamn;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtWindowPassword;
+    private javax.swing.JTextField txtWindowUser;
     // End of variables declaration//GEN-END:variables
 }

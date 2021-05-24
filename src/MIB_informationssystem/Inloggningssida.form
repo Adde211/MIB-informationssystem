@@ -37,7 +37,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="pfLosenord" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                          <Component id="txtPassword" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                               <Component id="btnLoggaIn" min="-2" pref="91" max="-2" attributes="0"/>
@@ -46,7 +46,8 @@
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="jComboBox1" min="-2" pref="78" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="tfAnvandarnamn" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                          <Component id="txtWindowUser" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                          <Component id="txtWindowPassword" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -67,15 +68,17 @@
               <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfAnvandarnamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtWindowUser" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblAnvandarnamn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="pfLosenord" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblLosenord" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblLosenord" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPassword" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="txtWindowPassword" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btnLoggaIn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Component id="lblFelmeddelande" min="-2" max="-2" attributes="0"/>
@@ -104,9 +107,9 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfAnvandarnamn">
+    <Component class="javax.swing.JTextField" name="txtWindowUser">
     </Component>
-    <Component class="javax.swing.JPasswordField" name="pfLosenord">
+    <Component class="javax.swing.JPasswordField" name="txtPassword">
     </Component>
     <Component class="javax.swing.JButton" name="btnLoggaIn">
       <Properties>
@@ -129,6 +132,11 @@
     <Component class="javax.swing.JLabel" name="lblLosenord">
       <Properties>
         <Property name="text" type="java.lang.String" value="L&#xf6;senord"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtWindowPassword">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
     </Component>
   </SubComponents>
