@@ -23,7 +23,7 @@ public class Inloggningssida extends javax.swing.JFrame {
      */
     public Inloggningssida() {
         initComponents();
-        
+        lblFelmeddelande.setVisible(false);
          
         try {
        idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
@@ -43,9 +43,7 @@ public class Inloggningssida extends javax.swing.JFrame {
     private void initComponents() {
 
         lblInloggning = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         txtWindowUser = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JPasswordField();
         btnLoggaIn = new javax.swing.JButton();
         lblFelmeddelande = new javax.swing.JLabel();
         lblAnvandarnamn = new javax.swing.JLabel();
@@ -56,7 +54,7 @@ public class Inloggningssida extends javax.swing.JFrame {
 
         lblInloggning.setText("Inloggning");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alien", "Agent", "Administratör" }));
+        txtWindowUser.setColumns(10);
 
         btnLoggaIn.setText("Logga in");
         btnLoggaIn.addActionListener(new java.awt.event.ActionListener() {
@@ -71,7 +69,8 @@ public class Inloggningssida extends javax.swing.JFrame {
 
         lblLosenord.setText("Lösenord");
 
-        txtWindowPassword.setText("jTextField1");
+        txtWindowPassword.setColumns(10);
+        txtWindowPassword.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,51 +79,43 @@ public class Inloggningssida extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(366, 366, 366)
+                        .addGap(368, 368, 368)
                         .addComponent(lblInloggning))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
+                        .addGap(359, 359, 359)
+                        .addComponent(btnLoggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(243, 243, 243)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblAnvandarnamn)
-                            .addComponent(lblLosenord))
-                        .addGap(38, 38, 38)
+                            .addComponent(lblLosenord)
+                            .addComponent(lblAnvandarnamn))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(btnLoggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtWindowUser, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtWindowPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(352, 352, 352)
-                        .addComponent(lblFelmeddelande)))
-                .addContainerGap(407, Short.MAX_VALUE))
+                        .addGap(213, 213, 213)
+                        .addComponent(lblFelmeddelande, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGap(205, 205, 205)
                 .addComponent(lblInloggning)
-                .addGap(77, 77, 77)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtWindowUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAnvandarnamn))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblLosenord)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblAnvandarnamn)
+                    .addComponent(txtWindowUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtWindowPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLosenord))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtWindowPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLoggaIn)
-                .addGap(47, 47, 47)
                 .addComponent(lblFelmeddelande)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnLoggaIn)
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,7 +129,7 @@ public class Inloggningssida extends javax.swing.JFrame {
         
         String input = "SELECT Administrator FROM agent WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + password + "';";
 
-        JOptionPane.showMessageDialog(null, input + "  att frågan ser rätt ut" );
+        // JOptionPane.showMessageDialog(null, input + "  att frågan ser rätt ut" );
         
         // B) Ställer frågan till DB om Admin J / N      
         try {
@@ -155,16 +146,17 @@ public class Inloggningssida extends javax.swing.JFrame {
                     // D) Retunerar den fortarande null = ruta att användaern inte finns
                     if (alienNamn == null) {
 
-                        JOptionPane.showMessageDialog(null, "Försök igen");
+                        lblFelmeddelande.setText("Hittar inte användaren eller fel lösenord, vänligen försök igen");
+                        lblFelmeddelande.setVisible(true);
 
                     } // E) Öpnnar Alien rutan och välkomnar Alien
                     else {
                         
 
-                      //  Alien Alienfonster = new Alien();
-                      //  Alienfonster.setVisible(true);
-                       // Alienfonster.getLosen(password);
-                       // Alienfonster.setNamn(alienNamn);
+                      AlienJForm Alienfonster = new AlienJForm();
+                       Alienfonster.setVisible(true);
+                       Alienfonster.getLosen(password);
+                       Alienfonster.setNamn(alienNamn);
                        //alien fönster set namn på menyn ?
 
                     }
@@ -251,12 +243,10 @@ public class Inloggningssida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoggaIn;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel lblAnvandarnamn;
     private javax.swing.JLabel lblFelmeddelande;
     private javax.swing.JLabel lblInloggning;
     private javax.swing.JLabel lblLosenord;
-    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtWindowPassword;
     private javax.swing.JTextField txtWindowUser;
     // End of variables declaration//GEN-END:variables

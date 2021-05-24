@@ -26,63 +26,54 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="366" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="368" max="-2" attributes="0"/>
                       <Component id="lblInloggning" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="359" max="-2" attributes="0"/>
+                      <Component id="btnLoggaIn" min="-2" pref="91" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="243" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblAnvandarnamn" min="-2" max="-2" attributes="0"/>
                           <Component id="lblLosenord" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAnvandarnamn" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtPassword" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                              <Component id="btnLoggaIn" min="-2" pref="91" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" min="-2" pref="78" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="txtWindowUser" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                          <Component id="txtWindowUser" min="-2" pref="112" max="-2" attributes="0"/>
                           <Component id="txtWindowPassword" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="352" max="-2" attributes="0"/>
-                      <Component id="lblFelmeddelande" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="213" max="-2" attributes="0"/>
+                      <Component id="lblFelmeddelande" min="-2" pref="434" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="407" max="32767" attributes="0"/>
+              <EmptySpace pref="214" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
               <Component id="lblInloggning" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-              <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtWindowUser" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblAnvandarnamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtWindowUser" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblLosenord" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPassword" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtWindowPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblLosenord" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="txtWindowPassword" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnLoggaIn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Component id="lblFelmeddelande" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="125" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Component id="btnLoggaIn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="130" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -93,23 +84,10 @@
         <Property name="text" type="java.lang.String" value="Inloggning"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
-            <StringItem index="0" value="Alien"/>
-            <StringItem index="1" value="Agent"/>
-            <StringItem index="2" value="Administrat&#xf6;r"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JTextField" name="txtWindowUser">
-    </Component>
-    <Component class="javax.swing.JPasswordField" name="txtPassword">
+      <Properties>
+        <Property name="columns" type="int" value="10"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnLoggaIn">
       <Properties>
@@ -136,7 +114,8 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtWindowPassword">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
+        <Property name="columns" type="int" value="10"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
   </SubComponents>
