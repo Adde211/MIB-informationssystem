@@ -90,7 +90,7 @@ public class Alienfunktioner {
         return alienInfo;
         
     }
-    
+    /*
     public static void laggTillEnAlien(ArrayList<String> alienData) {
         
         try {
@@ -131,6 +131,7 @@ public class Alienfunktioner {
     fraga = "SELECT losenord FROM alien WHERE Namn = " + tfAnvandarnamn.getText();
     
     
+    */
     
     
     

@@ -5,17 +5,29 @@
  */
 package MIB_informationssystem;
 
+import java.util.ArrayList;
+import oru.inf.InfDB;
+
 /**
  *
  * @author robertkorpics
  */
 public class Agentfunktioner extends javax.swing.JFrame {
+    
+    private static InfDB mibdb;
+    
+    public Agentfunktioner(InfDB mibdb){
+        Agentfunktioner.mibdb = mibdb;
+    }
 
+    private static ArrayList<String> agentensUtrustning;
+    
     /**
      * Creates new form Agentfunktioner
      */
     public Agentfunktioner() {
         initComponents();
+    
     }
 
     /**
@@ -35,7 +47,7 @@ public class Agentfunktioner extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        JBtnregnyutrustning = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -61,7 +73,12 @@ public class Agentfunktioner extends javax.swing.JFrame {
 
         jButton3.setText("Nyregistrera aliens");
 
-        jButton4.setText("Registrera ny utrustning");
+        JBtnregnyutrustning.setText("Registrera ny utrustning");
+        JBtnregnyutrustning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBtnregnyutrustningActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Ändra lösenord");
 
@@ -96,24 +113,23 @@ public class Agentfunktioner extends javax.swing.JFrame {
                 .addContainerGap(126, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(140, 140, 140)
-                        .addComponent(jButton7)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton2)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JBtnregnyutrustning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(109, 109, 109))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(180, 180, 180))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(140, 140, 140)
+                        .addComponent(jButton7)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +150,7 @@ public class Agentfunktioner extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton4))
+                    .addComponent(JBtnregnyutrustning))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -161,6 +177,10 @@ public class Agentfunktioner extends javax.swing.JFrame {
         System.exit(0);
         
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void JBtnregnyutrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnregnyutrustningActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBtnregnyutrustningActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,10 +218,10 @@ public class Agentfunktioner extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBtnregnyutrustning;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;

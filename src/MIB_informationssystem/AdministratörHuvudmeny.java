@@ -29,7 +29,7 @@ public class AdministratörHuvudmeny extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jBtnAdminAgentMeny = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -50,7 +50,12 @@ public class AdministratörHuvudmeny extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Agent");
+        jBtnAdminAgentMeny.setText("Agent");
+        jBtnAdminAgentMeny.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAdminAgentMenyActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Utomjording");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +98,7 @@ public class AdministratörHuvudmeny extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jBtnAdminAgentMeny, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,7 +147,7 @@ public class AdministratörHuvudmeny extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(45, 45, 45)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jBtnAdminAgentMeny, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(84, 84, 84)
                                 .addComponent(jLabel3)))
@@ -167,6 +172,11 @@ public class AdministratörHuvudmeny extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jBtnAdminAgentMenyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAdminAgentMenyActionPerformed
+        // TODO add your handling code here:
+        new AdminAgentMeny().setVisible(true);
+    }//GEN-LAST:event_jBtnAdminAgentMenyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,8 +217,8 @@ public class AdministratörHuvudmeny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnAdminAgentMeny;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
