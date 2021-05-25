@@ -78,10 +78,8 @@ public class Inloggningssida extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(tfAnvandarnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(352, 352, 352)
-                        .addComponent(lblFelmeddelande)))
+                            .addComponent(tfAnvandarnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblFelmeddelande))))
                 .addContainerGap(407, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -99,11 +97,11 @@ public class Inloggningssida extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLosenord))
-                .addGap(42, 42, 42)
-                .addComponent(btnLoggaIn)
-                .addGap(47, 47, 47)
+                .addGap(10, 10, 10)
                 .addComponent(lblFelmeddelande)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnLoggaIn)
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         pack();

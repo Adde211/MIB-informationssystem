@@ -93,8 +93,10 @@ public class Alienfunktioner {
     
     public static void laggTillEnAlien(ArrayList<String> alienData) {
         
+        alienData = OvrigaFunktioner.trimArrayList(alienData);
+        
         try {
-        String agentID = mibdb.fetchSingle("SELECT Agent_ID FROM Agent WHERE Namn = " + alienData.get(1));
+            String agentID = mibdb.fetchSingle("SELECT Agent_ID FROM Agent WHERE Namn = " + alienData.get(4));
         }
         catch(InfException ex) {
             JOptionPane.showMessageDialog(null, "Antingen så skrev du in fel eller så finns inte agenten i systemet än.");
@@ -103,13 +105,12 @@ public class Alienfunktioner {
         
         try {
             String platsID = "mibdb.fetchSingle(SELECT Plats_ID FROM Plats WHERE Benamning = " + alienData.get(3);
-        }
-        catch(InfException ex) {
+        }catch(InfException ex) {
             JOptionPane.showMessageDialog(null, "Antingen så skrev du in fel eller så finns inte platsen i systemet än.");
             System.out.println("Internt felmeddelande: " + ex.getMessage());
         }
         
-        String query = "INSERT INTO Alien Values(" + alienData.get(1) + ", " + alienData.get(6) + ", " + alienData.get(5) + ", " + alienData.get(1)
+        String query = "INSERT INTO Alien Values(" + alienData.get(0) + ", " + alienData.get(6) + ", " + alienData.get(5) + ", " + alienData.get(1)
                  + ", " + alienData.get(2) + ", " + platsID  + ", " + agentID;
         
         
@@ -122,6 +123,7 @@ public class Alienfunktioner {
         }
         
     }
+    
     
     
     

@@ -47,11 +47,8 @@
                               <Component id="jComboBox1" min="-2" pref="78" max="-2" attributes="0"/>
                           </Group>
                           <Component id="tfAnvandarnamn" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                          <Component id="lblFelmeddelande" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="352" max="-2" attributes="0"/>
-                      <Component id="lblFelmeddelande" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="407" max="32767" attributes="0"/>
@@ -75,11 +72,11 @@
                   <Component id="pfLosenord" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblLosenord" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-              <Component id="btnLoggaIn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Component id="lblFelmeddelande" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="125" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnLoggaIn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="186" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
