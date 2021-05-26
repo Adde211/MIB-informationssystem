@@ -174,7 +174,7 @@ public class AdministratörHuvudmeny extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jBtnAdminAgentMenyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAdminAgentMenyActionPerformed
-        // TODO add your handling code here:
+        // Tar oss till AdminAgentMeny 
         new AdminAgentMeny().setVisible(true);
     }//GEN-LAST:event_jBtnAdminAgentMenyActionPerformed
 
