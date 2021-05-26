@@ -5,17 +5,42 @@
  */
 package MIB_informationssystem;
 
+import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+import oru.inf.InfException;
+
+
+
 /**
  *
  * @author robertkorpics
  */
 public class AdminAgentMeny extends javax.swing.JFrame {
+    
+    private InfDB idb;
 
     /**
      * Creates new form AdminAgentMeny
      */
     public AdminAgentMeny() {
         initComponents();
+        jPanelRegAgent.setVisible(false);
+        jPanelDelAgent.setVisible(false);
+        jPanelAlterAgent.setVisible(false);
+        
+        try {
+            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
+        } catch (InfException ettUndantag) {
+            JOptionPane.showMessageDialog(null, "Något gick fel" + ettUndantag);
+        }
+
+    }
+    
+    // A) Metod som stoppar in värden i Agenttabellen.
+    
+    public void insert(String Agent){
+        
     }
 
     /**
@@ -30,15 +55,41 @@ public class AdminAgentMeny extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        JbtnDeleteAgent = new javax.swing.JButton();
-        jBtnRegAgent = new javax.swing.JButton();
-        JbtnUpdateAgent = new javax.swing.JButton();
+        jButtonRegAgent = new javax.swing.JButton();
+        jButtonDelAgent = new javax.swing.JButton();
+        jButtonAlterAgent = new javax.swing.JButton();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jPanelRegAgent = new javax.swing.JPanel();
+        jLabelRegAgent = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jTextFieldAgentRegAgentID = new javax.swing.JTextField();
+        jTextFieldAgentRegNamn = new javax.swing.JTextField();
+        jTextFieldAgentRegTelNr = new javax.swing.JTextField();
+        jTextFieldAgentRegAnstDatum = new javax.swing.JTextField();
+        jTextFieldAgentRegAdmin = new javax.swing.JTextField();
+        jTextFieldAgentRegPW = new javax.swing.JTextField();
+        jTextFieldAgentRegOmråde = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButtonAgentRegRensa = new javax.swing.JButton();
+        jPanelAlterAgent = new javax.swing.JPanel();
+        jLabelAlterAgent = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTextFieldRedigeraAgent = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jTextFieldRedigeraAgent2 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jLayeredPane2 = new javax.swing.JLayeredPane();
-        RegPanel = new javax.swing.JPanel();
-        DeleteAgent = new javax.swing.JPanel();
-        UpdateAgent = new javax.swing.JPanel();
-        RestAgent = new javax.swing.JPanel();
+        jPanelDelAgent = new javax.swing.JPanel();
+        jLabelDelAgent = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jButtonTillbaka = new javax.swing.JButton();
 
         jButton4.setText("jButton1");
 
@@ -46,144 +97,309 @@ public class AdminAgentMeny extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        JbtnDeleteAgent.setText("Ta bort en agent");
-        JbtnDeleteAgent.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRegAgent.setText("Registrera en Agent");
+        jButtonRegAgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbtnDeleteAgentActionPerformed(evt);
+                jButtonRegAgentActionPerformed(evt);
             }
         });
 
-        jBtnRegAgent.setText("Registrera en agent");
-        jBtnRegAgent.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDelAgent.setText("Ta bort Agent");
+        jButtonDelAgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnRegAgentActionPerformed(evt);
+                jButtonDelAgentActionPerformed(evt);
             }
         });
 
-        JbtnUpdateAgent.setText("Uppdatera en Agent");
-        JbtnUpdateAgent.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAlterAgent.setText("Ändra Agent");
+        jButtonAlterAgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbtnUpdateAgentActionPerformed(evt);
+                jButtonAlterAgentActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Övriga agent funktioner");
+        jLabelRegAgent.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabelRegAgent.setText("Agent registrering");
+        jLabelRegAgent.setSize(new java.awt.Dimension(45, 20));
+
+        jLabel1.setText("Agent ID");
+
+        jLabel2.setText("Namn");
+
+        jLabel3.setText("Telefon");
+
+        jLabel4.setText("Anställningsdatum");
+
+        jLabel5.setText("Administrator");
+
+        jLabel6.setText("Lösenord");
+
+        jLabel7.setText("Område");
+
+        jButton1.setText("Spara");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButtonAgentRegRensa.setText("Rensa");
+        jButtonAgentRegRensa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgentRegRensaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelRegAgentLayout = new javax.swing.GroupLayout(jPanelRegAgent);
+        jPanelRegAgent.setLayout(jPanelRegAgentLayout);
+        jPanelRegAgentLayout.setHorizontalGroup(
+            jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRegAgentLayout.createSequentialGroup()
+                .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRegAgentLayout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jLabelRegAgent))
+                    .addGroup(jPanelRegAgentLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldAgentRegAnstDatum)
+                            .addComponent(jTextFieldAgentRegTelNr)
+                            .addComponent(jTextFieldAgentRegNamn)
+                            .addComponent(jTextFieldAgentRegAgentID)
+                            .addComponent(jTextFieldAgentRegOmråde, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(jTextFieldAgentRegPW)
+                            .addComponent(jTextFieldAgentRegAdmin))))
+                .addGap(93, 93, 93))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRegAgentLayout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonAgentRegRensa)
+                .addGap(240, 240, 240))
+        );
+        jPanelRegAgentLayout.setVerticalGroup(
+            jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRegAgentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelRegAgent)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldAgentRegAgentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRegAgentLayout.createSequentialGroup()
+                        .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextFieldAgentRegNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3))
+                    .addComponent(jTextFieldAgentRegTelNr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextFieldAgentRegAnstDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextFieldAgentRegAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextFieldAgentRegPW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextFieldAgentRegOmråde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButtonAgentRegRensa))
+                .addGap(49, 49, 49))
+        );
+
+        jLabelAlterAgent.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabelAlterAgent.setText("Redigera Agent");
+
+        jLabel9.setText("Agent ID");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Namn", "Telefon", "Anställningsdatum", "Administrator", "Losenord", "Område", " " }));
+
+        jButton3.setText("Uppdatera");
+
+        jButton5.setText("Rensa");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
 
-        RegPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        RegPanel.setToolTipText("RegPanel");
-
-        DeleteAgent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        UpdateAgent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        RestAgent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout RestAgentLayout = new javax.swing.GroupLayout(RestAgent);
-        RestAgent.setLayout(RestAgentLayout);
-        RestAgentLayout.setHorizontalGroup(
-            RestAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 544, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanelAlterAgentLayout = new javax.swing.GroupLayout(jPanelAlterAgent);
+        jPanelAlterAgent.setLayout(jPanelAlterAgentLayout);
+        jPanelAlterAgentLayout.setHorizontalGroup(
+            jPanelAlterAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAlterAgentLayout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addGroup(jPanelAlterAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelAlterAgent)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelAlterAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTextFieldRedigeraAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelAlterAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldRedigeraAgent2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
-        RestAgentLayout.setVerticalGroup(
-            RestAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 257, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout UpdateAgentLayout = new javax.swing.GroupLayout(UpdateAgent);
-        UpdateAgent.setLayout(UpdateAgentLayout);
-        UpdateAgentLayout.setHorizontalGroup(
-            UpdateAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(RestAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        UpdateAgentLayout.setVerticalGroup(
-            UpdateAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(RestAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout DeleteAgentLayout = new javax.swing.GroupLayout(DeleteAgent);
-        DeleteAgent.setLayout(DeleteAgentLayout);
-        DeleteAgentLayout.setHorizontalGroup(
-            DeleteAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DeleteAgentLayout.createSequentialGroup()
-                .addComponent(UpdateAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        DeleteAgentLayout.setVerticalGroup(
-            DeleteAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(UpdateAgent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jPanelAlterAgentLayout.setVerticalGroup(
+            jPanelAlterAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAlterAgentLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jLabelAlterAgent)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelAlterAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldRedigeraAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTextFieldRedigeraAgent2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addContainerGap(211, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout RegPanelLayout = new javax.swing.GroupLayout(RegPanel);
-        RegPanel.setLayout(RegPanelLayout);
-        RegPanelLayout.setHorizontalGroup(
-            RegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(DeleteAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jLabelDelAgent.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabelDelAgent.setText("Ta bort Agent");
+
+        jLabel8.setText("Agent namn :");
+
+        javax.swing.GroupLayout jPanelDelAgentLayout = new javax.swing.GroupLayout(jPanelDelAgent);
+        jPanelDelAgent.setLayout(jPanelDelAgentLayout);
+        jPanelDelAgentLayout.setHorizontalGroup(
+            jPanelDelAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDelAgentLayout.createSequentialGroup()
+                .addGroup(jPanelDelAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDelAgentLayout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(jLabelDelAgent))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDelAgentLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        RegPanelLayout.setVerticalGroup(
-            RegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(DeleteAgent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jPanelDelAgentLayout.setVerticalGroup(
+            jPanelDelAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDelAgentLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabelDelAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(136, 136, 136)
+                .addGroup(jPanelDelAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(283, Short.MAX_VALUE))
         );
 
-        jLayeredPane2.setLayer(RegPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jPanelRegAgent, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jPanelAlterAgent, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jPanelDelAgent, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
-        jLayeredPane2.setLayout(jLayeredPane2Layout);
-        jLayeredPane2Layout.setHorizontalGroup(
-            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(RegPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelRegAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(307, 307, 307))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(196, 196, 196)
+                    .addComponent(jPanelAlterAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(380, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(358, 358, 358)
+                    .addComponent(jPanelDelAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(359, 359, 359)))
         );
-        jLayeredPane2Layout.setVerticalGroup(
-            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(RegPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelRegAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(75, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanelAlterAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jPanelDelAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(16, 16, 16)))
         );
+
+        jButtonTillbaka.setText("Tillbaka");
+        jButtonTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTillbakaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 39, Short.MAX_VALUE)
-                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jBtnRegAgent)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JbtnDeleteAgent)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JbtnUpdateAgent))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(64, 64, 64)
+                .addComponent(jButtonAlterAgent)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonDelAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonRegAgent)
+                .addGap(60, 60, 60)
+                .addComponent(jButtonTillbaka)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(986, 986, 986))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jLayeredPane2)
-                .addGap(18, 18, 18)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JbtnDeleteAgent)
-                    .addComponent(JbtnUpdateAgent)
-                    .addComponent(jBtnRegAgent))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addGap(46, 46, 46))
+                    .addComponent(jButtonAlterAgent)
+                    .addComponent(jButtonDelAgent)
+                    .addComponent(jButtonRegAgent)
+                    .addComponent(jButtonTillbaka))
+                .addGap(62, 62, 62))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,29 +409,58 @@ public class AdminAgentMeny extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBtnRegAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRegAgentActionPerformed
+    private void jButtonAlterAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterAgentActionPerformed
         // TODO add your handling code here:
-        RegPanel.setVisible(true);
-        jPanel1.setVisible(false);
-    }//GEN-LAST:event_jBtnRegAgentActionPerformed
+        jPanelRegAgent.setVisible(false);
+        jPanelDelAgent.setVisible(false);
+        jPanelAlterAgent.setVisible(true);
+    }//GEN-LAST:event_jButtonAlterAgentActionPerformed
 
-    private void JbtnDeleteAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnDeleteAgentActionPerformed
+    private void jButtonDelAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDelAgentActionPerformed
         // TODO add your handling code here:
-        DeleteAgent.setVisible(true);
-        jPanel1.setVisible(false);
-    }//GEN-LAST:event_JbtnDeleteAgentActionPerformed
+        jPanelRegAgent.setVisible(false);
+        jPanelDelAgent.setVisible(true);
+        jPanelAlterAgent.setVisible(false);
+    }//GEN-LAST:event_jButtonDelAgentActionPerformed
 
-    private void JbtnUpdateAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnUpdateAgentActionPerformed
+    private void jButtonRegAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegAgentActionPerformed
         // TODO add your handling code here:
-        UpdateAgent.setVisible(true);
-        jPanel1.setVisible(false);
-    }//GEN-LAST:event_JbtnUpdateAgentActionPerformed
+        jPanelRegAgent.setVisible(true);
+        jPanelDelAgent.setVisible(false);
+        jPanelAlterAgent.setVisible(false);
+    }//GEN-LAST:event_jButtonRegAgentActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try{
+        
+        }catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        RestAgent.setVisible(true);
-        jPanel1.setVisible(false);
+        // Rensar fältet på textfält i redigeraAgent
+        jTextFieldRedigeraAgent.setText("");
+        jTextFieldRedigeraAgent2.setText("");
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButtonAgentRegRensaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgentRegRensaActionPerformed
+        // TODO add your handling code here:
+        jTextFieldAgentRegAdmin.setText("");
+        jTextFieldAgentRegAgentID.setText("");
+        jTextFieldAgentRegAnstDatum.setText("");
+        jTextFieldAgentRegNamn.setText("");
+        jTextFieldAgentRegOmråde.setText("");
+        jTextFieldAgentRegPW.setText("");
+        jTextFieldAgentRegTelNr.setText("");
+    }//GEN-LAST:event_jButtonAgentRegRensaActionPerformed
+
+    private void jButtonTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTillbakaActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButtonTillbakaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,17 +498,46 @@ public class AdminAgentMeny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel DeleteAgent;
-    private javax.swing.JButton JbtnDeleteAgent;
-    private javax.swing.JButton JbtnUpdateAgent;
-    private javax.swing.JPanel RegPanel;
-    private javax.swing.JPanel RestAgent;
-    private javax.swing.JPanel UpdateAgent;
-    private javax.swing.JButton jBtnRegAgent;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLayeredPane jLayeredPane2;
+    private javax.swing.JButton jButtonAgentRegRensa;
+    private javax.swing.JButton jButtonAlterAgent;
+    private javax.swing.JButton jButtonDelAgent;
+    private javax.swing.JButton jButtonRegAgent;
+    private javax.swing.JButton jButtonTillbaka;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelAlterAgent;
+    private javax.swing.JLabel jLabelDelAgent;
+    private javax.swing.JLabel jLabelRegAgent;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelAlterAgent;
+    private javax.swing.JPanel jPanelDelAgent;
+    private javax.swing.JPanel jPanelRegAgent;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextFieldAgentRegAdmin;
+    private javax.swing.JTextField jTextFieldAgentRegAgentID;
+    private javax.swing.JTextField jTextFieldAgentRegAnstDatum;
+    private javax.swing.JTextField jTextFieldAgentRegNamn;
+    private javax.swing.JTextField jTextFieldAgentRegOmråde;
+    private javax.swing.JTextField jTextFieldAgentRegPW;
+    private javax.swing.JTextField jTextFieldAgentRegTelNr;
+    private javax.swing.JTextField jTextFieldRedigeraAgent;
+    private javax.swing.JTextField jTextFieldRedigeraAgent2;
     // End of variables declaration//GEN-END:variables
+
 }
+
+
