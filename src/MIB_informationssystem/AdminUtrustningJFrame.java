@@ -24,6 +24,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
         initComponents();
         
         döljNyUtrustning();
+        lbTillagd.setVisible(false);
         
            try {
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
@@ -100,6 +101,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
         lbNyTre = new javax.swing.JLabel();
         lbNyTvå = new javax.swing.JLabel();
         lbNyFyra = new javax.swing.JLabel();
+        lbTillagd = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,6 +144,8 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
 
         lbNyFyra.setToolTipText("");
 
+        lbTillagd.setText("Utrustning Tillagd!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,7 +157,6 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
                     .addComponent(btnNyUtrustning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnVäljUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ntbOKutrustning)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -175,7 +178,10 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lbNyTvå)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNyTvå, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtNyTvå, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lbTillagd)
+                        .addComponent(btnVäljUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(416, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -184,7 +190,9 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnNyUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnNyUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbTillagd))
                         .addGap(74, 74, 74)
                         .addComponent(btnTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -210,7 +218,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
 
     private void btnNyUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNyUtrustningActionPerformed
         // Visar min combobox för att välja typ av utrustning
-        
+        lbTillagd.setVisible(false);
         btnVäljUtrustning.setVisible(true);
     }//GEN-LAST:event_btnNyUtrustningActionPerformed
 
@@ -222,6 +230,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
       // TODO add your handling code here:
       
       String utrustning = btnVäljUtrustning.getSelectedItem().toString();
+      
       
       if ("Fordon".equals(utrustning)){
       
@@ -399,6 +408,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
       
       döljNyUtrustning();
       cleartxtWindow();
+      lbTillagd.setVisible(true);
       
     }//GEN-LAST:event_ntbOKutrustningActionPerformed
 
@@ -445,6 +455,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lbNyFyra;
     private javax.swing.JLabel lbNyTre;
     private javax.swing.JLabel lbNyTvå;
+    private javax.swing.JLabel lbTillagd;
     private javax.swing.JButton ntbOKutrustning;
     private javax.swing.JTextField txtNyEtt;
     private javax.swing.JTextField txtNyFyra;
