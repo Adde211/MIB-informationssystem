@@ -31,43 +31,41 @@ public class Alienfunktioner {
 
     @param id ID:et som användaren har skrivit in för att söka på en alien.
     */
-    public static HashMap<String, String> getAlienInstansData(javax.swing.JTextField id) {
+    public static HashMap<String, String> getAlienInstansData(String value, String kolumn) {
 
-        id.setText(id.getText().trim());
-
+        value = value.trim();
         //kommentarskoden är alternativ kod.
 
         //ArrayList<String> alienData = new ArrayList<>();
 
         HashMap<String, String> alienInstansData = null;
-
-
+        
         try {
             //Alternativ kod
 
-            /*String fraga = "SELECT Namn FROM alien Where Alien_ID = " + id.getText();
+            /*String fraga = "SELECT Namn FROM alien Where " + kolumn + " = " + id.getText();
             alienData.add(mibdb.fetchSingle(fraga));
-            fraga = "SELECT Telefon FROM alien Where Alien_ID = " + id.getText();
+            fraga = "SELECT Telefon FROM alien Where kolumn = " + id.getText();
             alienData.add(mibdb.fetchSingle(fraga));
-            fraga = "SELECT Benamning FROM plats WHERE Plats_ID = (SELECT plats FROM alien Where Alien_ID = " + id.getText() + ")";
+            fraga = "SELECT Benamning FROM plats WHERE Plats_ID = (SELECT plats FROM alien Where " + kolumn + " = " + id.getText() + ")";
             alienData.add(mibdb.fetchSingle(fraga));
-            fraga = "SELECT Namn FROM Agent WHERE Agent_ID = (SELECT Ansvarig_agent FROM alien Where Alien_ID = " + id.getText() + ")";
+            fraga = "SELECT Namn FROM Agent WHERE Agent_ID = (SELECT Ansvarig_agent FROM alien Where " + kolumn + " = " + id.getText() + ")";
             alienData.add(mibdb.fetchSingle(fraga));
-            fraga = "SELECT Losenord FROM alien Where Alien_ID = " + id.getText();
+            fraga = "SELECT Losenord FROM alien Where " + kolumn + " = " + id.getText();
             alienData.add(mibdb.fetchSingle(fraga));
-            fraga = "SELECT Registreringsdatum FROM alien Where Alien_ID = " + id.getText();
+            fraga = "SELECT Registreringsdatum FROM alien Where " + kolumn + " = " + id.getText();
             alienData.add(mibdb.fetchSingle(fraga));
             */
 
-            alienInstansData = mibdb.fetchRow("SELECT * FROM Alien WHERE Alien_ID = " + id.getText());
+            alienInstansData = mibdb.fetchRow("SELECT * FROM Alien WHERE " + kolumn + " = " + value);
 
             //Platsnamnet ersätter platsID:et.
-            String query = "SELECT Benamning FROM plats WHERE Plats_ID = (SELECT plats FROM alien Where Alien_ID = " + id.getText() + ")";
+            String query = "SELECT Benamning FROM plats WHERE Plats_ID = (SELECT plats FROM alien Where " + kolumn + " = " + value + ")";
             String platsnamn = mibdb.fetchSingle(query);
             alienInstansData.put("Plats", platsnamn);
 
             //Agentnamnet ersätter agentID:et.
-            query = "SELECT Namn FROM Agent WHERE Agent_ID = (SELECT Ansvarig_agent FROM alien Where Alien_ID = " + id.getText() + ")";
+            query = "SELECT Namn FROM Agent WHERE Agent_ID = (SELECT Ansvarig_agent FROM alien Where " + kolumn + " = " + value + ")";
             String agentnamn = mibdb.fetchSingle(query);
             alienInstansData.put("Ansvarig_Agent", agentnamn);
         }
@@ -104,6 +102,29 @@ public class Alienfunktioner {
     }
     
     
+    public static void uppdateraEnAlien(HashMap<String, String> alienInstansData) {
+
+        alienInstansData = OvrigaFunktioner.trimHashMap(alienInstansData);
+        String agentID = null;
+        String platsID = null;
+        
+        try {
+            agentID = mibdb.fetchSingle("SELECT Agent_ID FROM Agent WHERE Namn = " + alienInstansData.get("Agent"));
+            platsID = mibdb.fetchSingle("SELECT Plats_ID FROM Plats WHERE Benamning = " + alienInstansData.get("Plats"));
+            
+            String query = "UPDATE Alien SET Agent_ID = " + alienInstansData.get("ID") + ", Registreringsdatum = '" + alienInstansData.get("Registreringsdatum")
+                    + "', Losenord = '" + alienInstansData.get("Losenord") + "', Namn = '" + alienInstansData.get("Namn") +
+                    "', Telefon = '" + alienInstansData.get("Telefonnummer") + "', Plats = " + platsID  + ", Ansvarig_Agent = " + agentID
+                    + " WHERE Alien_ID = " + alienInstansData.get("ID");
+            mibdb.update(query);
+        }
+        catch(InfException ex) {
+            JOptionPane.showMessageDialog(null, "Uppdateringen lyckade ej.");
+            System.out.println("Internt felmeddelande: " + ex.getMessage());
+        }
+
+    }
+            
     
     
     
