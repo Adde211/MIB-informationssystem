@@ -5,10 +5,11 @@
  */
 package MIB_informationssystem;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
-
+import java.util.HashMap;
 /**
  *
  * @author axelh
@@ -25,6 +26,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
         
         döljNyUtrustning();
         lbTillagd.setVisible(false);
+        doljTaBort(true);
         
            try {
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
@@ -33,12 +35,18 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
         }         
     }
     
+    private void skrivUt(String nyRad){
+    
+    txtLista.setText(txtLista.getText() + nyRad);
+    
+    }
+    
     private void insertDB(String fraga){
     
         try {
           
             String ettFordon = fraga;
-           
+           lbTillagd.setVisible(true);
             idb.insert(ettFordon);
 
             
@@ -75,6 +83,32 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             txtNyTvå.setText("");
             txtNyTre.setText("");
             txtNyFyra.setText("");
+         
+        
+        }
+        
+        private void doljTaBort(boolean tabort){
+        
+        if (tabort == true)  { 
+        txtBortEtt.setVisible(false);
+        txtBortTvå.setVisible(false);
+        lbBortEtt.setVisible(false);
+        lbBortTvå.setVisible(false);
+        comboTaBort.setVisible(false);
+        btnTaBort.setVisible(false);
+        }
+        
+        else {
+        txtBortEtt.setVisible(true);
+        txtBortTvå.setVisible(true);
+        lbBortEtt.setVisible(true);
+        lbBortTvå.setVisible(true);
+        comboTaBort.setVisible(true);
+        btnTaBort.setVisible(true);
+        
+        }
+            
+        
         
         
         
@@ -89,9 +123,10 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         btnNyUtrustning = new javax.swing.JButton();
         btnVäljUtrustning = new javax.swing.JComboBox<>();
-        btnTaBort = new javax.swing.JButton();
+        btnStorTaBort = new javax.swing.JButton();
         ntbOKutrustning = new javax.swing.JButton();
         txtNyEtt = new javax.swing.JTextField();
         txtNyTvå = new javax.swing.JTextField();
@@ -102,6 +137,16 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
         lbNyTvå = new javax.swing.JLabel();
         lbNyFyra = new javax.swing.JLabel();
         lbTillagd = new javax.swing.JLabel();
+        comboTaBort = new javax.swing.JComboBox<>();
+        btnTaBort = new javax.swing.JButton();
+        txtBortEtt = new javax.swing.JTextField();
+        txtBortTvå = new javax.swing.JTextField();
+        lbBorttagen = new javax.swing.JLabel();
+        lbBortEtt = new javax.swing.JLabel();
+        lbBortTvå = new javax.swing.JLabel();
+        txtLista = new javax.swing.JTextField();
+        txtLista2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,10 +164,10 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnTaBort.setText("Ta bort Utrustning");
-        btnTaBort.addActionListener(new java.awt.event.ActionListener() {
+        btnStorTaBort.setText("Ta bort Utrustning");
+        btnStorTaBort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTaBortActionPerformed(evt);
+                btnStorTaBortActionPerformed(evt);
             }
         });
 
@@ -146,6 +191,32 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
 
         lbTillagd.setText("Utrustning Tillagd!");
 
+        comboTaBort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj Typ", "Utrustning", "Kommunikation", "Fordon", "Teknik", "Vapen" }));
+        comboTaBort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTaBortActionPerformed(evt);
+            }
+        });
+
+        btnTaBort.setText("Ta bort");
+        btnTaBort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaBortActionPerformed(evt);
+            }
+        });
+
+        txtBortEtt.setColumns(8);
+
+        txtBortTvå.setColumns(8);
+
+        lbBorttagen.setText("Utrustning bort tagen!");
+
+        txtLista.setText("txtLista");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        txtLista2.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,7 +224,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnTaBort, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                    .addComponent(btnStorTaBort, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                     .addComponent(btnNyUtrustning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,20 +252,40 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
                                 .addComponent(txtNyTvå, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(lbTillagd)
-                        .addComponent(btnVäljUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(416, Short.MAX_VALUE))
+                        .addComponent(btnVäljUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnTaBort)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(53, 53, 53)
+                                        .addComponent(lbBorttagen))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lbBortEtt)
+                                        .addGap(4, 4, 4)
+                                        .addComponent(txtBortEtt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(lbBortTvå)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtBortTvå, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(116, 116, 116))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txtLista2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(125, 125, 125)))
+                        .addComponent(txtLista, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnNyUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbTillagd))
-                        .addGap(74, 74, 74)
-                        .addComponent(btnTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnNyUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbTillagd))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnVäljUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -210,7 +301,28 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
                             .addComponent(txtNyFyra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbNyTre)
                             .addComponent(lbNyFyra))))
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addGap(66, 66, 66)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnStorTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comboTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtLista, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(lbBorttagen)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnTaBort)
+                                    .addComponent(txtBortEtt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtBortTvå, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbBortEtt)
+                                    .addComponent(lbBortTvå))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                .addComponent(txtLista2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(40, 40, 40))
         );
 
         pack();
@@ -222,9 +334,10 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
         btnVäljUtrustning.setVisible(true);
     }//GEN-LAST:event_btnNyUtrustningActionPerformed
 
-    private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
+    private void btnStorTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStorTaBortActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnTaBortActionPerformed
+        doljTaBort(false);
+    }//GEN-LAST:event_btnStorTaBortActionPerformed
 
     private void btnVäljUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVäljUtrustningActionPerformed
       // TODO add your handling code here:
@@ -408,9 +521,96 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
       
       döljNyUtrustning();
       cleartxtWindow();
-      lbTillagd.setVisible(true);
+      
       
     }//GEN-LAST:event_ntbOKutrustningActionPerformed
+
+    private void comboTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTaBortActionPerformed
+        // TODO add your handling code here:
+        String utrustning = comboTaBort.getSelectedItem().toString();
+        
+         if ("Fordon".equals(utrustning)) {
+             lbBortEtt.setText("Fordons ID:");
+             
+             //ArrayList<String> fraga = new ArrayList<String>();
+             
+             HashMap<String, String> fraga = new HashMap<String, String>();
+           ArrayList<HashMap<String, String>> test = new ArrayList<HashMap<String, String>>();
+           
+             
+             String databasfraga = "SELECT * FROM fordon;";
+
+        try {
+            test = idb.fetchRows(databasfraga);
+            JOptionPane.showMessageDialog(null, "Fordon " + test);
+            //for each loop 
+            for (int i = 0; i < test.size(); i++) {
+                System.out.println(test.get(i));
+                
+               String rad = test.get(i).toString();
+                
+                skrivUt(rad);
+                
+            }
+       
+            
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+
+        }
+             
+        }
+
+        if ("Kommunikation".equals(utrustning)) {
+            lbBortEtt.setText("Utrustnings ID:");
+        }
+
+        if ("Teknik".equals(utrustning)) {
+            lbBortEtt.setText("Utrustnings ID:");
+        }
+
+        if ("Utrustning".equals(utrustning)) {
+            lbBortEtt.setText("Utrustnings ID:");
+        }
+
+        if ("Vapen".equals(utrustning)) {
+            lbBortEtt.setText("Utrustnings ID:");
+        }
+
+
+        
+        
+        
+    }//GEN-LAST:event_comboTaBortActionPerformed
+
+    private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
+        // TODO add your handling code here:
+        String utrustning = comboTaBort.getSelectedItem().toString();
+        
+         if ("Fordon".equals(utrustning)) {
+             lbBortEtt.setText("Fordons ID:");
+             
+        }
+
+        if ("Kommunikation".equals(utrustning)) {
+            lbBortEtt.setText("Utrustnings ID:");
+        }
+
+        if ("Teknik".equals(utrustning)) {
+            lbBortEtt.setText("Utrustnings ID:");
+        }
+
+        if ("Utrustning".equals(utrustning)) {
+            lbBortEtt.setText("Utrustnings ID:");
+        }
+
+        if ("Vapen".equals(utrustning)) {
+            lbBortEtt.setText("Utrustnings ID:");
+        }
+
+    }//GEN-LAST:event_btnTaBortActionPerformed
 
     /**
      * @param args the command line arguments
@@ -449,14 +649,25 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNyUtrustning;
+    private javax.swing.JButton btnStorTaBort;
     private javax.swing.JButton btnTaBort;
     private javax.swing.JComboBox<String> btnVäljUtrustning;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> comboTaBort;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lbBortEtt;
+    private javax.swing.JLabel lbBortTvå;
+    private javax.swing.JLabel lbBorttagen;
     private javax.swing.JLabel lbNyEtt;
     private javax.swing.JLabel lbNyFyra;
     private javax.swing.JLabel lbNyTre;
     private javax.swing.JLabel lbNyTvå;
     private javax.swing.JLabel lbTillagd;
     private javax.swing.JButton ntbOKutrustning;
+    private javax.swing.JTextField txtBortEtt;
+    private javax.swing.JTextField txtBortTvå;
+    private javax.swing.JTextField txtLista;
+    private javax.swing.JScrollPane txtLista2;
     private javax.swing.JTextField txtNyEtt;
     private javax.swing.JTextField txtNyFyra;
     private javax.swing.JTextField txtNyTre;
