@@ -5,6 +5,7 @@
  */
 package MIB_informationssystem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -223,26 +224,40 @@ public class LäggTillEnAlien extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         HashMap<String, String> alienInstansData = new HashMap<>();
-        
-        alienData.add(tfID.getText());
-        alienData.add(tfNamn.getText());
-        alienData.add(tfTelefonnummer.getText());
-        alienData.add(tfPlats.getText());
-        
-        alienData.add(tfAgent.getText());
-        alienData.add(tfLosenord.getText());
-        alienData.add(tfRegistreringsdatum.getText());
+        ArrayList<String> felmeddelanden = null;
+        String felmeddelande = null;
         
         alienInstansData.put("ID", tfID.getText());
         alienInstansData.put("Namn", tfNamn.getText());
-        alienInstansData.put("Telefonnummer", tfTelefonnummer.getText());
+        
+        if(!Validering.kollaEttTelefonnummer(tfTelefonnummer.getText()).isEmpty()) {
+            felmeddelande = Validering.kollaEttTelefonnummer(tfTelefonnummer.getText());
+            felmeddelanden.add(Validering.kollaEttTelefonnummer(felmeddelande));
+        }
+        else {
+            alienInstansData.put("Telefonnummer", tfTelefonnummer.getText());
+        }
+        
         alienInstansData.put("Plats", tfPlats.getText());
         
         alienInstansData.put("Agent", tfAgent.getText());
         alienInstansData.put("Losenord", tfLosenord.getText());
-        alienInstansData.put("Registreringsdatum", tfRegistreringsdatum.getText());
         
         
+        if(!Validering.kollaOmEttDatumArGiltigt(tfRegistreringsdatum.getText()).isEmpty()) {
+            
+            felmeddelande = Validering.kollaOmEttDatumArGiltigt(tfRegistreringsdatum.getText());
+            felmeddelanden.add(felmeddelande);
+        }
+        else {
+            alienInstansData.put("Registreringsdatum", tfRegistreringsdatum.getText());
+        }
+        
+        
+        
+        alienInstansData = OvrigaFunktioner.trimHashMap(alienInstansData);
+        
+        Alienfunktioner.laggTillEnAlien(alienInstansData);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

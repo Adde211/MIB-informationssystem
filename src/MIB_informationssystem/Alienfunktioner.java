@@ -84,9 +84,9 @@ public class Alienfunktioner {
 
     public static void laggTillEnAlien(HashMap<String, String> alienInstansData) {
 
-        alienInstansData = OvrigaFunktioner.trimArrayList(alienInstansData);
-        String agentID = "";
-        String platsID = "";
+        alienInstansData = OvrigaFunktioner.trimHashMap(alienInstansData);
+        String agentID = null;
+        String platsID = null;
         
         try {
             agentID = mibdb.fetchSingle("SELECT Agent_ID FROM Agent WHERE Namn = " + alienInstansData.get("Agent"));
@@ -103,12 +103,11 @@ public class Alienfunktioner {
             JOptionPane.showMessageDialog(null, "Antingen så skrev du in fel eller så finns inte platsen i systemet än.");
             System.out.println("Internt felmeddelande: " + ex.getMessage());
         }
-
-        String query = "INSERT INTO Alien Values(" + alienInstansData.get("ID") + ", " + alienInstansData.get("Registreringsdatum") + ", " + alienInstansData.get("Losenord") + ", "
-                        + alienInstansData.get("Namn") + ", " + alienInstansData.get("Telefonnummer") + ", " + platsID  + ", " + agentID + ")";
-
-
+        
+        
         try {
+            String query = "INSERT INTO Alien Values(" + alienInstansData.get("ID") + ", '" + alienInstansData.get("Registreringsdatum") + "', '" + alienInstansData.get("Losenord") + "', '"
+                        + alienInstansData.get("Namn") + "', '" + alienInstansData.get("Telefonnummer") + "', " + platsID  + ", " + agentID + ")";
             mibdb.insert(query);
         }
         catch(InfException ex) {
@@ -117,19 +116,22 @@ public class Alienfunktioner {
         }
 
     }
-
-
-
-
-
-    //String fraga = "SELECT telefon FROM agent WHERE Namn = " + tfAnvandarnamn.getText();
-
-    //fraga = "SELECT losenord FROM alien WHERE Namn = " + tfAnvandarnamn.getText();
-
-
-    */
-
-
-
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

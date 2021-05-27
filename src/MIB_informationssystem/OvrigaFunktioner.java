@@ -19,12 +19,32 @@ public class OvrigaFunktioner {
     */
     public static HashMap<String, String> trimHashMap(HashMap<String, String> hashMap) {
         
-        for(String element : hashMap) {
-            element = element.trim();
+        for(String key : hashMap.keySet()) {
+            String trimmedValue = hashMap.get(key).trim();
+            hashMap.put(key, trimmedValue);
         }
         
         return hashMap;
     }
+    
+    
+    public static javax.swing.JTextArea fillTextArea(ArrayList<String> stringArrayList) {
+        
+        javax.swing.JTextArea textArea = null;
+        
+        for (String string : stringArrayList) {
+            textArea.append(string + "/n");
+        }
+        
+        return textArea;
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
     
