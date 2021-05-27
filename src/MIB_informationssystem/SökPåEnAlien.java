@@ -6,6 +6,7 @@
 package MIB_informationssystem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -51,6 +52,7 @@ public class SökPåEnAlien extends javax.swing.JFrame {
         tfRegistreringsdatum = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        lblFelmeddelande = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(850, 525));
@@ -70,35 +72,33 @@ public class SökPåEnAlien extends javax.swing.JFrame {
 
         jLabel4.setText("jLabel3");
 
-        tfNamn.setText("jTextField1");
-
         jLabel5.setText("Namn");
 
         jLabel6.setText("jLabel3");
 
-        tfTelefonnummer.setText("jTextField1");
+        tfTelefonnummer.setToolTipText("");
 
         jLabel7.setText("Telefonnummer");
 
-        tfPlats.setText("jTextField1");
+        tfPlats.setToolTipText("");
 
-        jLabel8.setText("Befinner sig på plats");
+        jLabel8.setText("Plats");
 
         jLabel9.setText("jLabel3");
 
         jLabel10.setText("jLabel3");
 
-        tfAgent.setText("jTextField1");
+        tfAgent.setToolTipText("");
 
         jLabel11.setText("Ansvarig agent");
 
         jLabel12.setText("jLabel3");
 
-        tfLosenord.setText("jTextField1");
+        tfLosenord.setToolTipText("");
 
         jLabel13.setText("Lösenord");
 
-        tfRegistreringsdatum.setText("jTextField1");
+        tfRegistreringsdatum.setToolTipText("");
 
         jLabel14.setText("Registreringsdatum");
 
@@ -116,11 +116,6 @@ public class SökPåEnAlien extends javax.swing.JFrame {
                         .addComponent(jLabel12))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
@@ -136,7 +131,14 @@ public class SökPåEnAlien extends javax.swing.JFrame {
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(tfNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(42, 42, 42)))
+                                .addGap(42, 42, 42))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFelmeddelande, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jLabel6)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -148,8 +150,8 @@ public class SökPåEnAlien extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel9)
@@ -157,12 +159,11 @@ public class SökPåEnAlien extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
+                                .addComponent(tfPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(tfRegistreringsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(tfRegistreringsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(40, 40, 40))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -185,7 +186,9 @@ public class SökPåEnAlien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblFelmeddelande, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(tfNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,7 +210,7 @@ public class SökPåEnAlien extends javax.swing.JFrame {
                     .addComponent(jLabel15)
                     .addComponent(tfRegistreringsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         pack();
@@ -216,16 +219,37 @@ public class SökPåEnAlien extends javax.swing.JFrame {
     private void tfIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIDActionPerformed
         // TODO add your handling code here:
         
-        ArrayList<String> alienInfo = Alienfunktioner.getAlienInfo(tfID);
+        //if(!kollaTextField(tfID).isEmpty()) {
+            
+            //tilldela felmeddelandet till en textField.
+            
+        //}
         
-        tfNamn.setText(alienInfo.get(0));
-        tfTelefonnummer.setText(alienInfo.get(1));
-        tfPlats.setText(alienInfo.get(2));
-        
-        tfAgent.setText(alienInfo.get(3));
-        tfLosenord.setText(alienInfo.get(4));
-        tfRegistreringsdatum.setText(alienInfo.get(5));
-        
+        if(tfID.getText().isEmpty()) {
+            String felmeddelande = "Skriv in ett alien-ID.";
+            lblFelmeddelande.setText(felmeddelande);
+        }
+        else {
+            
+            if(!Validering.isHeltal(tfID)) {
+                String felmeddelande = "Skriv in ett heltal";
+                lblFelmeddelande.setText(felmeddelande);
+            }
+            else {
+                lblFelmeddelande.setText("");
+            
+                //Hämtar datan om den motsvarande utomjordingen baserat på id:et som användaren skrev in i ID-fältet
+                HashMap<String, String> alienInstansData = Alienfunktioner.getAlienInstansData(tfID);
+
+                //Sätter in den hämtade datan i textfälten.
+                tfNamn.setText(alienInstansData.get("Namn"));
+                tfTelefonnummer.setText(alienInstansData.get("Telefon"));
+                tfPlats.setText(alienInstansData.get("Plats"));
+
+                tfAgent.setText(alienInstansData.get("Ansvarig_Agent"));
+                tfLosenord.setText(alienInstansData.get("Losenord"));
+                tfRegistreringsdatum.setText(alienInstansData.get("Registreringsdatum"));
+            }
     }//GEN-LAST:event_tfIDActionPerformed
 
     
@@ -249,6 +273,7 @@ public class SökPåEnAlien extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblFelmeddelande;
     private javax.swing.JTextField tfAgent;
     private javax.swing.JTextField tfID;
     private javax.swing.JTextField tfLosenord;

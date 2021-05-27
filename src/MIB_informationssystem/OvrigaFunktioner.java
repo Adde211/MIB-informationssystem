@@ -6,6 +6,7 @@
 package MIB_informationssystem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -16,13 +17,13 @@ public class OvrigaFunktioner {
     /*"Trimmar" alla elemelnt hos en ArrayList, det vill säga tomma tecken som mellanslag
     och tabbar, tror jag, tas bort från alla element hos en ArrayList.
     */
-    public static ArrayList<String> trimArrayList(ArrayList<String> arrayList) {
+    public static HashMap<String, String> trimHashMap(HashMap<String, String> hashMap) {
         
-        for(String element : arrayList) {
+        for(String element : hashMap) {
             element = element.trim();
         }
         
-        return arrayList;
+        return hashMap;
     }
     
     

@@ -5,7 +5,7 @@
  */
 package MIB_informationssystem;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -222,7 +222,7 @@ public class LäggTillEnAlien extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        ArrayList<String> alienData = new ArrayList<>();
+        HashMap<String, String> alienInstansData = new HashMap<>();
         
         alienData.add(tfID.getText());
         alienData.add(tfNamn.getText());
@@ -233,7 +233,14 @@ public class LäggTillEnAlien extends javax.swing.JFrame {
         alienData.add(tfLosenord.getText());
         alienData.add(tfRegistreringsdatum.getText());
         
+        alienInstansData.put("ID", tfID.getText());
+        alienInstansData.put("Namn", tfNamn.getText());
+        alienInstansData.put("Telefonnummer", tfTelefonnummer.getText());
+        alienInstansData.put("Plats", tfPlats.getText());
         
+        alienInstansData.put("Agent", tfAgent.getText());
+        alienInstansData.put("Losenord", tfLosenord.getText());
+        alienInstansData.put("Registreringsdatum", tfRegistreringsdatum.getText());
         
         
         
