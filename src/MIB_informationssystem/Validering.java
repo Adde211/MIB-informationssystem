@@ -5,11 +5,22 @@
  */
 package MIB_informationssystem;
 
+import oru.inf.InfDB;
+import oru.inf.InfException;
+
 /**
  *
  * @author adamd
  */
 public class Validering {
+    
+    private static InfDB mibdb;
+
+    public Validering(InfDB mibdb) {
+
+        this.mibdb = mibdb;
+    }
+    
     
     //Alternativ till att använda koden tfNAMN.getText().isEmpty()
     /* 
@@ -29,12 +40,13 @@ public class Validering {
     }
     */
     
-    public static boolean isHeltal(javax.swing.JTextField tf) {
+    
+    public static boolean isHeltal(String heltal) {
         
         boolean isHeltal = false;
         
         try {
-            Integer.parseInt(tf.getText());
+            Integer.parseInt(heltal);
             isHeltal = true;
         }
         catch (NumberFormatException ex) {
@@ -73,7 +85,9 @@ public class Validering {
         return felmeddelande;
     }
     
-    
+    /*  
+        Kollar om datumet har ett gilgt format. Om inte så kommer ett felmeddelande att returneras.
+    */
     public static String kollaOmEttDatumArGiltigt(String datum) {
         
         String[] substrings = datum.split("-");
@@ -85,23 +99,120 @@ public class Validering {
         */
         for(String substring : substrings)  {
             if(substring.isEmpty()) {
-                felmeddelande = "Datumet behövear ha formatet ÅÅÅÅ-MM-DD";
+                felmeddelande = "Datumet behöver ha formatet ÅÅÅÅ-MM-DD";
             }
         }
         
+        /*  
+            Kollar om det inmatade datumet har ett bindesstrerck i slutet och om antalet siffror stämmer för år, månad respektive dag. 
+            Om något av dessa inte stämmer så kommer ett felmeddelande att returneras.
+        */
         if(felmeddelande.isEmpty()) {
             if(datum.endsWith("-") || !(substrings[0].length() == 4 && substrings[0].length() == 2 && substrings[0].length() == 2)) {
                 
-                felmeddelande = "Datumet behövear ha formatet ÅÅÅÅ-MM-DD";
+                felmeddelande = "Datumet behöver ha formatet ÅÅÅÅ-MM-DD";
             }
         }
         
         return felmeddelande;
     }
     
+    /*
+        Metoden kollar om det inmatade namnet består av fler än 30 tecken.
+        I så fall så returneras ett felmeddelande.
+    */
+    public static String kollaOmEttNamnArGiltigt(String namn) {
+        
+        String felmeddelande = null;
+        
+        if(namn.length() >= 31) {
+            felmeddelande = "Namnet får högst bestå av 30 tecken";
+        }
+        
+        return felmeddelande;
+    }
     
     
+    /*  Metoden kollar om det inmatade losenordet är giltigt. För att losenordet ska vara giltigt så behöver lösenordet innehålla
+        minst en siffra, minst en versal och minst ett specialtecken. Lösenordet behöver även innehålla mellan 8 och 25 tecken.
+    */
+    public static String kollaOmLosenordetArGiltigt(String losen) {
+        
+        int numOfChars = losen.length();
+        int numOfDigits = 0;
+        int numOfCapLets = 0;
+        int numOfSecialChars = 0;
+        
+        char[] losenChars = losen.toCharArray();
+        String felmeddelande = null;
+        
+        // Går igenom den inmatade strängen och räknar på hur många tecken det finns av typerna siffror, versaler och specialtecken.
+        for(char character : losenChars) {
+            
+            try {
+                Character.getNumericValue(character);
+                ++ numOfDigits;
+            }
+            catch(NumberFormatException ex) {
+                
+                if(character >= 'A' && character <= 'Z') {
+                    ++numOfCapLets;
+                }
+                else if(!(character >= 'a' && character <= 'z')) {
+                    ++numOfSecialChars;
+                }
+            }
+        }
+        
+        /*  
+            Kollar om det inmatade losenordet är giltigt baserat på nämnd beskrivning. Om lösenordet inte är giltigt så returneras ett felmeddelande.
+        */
+        if (numOfChars >= 26 || numOfChars <= 7 || numOfDigits == 0 || numOfCapLets == 0 || numOfSecialChars == 0) {
+            felmeddelande = "Lösenordet behöver innehålla minst en siffra, minst en versal och minst ett specialtecken."
+                    + " Lösenordet behöver även innehålla mellan 8 och 25 tecken.";
+        }
+        
+        
+        return felmeddelande;
+    }
     
+    
+    /*  
+         Kollar om det inmatade platsnamnet finns registrerat i databasen eller inte.
+         Om inte så returneras ett felmeddelande och ett internt felmeddelande skrivs ut.
+    */
+    public static String platsArRegistrerad(String platsnamn) {
+        
+        String felmeddelande = null;
+        
+        try {
+            mibdb.fetchSingle("SELECT Plats_ID FROM Plats WHERE Benamning = " + platsnamn);
+        } catch(InfException ex) {
+            felmeddelande = "Antingen så skrev du in fel eller så finns inte platsen i systemet än.";
+            System.out.println("Internt felmeddelande: " + ex.getMessage());
+        }
+            
+            return felmeddelande;
+    }
+    
+    
+    /*  
+         Kollar om det inmatade agentnamnet finns registrerat i databasen eller inte.
+         Om inte så returneras ett felmeddelande och ett internt felmeddelande skrivs ut.
+    */
+    public static String agentArRegistrerad(String agentnamn) {
+        
+        String felmeddelande = null;
+        
+        try {
+            mibdb.fetchSingle("SELECT Agent_ID FROM Agent WHERE Namn = " + agentnamn);
+        } catch(InfException ex) {
+            felmeddelande = "Antingen så skrev du in fel eller så finns inte agenten i systemet än.";
+            System.out.println("Internt felmeddelande: " + ex.getMessage());
+        }
+            
+        return felmeddelande;
+    }
     
     
     

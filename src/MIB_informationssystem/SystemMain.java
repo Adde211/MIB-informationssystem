@@ -30,9 +30,10 @@ public class SystemMain {
         }
         
         new Alienfunktioner(mibdb);
+        new Validering(mibdb);
         
-        new SökPåEnAlien().setVisible(true);
-        //new LäggTillEnAlien().setVisible(true);
+        //new SökPåEnAlien().setVisible(true);
+        new LäggTillEnAlien().setVisible(true);
     }
     
     

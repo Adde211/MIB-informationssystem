@@ -90,28 +90,14 @@ public class Alienfunktioner {
         
         try {
             agentID = mibdb.fetchSingle("SELECT Agent_ID FROM Agent WHERE Namn = " + alienInstansData.get("Agent"));
-        }
-        catch(InfException ex) {
-            JOptionPane.showMessageDialog(null, "Antingen så skrev du in fel eller så finns inte agenten i systemet än.");
-            System.out.println("Internt felmeddelande: " + ex.getMessage());
-        }
-
-        try {
             platsID = mibdb.fetchSingle("SELECT Plats_ID FROM Plats WHERE Benamning = " + alienInstansData.get("Plats"));
-        }
-        catch(InfException ex) {
-            JOptionPane.showMessageDialog(null, "Antingen så skrev du in fel eller så finns inte platsen i systemet än.");
-            System.out.println("Internt felmeddelande: " + ex.getMessage());
-        }
-        
-        
-        try {
+            
             String query = "INSERT INTO Alien Values(" + alienInstansData.get("ID") + ", '" + alienInstansData.get("Registreringsdatum") + "', '" + alienInstansData.get("Losenord") + "', '"
                         + alienInstansData.get("Namn") + "', '" + alienInstansData.get("Telefonnummer") + "', " + platsID  + ", " + agentID + ")";
             mibdb.insert(query);
         }
         catch(InfException ex) {
-            JOptionPane.showMessageDialog(null, "Antingen så skrev du in fel eller så finns inte platsen i systemet än.");
+            JOptionPane.showMessageDialog(null, "Registreringen lyckade ej.");
             System.out.println("Internt felmeddelande: " + ex.getMessage());
         }
 

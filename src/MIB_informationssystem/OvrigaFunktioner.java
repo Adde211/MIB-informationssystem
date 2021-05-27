@@ -28,18 +28,33 @@ public class OvrigaFunktioner {
     }
     
     
+        //Alternativ kod. Den här koden kanske inte funkar.
+    /*  
     public static javax.swing.JTextArea fillTextArea(ArrayList<String> stringArrayList) {
         
         javax.swing.JTextArea textArea = null;
         
         for (String string : stringArrayList) {
-            textArea.append(string + "/n");
+            textArea.append(string + "\n");
         }
         
         return textArea;
     }
+    */
     
     
+    public static String sammanfogaText(ArrayList<String> stringArrayList) {
+        
+        //Man kan sammanfoga text genom en StringBuilder, vilket man även kan göra med en String, men StringBuilder är ett annat alternativ.
+        StringBuilder sammanfogadText = null;
+        
+        //Sammanfogar strängarna till en text.
+        for (String string : stringArrayList) {
+            sammanfogadText.append(string + "\n");
+        }
+        
+        return sammanfogadText.toString();
+    }
     
     
     
