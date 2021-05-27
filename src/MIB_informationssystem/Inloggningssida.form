@@ -41,21 +41,6 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-                          <Component id="pfLosenord" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                              <Component id="btnLoggaIn" min="-2" pref="91" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" min="-2" pref="78" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="tfAnvandarnamn" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                          <Component id="lblFelmeddelande" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-=======
                           <Component id="txtWindowUser" min="-2" pref="112" max="-2" attributes="0"/>
                           <Component id="txtWindowPassword" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -64,7 +49,6 @@
                       <EmptySpace min="-2" pref="213" max="-2" attributes="0"/>
                       <Component id="lblFelmeddelande" min="-2" pref="434" max="-2" attributes="0"/>
                   </Group>
->>>>>>> 110d9a58ee12bf1c9729ab2970ba1c4cccb76df3
               </Group>
               <EmptySpace pref="214" max="32767" attributes="0"/>
           </Group>
@@ -85,19 +69,11 @@
                   <Component id="txtWindowPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblLosenord" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-<<<<<<< HEAD
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Component id="lblFelmeddelande" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnLoggaIn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="186" max="32767" attributes="0"/>
-=======
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="lblFelmeddelande" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="btnLoggaIn" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="130" max="32767" attributes="0"/>
->>>>>>> 110d9a58ee12bf1c9729ab2970ba1c4cccb76df3
           </Group>
       </Group>
     </DimensionLayout>
