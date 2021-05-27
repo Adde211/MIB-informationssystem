@@ -103,6 +103,29 @@ public class Alienfunktioner {
     }
     
     
+    public static void uppdateraEnAlien(HashMap<String, String> alienInstansData) {
+
+        alienInstansData = OvrigaFunktioner.trimHashMap(alienInstansData);
+        String agentID = null;
+        String platsID = null;
+        
+        try {
+            agentID = mibdb.fetchSingle("SELECT Agent_ID FROM Agent WHERE Namn = " + alienInstansData.get("Agent"));
+            platsID = mibdb.fetchSingle("SELECT Plats_ID FROM Plats WHERE Benamning = " + alienInstansData.get("Plats"));
+            
+            String query = "UPDATE Alien SET Agent_ID = " + alienInstansData.get("ID") + ", Registreringsdatum = '" + alienInstansData.get("Registreringsdatum")
+                    + "', Losenord = '" + alienInstansData.get("Losenord") + "', Namn = '" + alienInstansData.get("Namn") +
+                    "', Telefon = '" + alienInstansData.get("Telefonnummer") + "', Plats = " + platsID  + ", Ansvarig_Agent = " + agentID
+                    + " WHERE Alien_ID = " + alienInstansData.get("ID");
+            mibdb.update(query);
+        }
+        catch(InfException ex) {
+            JOptionPane.showMessageDialog(null, "Uppdateringen lyckade ej.");
+            System.out.println("Internt felmeddelande: " + ex.getMessage());
+        }
+
+    }
+            
     
     
     

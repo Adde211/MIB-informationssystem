@@ -33,7 +33,9 @@ public class SystemMain {
         new Validering(mibdb);
         
         //new SökPåEnAlien().setVisible(true);
-        new LäggTillEnAlien().setVisible(true);
+        //new LäggTillEnAlien().setVisible(true);
+        new UppdateraEnAlien().setVisible(true);
+        
     }
     
     
