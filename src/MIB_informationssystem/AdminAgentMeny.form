@@ -203,7 +203,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="56" max="32767" attributes="0"/>
+                          <EmptySpace pref="67" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -335,10 +335,9 @@
                 <Component class="javax.swing.JComboBox" name="jComboBoxAdmin">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="Ja"/>
-                        <StringItem index="1" value="Nej"/>
-                        <StringItem index="2" value=" "/>
+                      <StringArray count="2">
+                        <StringItem index="0" value="J"/>
+                        <StringItem index="1" value="N"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -450,10 +449,10 @@
                               <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                                   <Component id="jTextFieldRedigeraAgent" alignment="1" min="-2" pref="84" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jButton5" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jButton3" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTextFieldRedigeraAgent2" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jComboBox1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jButtonRensaRedigeraAgent" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jButtonUppdateraAgent" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jTxtRedigeraAgent" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jComboBoxRedigeraAgent" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -472,13 +471,13 @@
                               <Component id="jTextFieldRedigeraAgent" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxRedigeraAgent" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jTextFieldRedigeraAgent2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTxtRedigeraAgent" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonUppdateraAgent" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonRensaRedigeraAgent" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="90" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -500,7 +499,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextFieldRedigeraAgent">
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox1">
+                <Component class="javax.swing.JComboBox" name="jComboBoxRedigeraAgent">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="7">
@@ -518,19 +517,22 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextFieldRedigeraAgent2">
+                <Component class="javax.swing.JTextField" name="jTxtRedigeraAgent">
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton3">
+                <Component class="javax.swing.JButton" name="jButtonUppdateraAgent">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Uppdatera"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUppdateraAgentActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton5">
+                <Component class="javax.swing.JButton" name="jButtonRensaRedigeraAgent">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Rensa"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRensaRedigeraAgentActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
