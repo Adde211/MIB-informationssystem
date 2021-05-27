@@ -231,7 +231,7 @@ public class SökPåEnAlien extends javax.swing.JFrame {
         }
         else {
             
-            if(!Validering.isHeltal(tfID)) {
+            if(!Validering.isHeltal(tfID.getText())) {
                 String felmeddelande = "Skriv in ett heltal";
                 lblFelmeddelande.setText(felmeddelande);
             }
