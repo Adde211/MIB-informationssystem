@@ -6,6 +6,7 @@
 package MIB_informationssystem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
@@ -16,103 +17,97 @@ import oru.inf.InfException;
  * @author adamd
  */
 public class Alienfunktioner {
-        
+
     private static InfDB mibdb;
-    
+
     public Alienfunktioner(InfDB mibdb) {
-        
+
         this.mibdb = mibdb;
     }
-    
-    
-    
-    
-    public static ArrayList<String> getAlienInfo(javax.swing.JTextField id) {
-        
-        ArrayList<String> alienInfo = new ArrayList<>();
-        String errorMeddelande = "Värdet från mibdb lyckades inte att hämtas.";
-        
-        String fraga = "SELECT Namn FROM alien Where Alien_ID = " + id.getText();
+
+
+    /* Hämtar all data från en instans i alientabellen i form av en HashMap.
+    De motsvarande agent- och platsnamnen ersätter värdena för kolumnerna Plats och Ansvarig_Agent.
+
+    @param id ID:et som användaren har skrivit in för att söka på en alien.
+    */
+    public static HashMap<String, String> getAlienInstansData(javax.swing.JTextField id) {
+
+        id.setText(id.getText().trim());
+
+        //kommentarskoden är alternativ kod.
+
+        //ArrayList<String> alienData = new ArrayList<>();
+
+        HashMap<String, String> alienInstansData = null;
+
+
         try {
-        alienInfo.add(mibdb.fetchSingle(fraga));
+            //Alternativ kod
+
+            /*String fraga = "SELECT Namn FROM alien Where Alien_ID = " + id.getText();
+            alienData.add(mibdb.fetchSingle(fraga));
+            fraga = "SELECT Telefon FROM alien Where Alien_ID = " + id.getText();
+            alienData.add(mibdb.fetchSingle(fraga));
+            fraga = "SELECT Benamning FROM plats WHERE Plats_ID = (SELECT plats FROM alien Where Alien_ID = " + id.getText() + ")";
+            alienData.add(mibdb.fetchSingle(fraga));
+            fraga = "SELECT Namn FROM Agent WHERE Agent_ID = (SELECT Ansvarig_agent FROM alien Where Alien_ID = " + id.getText() + ")";
+            alienData.add(mibdb.fetchSingle(fraga));
+            fraga = "SELECT Losenord FROM alien Where Alien_ID = " + id.getText();
+            alienData.add(mibdb.fetchSingle(fraga));
+            fraga = "SELECT Registreringsdatum FROM alien Where Alien_ID = " + id.getText();
+            alienData.add(mibdb.fetchSingle(fraga));
+            */
+
+            alienInstansData = mibdb.fetchRow("SELECT * FROM Alien WHERE Alien_ID = " + id.getText());
+
+            //Platsnamnet ersätter platsID:et.
+            String query = "SELECT Benamning FROM plats WHERE Plats_ID = (SELECT plats FROM alien Where Alien_ID = " + id.getText() + ")";
+            String platsnamn = mibdb.fetchSingle(query);
+            alienInstansData.put("Plats", platsnamn);
+
+            //Agentnamnet ersätter agentID:et.
+            query = "SELECT Namn FROM Agent WHERE Agent_ID = (SELECT Ansvarig_agent FROM alien Where Alien_ID = " + id.getText() + ")";
+            String agentnamn = mibdb.fetchSingle(query);
+            alienInstansData.put("Ansvarig_Agent", agentnamn);
         }
         catch(InfException ex) {
+            //Ett felmeddelande till användaren respektive ett internt felmeddelande skrivs ut.
+            String errorMeddelande = "Ett eller flera värden från mibdb lyckades inte att hämtas.";
             JOptionPane.showMessageDialog(null, errorMeddelande);
             System.out.println("Internt felmeddelande: " + ex.getMessage());
         }
-        
-        fraga = "SELECT Telefonnummer FROM alien Where Alien_ID = " + id.getText();
-        try {
-        alienInfo.add(mibdb.fetchSingle(fraga));
-        }
-        catch(InfException ex) {
-            JOptionPane.showMessageDialog(null, errorMeddelande);
-            System.out.println("Internt felmeddelande: " + ex.getMessage());
-        }
-        
-        
-        fraga = "SELECT Benamning FROM plats WHERE Plats_ID = (SELECT plats FROM alien Where Alien_ID = " + id.getText() + ")";
-        try {
-        alienInfo.add(mibdb.fetchSingle(fraga));
-        }
-        catch(InfException ex) {
-            JOptionPane.showMessageDialog(null, errorMeddelande);
-            System.out.println("Internt felmeddelande: " + ex.getMessage());
-        }
-        
-        fraga = "SELECT Namn FROM Agent WHERE Agent_ID = (SELECT Ansvarig_agent FROM alien Where Alien_ID = " + id.getText() + ")";
-        try {
-        alienInfo.add(mibdb.fetchSingle(fraga));
-        }
-        catch(InfException ex) {
-            JOptionPane.showMessageDialog(null, errorMeddelande);
-            System.out.println("Internt felmeddelande: " + ex.getMessage());
-        }
-        
-        fraga = "SELECT Losenord FROM alien Where Alien_ID = " + id.getText();
-        try {
-        alienInfo.add(mibdb.fetchSingle(fraga));
-        }
-        catch(InfException ex) {
-            JOptionPane.showMessageDialog(null, errorMeddelande);
-            System.out.println("Internt felmeddelande: " + ex.getMessage());
-        }
-        
-        fraga = "SELECT Registreringsdatum FROM alien Where Alien_ID = " + id.getText();
-        try {
-        alienInfo.add(mibdb.fetchSingle(fraga));
-        }
-        catch(InfException ex) {
-            JOptionPane.showMessageDialog(null, errorMeddelande);
-            System.out.println("Internt felmeddelande: " + ex.getMessage());
-        }
-        
-        return alienInfo;
-        
+
+        return alienInstansData;
+
     }
-    /*
-    public static void laggTillEnAlien(ArrayList<String> alienData) {
+
+    public static void laggTillEnAlien(HashMap<String, String> alienInstansData) {
+
+        alienInstansData = OvrigaFunktioner.trimArrayList(alienInstansData);
+        String agentID = "";
+        String platsID = "";
         
         try {
-        String agentID = mibdb.fetchSingle("SELECT Agent_ID FROM Agent WHERE Namn = " + alienData.get(1));
+            agentID = mibdb.fetchSingle("SELECT Agent_ID FROM Agent WHERE Namn = " + alienInstansData.get("Agent"));
         }
         catch(InfException ex) {
             JOptionPane.showMessageDialog(null, "Antingen så skrev du in fel eller så finns inte agenten i systemet än.");
             System.out.println("Internt felmeddelande: " + ex.getMessage());
         }
-        
+
         try {
-            String platsID = "mibdb.fetchSingle(SELECT Plats_ID FROM Plats WHERE Benamning = " + alienData.get(3);
+            platsID = mibdb.fetchSingle("SELECT Plats_ID FROM Plats WHERE Benamning = " + alienInstansData.get("Plats"));
         }
         catch(InfException ex) {
             JOptionPane.showMessageDialog(null, "Antingen så skrev du in fel eller så finns inte platsen i systemet än.");
             System.out.println("Internt felmeddelande: " + ex.getMessage());
         }
-        
-        String query = "INSERT INTO Alien Values(" + alienData.get(1) + ", " + alienData.get(6) + ", " + alienData.get(5) + ", " + alienData.get(1)
-                 + ", " + alienData.get(2) + ", " + platsID  + ", " + agentID;
-        
-        
+
+        String query = "INSERT INTO Alien Values(" + alienInstansData.get("ID") + ", " + alienInstansData.get("Registreringsdatum") + ", " + alienInstansData.get("Losenord") + ", "
+                        + alienInstansData.get("Namn") + ", " + alienInstansData.get("Telefonnummer") + ", " + platsID  + ", " + agentID + ")";
+
+
         try {
             mibdb.insert(query);
         }
@@ -120,20 +115,21 @@ public class Alienfunktioner {
             JOptionPane.showMessageDialog(null, "Antingen så skrev du in fel eller så finns inte platsen i systemet än.");
             System.out.println("Internt felmeddelande: " + ex.getMessage());
         }
-        
+
     }
-    
-    
-    
-    
-    String fraga = "SELECT telefon FROM agent WHERE Namn = " + tfAnvandarnamn.getText();
-    
-    fraga = "SELECT losenord FROM alien WHERE Namn = " + tfAnvandarnamn.getText();
-    
-    
+
+
+
+
+
+    //String fraga = "SELECT telefon FROM agent WHERE Namn = " + tfAnvandarnamn.getText();
+
+    //fraga = "SELECT losenord FROM alien WHERE Namn = " + tfAnvandarnamn.getText();
+
+
     */
-    
-    
-    
-    
+
+
+
+
 }

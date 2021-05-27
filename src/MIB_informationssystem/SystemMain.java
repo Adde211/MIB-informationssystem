@@ -29,9 +29,10 @@ public class SystemMain {
             System.out.println("Internt felmeddelande: " + ex.getMessage());
         }
         
-        //new Alienfunktioner(mibdb);
+        new Alienfunktioner(mibdb);
         
         new SökPåEnAlien().setVisible(true);
+        //new LäggTillEnAlien().setVisible(true);
     }
     
     
