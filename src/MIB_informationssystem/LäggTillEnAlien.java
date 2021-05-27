@@ -228,11 +228,19 @@ public class LäggTillEnAlien extends javax.swing.JFrame {
         String felmeddelande = null;
         
         alienInstansData.put("ID", tfID.getText());
-        alienInstansData.put("Namn", tfNamn.getText());
+        
+        if(!Validering.kollaOmEttNamnArGiltigt(tfNamn.getText()).isEmpty()) {
+            felmeddelande = Validering.kollaOmEttNamnArGiltigt(tfNamn.getText());
+            felmeddelanden.add(felmeddelande);
+        }
+        else {
+            alienInstansData.put("Namn", tfNamn.getText());
+        }
+        
         
         if(!Validering.kollaEttTelefonnummer(tfTelefonnummer.getText()).isEmpty()) {
             felmeddelande = Validering.kollaEttTelefonnummer(tfTelefonnummer.getText());
-            felmeddelanden.add(Validering.kollaEttTelefonnummer(felmeddelande));
+            felmeddelanden.add(felmeddelande);
         }
         else {
             alienInstansData.put("Telefonnummer", tfTelefonnummer.getText());

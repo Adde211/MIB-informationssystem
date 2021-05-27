@@ -33,7 +33,7 @@ public class OvrigaFunktioner {
         javax.swing.JTextArea textArea = null;
         
         for (String string : stringArrayList) {
-            textArea.append(string + "/n");
+            textArea.append(string + "\n");
         }
         
         return textArea;
