@@ -31,10 +31,9 @@ public class Alienfunktioner {
 
     @param id ID:et som användaren har skrivit in för att söka på en alien.
     */
-    public static HashMap<String, String> getAlienInstansData(javax.swing.JTextField id) {
+    public static HashMap<String, String> getAlienInstansData(String id) {
 
-        id.setText(id.getText().trim());
-
+        id = id.trim();
         //kommentarskoden är alternativ kod.
 
         //ArrayList<String> alienData = new ArrayList<>();
@@ -59,15 +58,15 @@ public class Alienfunktioner {
             alienData.add(mibdb.fetchSingle(fraga));
             */
 
-            alienInstansData = mibdb.fetchRow("SELECT * FROM Alien WHERE Alien_ID = " + id.getText());
+            alienInstansData = mibdb.fetchRow("SELECT * FROM Alien WHERE Alien_ID = " + id);
 
             //Platsnamnet ersätter platsID:et.
-            String query = "SELECT Benamning FROM plats WHERE Plats_ID = (SELECT plats FROM alien Where Alien_ID = " + id.getText() + ")";
+            String query = "SELECT Benamning FROM plats WHERE Plats_ID = (SELECT plats FROM alien Where Alien_ID = " + id + ")";
             String platsnamn = mibdb.fetchSingle(query);
             alienInstansData.put("Plats", platsnamn);
 
             //Agentnamnet ersätter agentID:et.
-            query = "SELECT Namn FROM Agent WHERE Agent_ID = (SELECT Ansvarig_agent FROM alien Where Alien_ID = " + id.getText() + ")";
+            query = "SELECT Namn FROM Agent WHERE Agent_ID = (SELECT Ansvarig_agent FROM alien Where Alien_ID = " + id + ")";
             String agentnamn = mibdb.fetchSingle(query);
             alienInstansData.put("Ansvarig_Agent", agentnamn);
         }
