@@ -5,6 +5,7 @@
  */
 package MIB_informationssystem;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -63,7 +64,16 @@ public class SökPåEnAlien extends javax.swing.JFrame {
 
         jLabel3.setText("Alien ID");
 
+        tfID.setForeground(new java.awt.Color(153, 153, 153));
         tfID.setText("Type in an alien ID");
+        tfID.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfIDFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfIDFocusLost(evt);
+            }
+        });
         tfID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfIDActionPerformed(evt);
@@ -136,8 +146,8 @@ public class SökPåEnAlien extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblFelmeddelande, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblFelmeddelande, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jLabel6)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -232,7 +242,7 @@ public class SökPåEnAlien extends javax.swing.JFrame {
         else {
             
             if(!Validering.isHeltal(tfID.getText())) {
-                String felmeddelande = "Skriv in ett heltal";
+                String felmeddelande = "Skriv in ett heltal.";
                 lblFelmeddelande.setText(felmeddelande);
             }
             else {
@@ -250,8 +260,35 @@ public class SökPåEnAlien extends javax.swing.JFrame {
                 tfLosenord.setText(alienInstansData.get("Losenord"));
                 tfRegistreringsdatum.setText(alienInstansData.get("Registreringsdatum"));
             }
+        }
     }//GEN-LAST:event_tfIDActionPerformed
 
+    /*
+        När fältet är i fokus och/eller har inmatad text så försvinner så ersätter det den 
+        förvalda gråa texten "Type in an alien ID". Inmatad text är svart.
+    */
+    private void tfIDFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfIDFocusGained
+        // TODO add your handling code here:
+        if(tfID.getText().equals("Type in an alien ID")) {
+            
+            tfID.setText("");
+            tfID.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_tfIDFocusGained
+    
+    /*
+        Om ID-textfältet inte är i fokus och inte har någon inmatad text så
+        hamnar texten "Type in an alien ID" i fältet med grå text.
+    */
+    private void tfIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfIDFocusLost
+        // TODO add your handling code here:
+        if(tfID.getText().equals("")) {
+            
+            tfID.setText("Type in an alien ID");
+            tfID.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_tfIDFocusLost
+    
     
     
     
