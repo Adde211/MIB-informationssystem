@@ -27,23 +27,24 @@ import oru.inf.InfException;
  //J) metod för att visa/gömma byta lösen
 
 
-//Att GÖRA
-// EXTRA I) Fixa så vi kmr till loginskärmen
-// EXTRA D)  Få bort egna namnet ur arraylistan
 
 
 public class AlienJForm extends javax.swing.JFrame {
-
+//Skapar de variabel vi använder genom hela klassen
     private InfDB idb;
     String losen;
     String namn;
+    String ID;
 
     public AlienJForm() {
+       
+        //initiearar vår JFrame och visar de knappar vi vill 
         initComponents();
         txtNyttlos.setVisible(false);
         nyttLosen.setVisible(false);
         btnNyttLosen.setVisible(false);
         btnTillbaka.setVisible(false);
+        //kopplar upp sig mot databasen
 
         try {
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
@@ -53,24 +54,33 @@ public class AlienJForm extends javax.swing.JFrame {
 
     }
 
-    // A) metod som hämtar vårt losen
+    // A) metod som hämtar vårt losen, string input password vi hämtar från inloggningssidan
     public void getLosen(String password) {
 
         losen = password;
 
-        txtRubrik.setText("Välkomen " + losen);
+        
 
     }
-     // B) metod hämtar namn
+     // B) metod hämtar namn, string input alienNamn hämtas från inloggningssidan
     public void setNamn(String alienNamn) {
 
         namn = alienNamn;
+        //välkomnar vår alien med Namn, vår jlbRubrik 
 
         txtRubrik.setText("Välkomen " + namn);
 
     }
+    //sätter vårt ID som oxå hämtas som de innan
+     public void setID(String alienID) {
+
+       ID = alienID;
+
+    }
     // J) metod för att visa/gömma byta lösen
+     
     public void bytaLosen(boolean visa){
+    //är visa sant så ändras alla knappar till visible
     
        if (visa == true){
        txtNyttlos.setVisible(true);
@@ -83,6 +93,7 @@ public class AlienJForm extends javax.swing.JFrame {
         btnTillbaka.setVisible(true); 
         txtRubrik.setVisible(false);
        }
+       // om visa inte är true gömmer vi alla knappar och fönster etc.
        else {
         txtNyttlos.setVisible(false);
         nyttLosen.setVisible(false);
@@ -238,28 +249,37 @@ public class AlienJForm extends javax.swing.JFrame {
 
     private void btnHämtaAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHämtaAgentActionPerformed
           // C) Hämta ansvarig agent 
+          //Skapar en fråga mot databasen med vår databas-klass och metoden fetchSingle()
+          
         try {
-           
-
+            // Vår string fråga som ändras pg.a namn och lösen vår alien har 
             String sqlOmrade = "SELECT agent.`Namn` FROM agent, alien WHERE ansvarig_Agent = Agent_ID AND alien.namn LIKE '" + namn + "' AND alien.losenord LIKE '" + losen + "';";
+            //Ny String som sparar reusltatet av vår fetchsingle() fråga mot databasen
             String hamtaAgent = idb.fetchSingle(sqlOmrade);
+            
+            
 
+            //byter text till agentens namn(vi fått av vår fråga till databasen) på vår textruta txtOmrådesAgent via setText() metoden
             txtOmrådesAgent.setText(hamtaAgent);
         } catch (Exception e) {
-
+//en catch för eventuellt fel
             txtOmrådesAgent.setText("något gick fel");
         }
     }//GEN-LAST:event_btnHämtaAgentActionPerformed
 
     private void btnAliensOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAliensOmradeActionPerformed
-       // D) hämtar alla aliens i området, ATT GÖRA: Få bort egna namnet ur arraylistan
-        String databasfraga = "SELECT namn FROM alien WHERE plats LIKE (SELECT plats FROM alien WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + losen + "');";
+       // D) hämtar alla aliens i området, inre hittar plats id och yttre tar bort mig själv. Få bort egna namnet ur arraylistan
+       //Vår SQL fråga, den yttrefrågan hittar alla i området samt tar bort användarens eget namn via den ID, så fler kan ha samma namn
+       // den inre frågan frågan hittar plats id'et
+        String databasfraga = "SELECT namn FROM alien WHERE plats LIKE (SELECT plats FROM alien WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + losen + "') AND Alien_ID != "+ID+";";
 
-        // JOptionPane.showMessageDialog(null, databasfraga + "  att frågan ser rätt ut" );
-       
+         
+       //en arraylist för att spara alla namn i en lista som retuneras av databasfrågan och metoden
+       //fetchcolumn() längre ner
         ArrayList<String> fraga = new ArrayList<String>();
 
         try {
+            //skickar frågan och visar vårt svar i en pop upp ruta
             fraga = idb.fetchColumn(databasfraga);
             JOptionPane.showMessageDialog(null, "Aliens i ditt område är " + fraga);
         } catch (Exception e) {
@@ -271,19 +291,22 @@ public class AlienJForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAliensOmradeActionPerformed
 
     private void btnAndralosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndralosenActionPerformed
-      // F) Knapp för att ändra lösenord = ändrar menyn
+      // F) Knapp för att ändra lösenord = ändrar menyn genom metod högre upp i koden
         bytaLosen(true);
     }//GEN-LAST:event_btnAndralosenActionPerformed
 
     private void btnNyttLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNyttLosenActionPerformed
         // G) knapp för att uppdtarea nya lösen mot DB
         
-        
+        //sparar det användaren skrivit i textfältet nyttLosen i ny string med getText()
         String nyttlosen = nyttLosen.getText();
+        //vår databasfraga använder UPDATE och sätter losenord = inmatade strängen vi fått av användaren samnt WHERE sattsen 
+        //som bestämmer användaren genom namn¨å lösen
         String fragaDB = "UPDATE alien SET losenord = '" + nyttlosen + "' WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + losen + "';";
        
         
         try {
+            //skickar vår fråga, skriver ut en popuppruta, döljer bytalosen menyn 
             idb.update(fragaDB);
             JOptionPane.showMessageDialog(null, "Ditt lösenord är uppdaterat");
             bytaLosen(false);
@@ -292,22 +315,22 @@ public class AlienJForm extends javax.swing.JFrame {
 
         }
         
-        // JOptionPane.showMessageDialog(null, "Ditt nya lösen är " + nyttlosen);
         
-        // G 1) Update DB med nytt lösen
+        
+        
         
        
     }//GEN-LAST:event_btnNyttLosenActionPerformed
 
     private void btnLoggUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggUtActionPerformed
-        // H) Logga ut
-       System.exit(0);
+        // H) Logga ut, stänger vår Jframe med dispose() 
+       dispose();
        
         
     }//GEN-LAST:event_btnLoggUtActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        // TODO add your handling code here:
+        // tillbaka knappen döljer allaa objekt ssom har med byta losen att göra 
         bytaLosen(false);
         
     }//GEN-LAST:event_btnTillbakaActionPerformed
