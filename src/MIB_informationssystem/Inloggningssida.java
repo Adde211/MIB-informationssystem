@@ -142,8 +142,11 @@ public class Inloggningssida extends javax.swing.JFrame {
             // C) Retunerar den Null kollar vi i alien columnen 
             if (adminJaNej == null) {
                 String input2 = "SELECT Namn FROM alien WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + password + "';";
+                
+                String input3 = "SELECT Alien_ID FROM alien WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + password + "';";
                 try {
                     String alienNamn = idb.fetchSingle(input2);
+                    String alienID = idb.fetchSingle(input3);
 
                     // D) Retunerar den fortarande null = ruta att användaern inte finns
                     if (alienNamn == null) {
@@ -159,6 +162,8 @@ public class Inloggningssida extends javax.swing.JFrame {
                        Alienfonster.setVisible(true);
                        Alienfonster.getLosen(password);
                        Alienfonster.setNamn(alienNamn);
+                       Alienfonster.setID(alienID);
+                       
                        //alien fönster set namn på menyn ?
 
                     }
@@ -177,6 +182,7 @@ public class Inloggningssida extends javax.swing.JFrame {
                 try {
                     String adminNamn = idb.fetchSingle(inputAdmin);
                     JOptionPane.showMessageDialog(null, "Välkomen Administrator " + adminNamn);
+                    
 
                 } catch (Exception e) {
                     txtWindowUser.setText("något gick fel i adminNamn frågan");
