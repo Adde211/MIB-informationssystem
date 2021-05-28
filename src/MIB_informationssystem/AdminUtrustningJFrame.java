@@ -25,15 +25,14 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
 
     public AdminUtrustningJFrame() {
         initComponents();
-
+// döljer de knappar/fönster/labels vi inte vill ska synas
         döljNyUtrustning();
         lbTillagd.setVisible(false);
         doljTaBort(true);
         btnTillbakaNy.setVisible(false);
-       
 
         lbBorttagen.setVisible(false);
-
+//skapar en infDB klass mot vår databas
         try {
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
         } catch (InfException ettUndantag) {
@@ -41,19 +40,39 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
         }
     }
 
+    //metod som anropas om det inte är en admin som startar vår JFRame,
+    //metoden följer allt som har med tabort utrustning att göra
+    public void ejAdmin() {
+
+        txtBortEtt.setVisible(false);
+        lbBortEtt.setVisible(false);
+        lbBortTvå.setVisible(false);
+        comboTaBort.setVisible(false);
+        btnTaBort.setVisible(false);
+        btnTillbakaTabort.setVisible(false);
+        txtArea.setVisible(false);
+        btnStorTaBort.setVisible(false);
+
+    }
+//vår metod-fråga mot databasen via vår infDB class som behandlar all läggtill scenarion eller insert 
+
     private void insertDB(String fraga) {
 
         try {
-
+//strängen sparar fraga till ettfordon frågan
             String ettFordon = fraga;
+            // vår label när ngt lyckas insert'as till vår DB visas
             lbTillagd.setVisible(true);
+            //vår metod för insert av infDB-klassen
             idb.insert(ettFordon);
 
         } catch (Exception e) {
-
+//vårt catch scenario om något blir fel i frågan
             JOptionPane.showMessageDialog(null, "Försök igen");
         }
     }
+//Vår fråga för att hämta ett enskilt värde från databasen, skapar en egen string metod som 
+    //retunerar ett sträng värde genom vårt InfDB-klass objekt idb och om det blir fel i catch scenariot retunerar den null
 
     private String selectDB(String fraga) {
 
@@ -76,10 +95,11 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
         ArrayList<HashMap<String, String>> lista = new ArrayList<HashMap<String, String>>();
 
         try {
+            //först nollställer vår text area varjegång den kallas
             txtAreaSkriv.setText("");
-
+//Hämtar vår lista från vår databas genom fetchRows() medoten genom konstruktorns DB fråga databasfraga
             lista = idb.fetchRows(databasfraga);
-            //JOptionPane.showMessageDialog(null, "Fordon " + lista);
+
             //for each loop som går igenom varje objekt i lista, hämtar listan storlek med
             //size() metoden och räknar upp med mitt index i genom i++
             for (int i = 0; i < lista.size(); i++) {
@@ -88,21 +108,24 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
                 //.toString() gör listorna till strings + ett rad byte
                 String rad = lista.get(i).toString();
 
-                //Tarbort första substring körs bara 
+                //Tarbort första pch sista tecknet i varje sträng för att ta bort måsvingarna 
+                //så det ska se lite snyggare ut via substring metoden (1 börja från 1, hämta strängens
+                //längd och -1 för att ta bort sista tecknet. avslutar med \n rad byte
                 rad = rad.substring(1, rad.length() - 1) + "\n";
-                //Det här är min testbox som 
-                //JOptionPane.showMessageDialog(null, "Fordon " + rad);
 
+                //lägger till varjerad i min textArea.
                 txtAreaSkriv.append(rad);
 
             }
 
         } catch (Exception e) {
+            //om frågan misslyckas hamnar skickar en popupp ruta fram
             JOptionPane.showMessageDialog(null, "Något gick fel");
 
         }
 
     }
+//liknade de metoder över skillnaden är att här använder vi idb.delete()för att ta bort ur databasen vid anrop
 
     private void taBort(String fraga) {
 
@@ -120,6 +143,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
         }
 
     }
+//döljer de knappar och objekt som har med NyUtrustning att göra 
 
     private void döljNyUtrustning() {
 
@@ -138,6 +162,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
         lbNyFyra.setVisible(false);
 
     }
+//Sätter våra textboxan till tomma, via denna setText metoden som finns i textFieldKlassen
 
     private void cleartxtWindow() {
 
@@ -147,22 +172,20 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
         txtNyFyra.setText("");
 
     }
+//metod för att ta dölja ta bort Jframe objekt som har med ta bort knappen att göra
 
     private void doljTaBort(boolean tabort) {
 
-       //utropsteknet är omvänt "tecken"
-       // skickar ju redan in boolean tabort är antingenen true/false
-       //och efteroms vi 
-            txtBortEtt.setVisible(!tabort);
-            lbBortEtt.setVisible(!tabort);
-            lbBortTvå.setVisible(!tabort);
-            comboTaBort.setVisible(!tabort);
-            btnTaBort.setVisible(!tabort);
-            btnTillbakaTabort.setVisible(!tabort);
-            txtArea.setVisible(!tabort);
-       
-
-        
+        //utropsteknet är omvänt "tecken"
+        // skickar ju redan in boolean tabort är antingenen true/false
+        //och efteroms vi 
+        txtBortEtt.setVisible(!tabort);
+        lbBortEtt.setVisible(!tabort);
+        lbBortTvå.setVisible(!tabort);
+        comboTaBort.setVisible(!tabort);
+        btnTaBort.setVisible(!tabort);
+        btnTillbakaTabort.setVisible(!tabort);
+        txtArea.setVisible(!tabort);
 
     }
 
@@ -424,10 +447,11 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStorTaBortActionPerformed
 
     private void btnVäljUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVäljUtrustningActionPerformed
-        // TODO add your handling code here:
+        // Strängen sparar vad som finns i vår Jframecombobox
+        // till string utrustning
 
         String utrustning = btnVäljUtrustning.getSelectedItem().toString();
-
+//följande if scenarion visar de knappar/labels/textfields som tillhör respektive utrustning
         if ("Fordon".equals(utrustning)) {
 
             //Visar de labels jag vill
@@ -442,11 +466,12 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             ntbOKutrustning.setVisible(true);
             btnTillbakaNy.setVisible(true);
 
-            // Ger de namnen jag vill
+            // Ger de namnen jag vill till labels
             lbNyEtt.setText("Fordons ID:");
             lbNyTvå.setText("Fordonsbeskrivning:");
             lbNyTre.setText("Registreringsdatum:");
             lbNyFyra.setText("Årsmodell:");
+            txtNyTre.setText("ÅÅÅÅ-MM-DD");
 
         }
 
@@ -547,28 +572,30 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVäljUtrustningActionPerformed
 
     private void ntbOKutrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ntbOKutrustningActionPerformed
-        // A
-        // B Spara varje string
-        // C Varje columns värde
+        // A Spara comboboxens text till sträng
+        // B Spara varje string användaren matat inn
         // D insert fråga till databasen
-        String utrustning = btnVäljUtrustning.getSelectedItem().toString();
 
+        //A)
+        String utrustning = btnVäljUtrustning.getSelectedItem().toString();
+//B)
         String txtEtt = txtNyEtt.getText();
         String txtTvå = txtNyTvå.getText();
         String txtTre = txtNyTre.getText();
         String txtFyra = txtNyFyra.getText();
 
-        //TOOO DOO måste sätta en en saka som tar bort texten i ruta tre och fyra om man väljer bort det i comboboxen
+        //D) varje if scenario skickar in specifika SQL frågor som ändras visa sparade string värdet vi 
+        //hämtar från våra textfields, 
         if ("Fordon".equals(utrustning)) {
 
             String input = "INSERT INTO fordon VALUES ('" + txtEtt + "','" + txtTvå + "','" + txtTre + "', '" + txtFyra + "');";
 
             JOptionPane.showMessageDialog(null, "frågan  " + input);
-
+//metoden insertDB anropas med vår spefika SQL-fråga sparat i ett string input
             insertDB(input);
 
         }
-
+// Stegen som ovan if (fordon) scenariot repeteras  rad 591  
         if ("Kommunikation".equals(utrustning)) {
 
             String input = "INSERT INTO kommunikation VALUES ('" + txtEtt + "','" + txtTvå + "');";
@@ -576,7 +603,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             insertDB(input);
 
         }
-
+// Stegen som ovan if (fordon) scenariot repeteras  rad 591 
         if ("Teknik".equals(utrustning)) {
 
             String input = "INSERT INTO teknik VALUES ('" + txtEtt + "','" + txtTvå + "');";
@@ -584,7 +611,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             insertDB(input);
 
         }
-
+// Stegen som ovan if (fordon) scenariot repeteras  rad 591 
         if ("Utrustning".equals(utrustning)) {
 
             String input = "INSERT INTO utrustning VALUES ('" + txtEtt + "','" + txtTvå + "');";
@@ -592,6 +619,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             insertDB(input);
 
         }
+        // Stegen som ovan if (fordon) scenariot repeteras  rad 591 
         if ("Vapen".equals(utrustning)) {
 
             String input = "INSERT INTO vapen VALUES ('" + txtEtt + "','" + txtTvå + "');";
@@ -599,7 +627,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             insertDB(input);
 
         }
-
+// När det är klar rensar vi våra textrutor cleartxtWindow samt döljer utrustnings jframeobjekten döljNyUtrustning
         döljNyUtrustning();
         cleartxtWindow();
 
@@ -607,7 +635,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ntbOKutrustningActionPerformed
 
     private void comboTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTaBortActionPerformed
-        // TODO add your handling code here:
+        // Sparar vår valda text i vår combobox till sträng utrustning,
         String utrustning = comboTaBort.getSelectedItem().toString();
 
         //Om fordon Väljs i comboListan ska även alla forddon visas i text rutan
@@ -620,11 +648,12 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
 
             //min databasFråga
             String databasfraga = "SELECT * FROM fordon;";
-
+//här anropar vi vår metod setTxtArea för att skriva ut alla object som finns sparade i fordons tabelleln
             setTxtArea(databasfraga);
 
         }
-
+//upprepar steg som första if-scenariot rad 644 av denna metod, med skillnad att byta av setText och 
+//SQL -frågan manuellt ändrats för olika val i vår combox
         if ("Kommunikation".equals(utrustning)) {
             lbBortEtt.setText("Utrustnings ID:");
             doljTaBort(false);
@@ -634,6 +663,8 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
 
             setTxtArea(databasfraga);
         }
+        //upprepar steg som första if-scenariot rad 644 av denna metod, med skillnad att byta av setText och 
+//SQL -frågan manuellt ändrats för olika val i vår combox
 
         if ("Teknik".equals(utrustning)) {
             lbBortEtt.setText("Utrustnings ID:");
@@ -643,6 +674,8 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
 
             setTxtArea(databasfraga);
         }
+        //upprepar steg som första if-scenariot rad 644 av denna metod, med skillnad att byta av setText och 
+//SQL -frågan manuellt ändrats för olika val i vår combox
 
         if ("Utrustning".equals(utrustning)) {
             lbBortEtt.setText("Utrustnings ID:");
@@ -652,6 +685,8 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
 
             setTxtArea(databasfraga);
         }
+        //upprepar steg som första if-scenariot rad 644 av denna metod, med skillnad att byta av setText och 
+//SQL -frågan manuellt ändrats för olika val i vår combox
 
         if ("Vapen".equals(utrustning)) {
             lbBortEtt.setText("Utrustnings ID:");
@@ -662,6 +697,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             setTxtArea(databasfraga);
 
         }
+        //när Välj Typ-väljs tav vi bara inmatnings rutor och labels
         if ("Välj Typ".equals(utrustning)) {
 
             txtBortEtt.setVisible(false);
@@ -678,38 +714,45 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_comboTaBortActionPerformed
 
     private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
-        // TODO add your handling code here:
+        // hämtar texten från vår combobox
         String utrustning = comboTaBort.getSelectedItem().toString();
 
+        //if-scenariot kollar vad som är valti comboboxen  
         if ("Fordon".equals(utrustning)) {
+            //ändrar texten i vår label för att matcha vald utrustning
             lbBortEtt.setText("Fordons ID:");
-
+            //hämtar vår text användaern skriver inn i vår textField
             String ID = txtBortEtt.getText();
-            //frågar om någon agent har fordonet 
+            //frågar om någon agent har fordonet genom ID'et vi sparat
+            //hämtar all data i tabellen där vi har matchande ID
             String fraga = "SELECT * FROM innehar_fordon WHERE Fordons_ID ='" + ID + "';";
             //skickar frågan
             String svar = selectDB(fraga);
-            //har aget ett fordon länkat till sig så vill vi ta bort länken, då startas if 
-            if (svar != null) {
-                //då tar vi bort länken
-                fraga = "DELETE FROM innehar_fordon WHERE Fordons_ID = '" + ID + "';";
+            //har agenten ett fordon länkat till sig så vill vi ta bort länken, då startas if 
+            //om svaret inte retuneras null
 
+            if (svar != null) {
+                //då tar vi bort länken som finns via ID
+                fraga = "DELETE FROM innehar_fordon WHERE Fordons_ID = '" + ID + "';";
+//anropar vår tabortmetod och utrustningsID vi vet tillhör någon agent
                 taBort(fraga);
 
             }
-            //Nu tar vi bort fordonet   
+            //Nu tar vi bort fordonet  
 
             fraga = "DELETE FROM Fordon WHERE fordons_ID = '" + ID + "';";
 
             taBort(fraga);
 
-            //min databasFråga
+            //Uppdaterar vår textArea med alla fordons som finns tillgängliga
             String databasfraga = "SELECT * FROM fordon;";
 
             setTxtArea(databasfraga);
 
         }
-
+//Stegen upprepas som första IF-senariot i metoden, se rad 724. Alla steg utom det inre IF -scenariot 
+//då denna inte har en innehar_tabell länkat till sig så ingen agent har på sig denna utrusting ,
+//Då behöver vi inte kolla nån annan tabell för att ta bort utrustning
         if ("Kommunikation".equals(utrustning)) {
 
             lbBortEtt.setText("Utrustnings ID:");
@@ -726,7 +769,9 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             setTxtArea(databasfraga);
 
         }
-
+//Stegen upprepas som första IF-senariot i metoden, se rad 724. Alla steg utom det inre IF -scenariot 
+//då denna inte har en innehar_tabell länkat till sig så ingen agent har på sig denna utrusting ,
+//Då behöver vi inte kolla nån annan tabell för att ta bort utrustning
         if ("Teknik".equals(utrustning)) {
             lbBortEtt.setText("Utrustnings ID:");
 
@@ -740,7 +785,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
 
             setTxtArea(databasfraga);
         }
-
+//Stegen upprepas som första IF-senariot i metoden, se rad 724.
         if ("Utrustning".equals(utrustning)) {
             lbBortEtt.setText("Utrustnings ID:");
 
@@ -749,7 +794,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             String fraga = "SELECT * FROM innehar_utrustning WHERE Utrustnings_ID ='" + ID + "';";
             //skickar frågan
             String svar = selectDB(fraga);
-            //har aget ett fordon länkat till sig så vill vi ta bort länken, då startas if 
+            //har aget ett utrustning länkat till sig så vill vi ta bort länken, då startas if 
             if (svar != null) {
                 //då tar vi bort länken
                 fraga = "DELETE FROM innehar_utrustning WHERE Utrustnings_ID = '" + ID + "';";
@@ -766,7 +811,9 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
 
             setTxtArea(databasfraga);
         }
-
+//Stegen upprepas som första IF-senariot i metoden, se rad 724. Alla steg utom det inre IF -scenariot 
+//då denna inte har en innehar_tabell länkat till sig så ingen agent har på sig denna utrusting ,
+//Då behöver vi inte kolla nån annan tabell för att ta bort utrustning
         if ("Vapen".equals(utrustning)) {
             lbBortEtt.setText("Utrustnings ID:");
 
@@ -785,13 +832,14 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTaBortActionPerformed
 
     private void btnTillbakaTabortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaTabortActionPerformed
-        // TODO add your handling code here:
+        // Väljer vilka JFRame-objekt som ska visas, detta fall döljer via tillbaka knappen
         doljTaBort(true);
+        lbBorttagen.setVisible(false);
 
     }//GEN-LAST:event_btnTillbakaTabortActionPerformed
 
     private void btnTillbakaNyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaNyActionPerformed
-        // TODO add your handling code here:
+        // Väljer vilka jFrame-objekt som ska visas, datta fall döljer via tillbaka knappen
 
         döljNyUtrustning();
 
@@ -799,7 +847,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTillbakaNyActionPerformed
 
     private void btnAvslutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvslutaActionPerformed
-        // TODO add your handling code here:
+        // Stänger ner vår ruta
         dispose();
     }//GEN-LAST:event_btnAvslutaActionPerformed
 
