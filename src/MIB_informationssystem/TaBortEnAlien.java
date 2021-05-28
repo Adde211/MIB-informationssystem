@@ -137,7 +137,8 @@ public class TaBortEnAlien extends javax.swing.JFrame {
 
     private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
         // TODO add your handling code here:
-
+        
+/*
         HashMap<String, String> alienInstansData = new HashMap<>();
         ArrayList<String> felmeddelanden = null;
         String felmeddelande = null;
@@ -205,7 +206,7 @@ public class TaBortEnAlien extends javax.swing.JFrame {
 
         // Om det finns minst ett felmeddelanden så skrivs det eller de meddelandena ut, annars så registreras utomjordingen i systemet.
         if(felmeddelanden.size() >= 0) {
-            String sammanfogadtext = OvrigaFunktioner.sammanfogaText(felmeddelanden);
+            String sammanfogadtext = OvrigaFunktioner.ArrayListToString(felmeddelanden);
             taInstansData.append(sammanfogadtext);
         }
         else {
@@ -213,6 +214,8 @@ public class TaBortEnAlien extends javax.swing.JFrame {
             Alienfunktioner.laggTillEnAlien(alienInstansData);
             taInstansData.append("Registreringen lyckades!");
         }
+        
+        */
 
     }//GEN-LAST:event_btnTaBortActionPerformed
 

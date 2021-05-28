@@ -307,7 +307,7 @@ public class LäggTillEnAlien extends javax.swing.JFrame {
         
         // Om det finns minst ett felmeddelanden så skrivs det eller de meddelandena ut, annars så registreras utomjordingen i systemet.
         if(felmeddelanden.size() >= 0) {
-            String sammanfogadtext = OvrigaFunktioner.sammanfogaText(felmeddelanden);
+            String sammanfogadtext = OvrigaFunktioner.ArrayListToString(felmeddelanden);
             taFelmeddelanden.append(sammanfogadtext);
         }
         else {
