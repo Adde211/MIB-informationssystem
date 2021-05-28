@@ -34,7 +34,7 @@ public class SystemMain {
         
         //new SökPåEnAlien().setVisible(true);
         //new LäggTillEnAlien().setVisible(true);
-        new Inloggningssida().setVisible(true);
+        new UppdateraEnAlien().setVisible(true);
         
     }
     
