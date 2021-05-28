@@ -65,6 +65,11 @@ public class AdministratörHuvudmeny extends javax.swing.JFrame {
         });
 
         jButton6.setText("Utrustning");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("jLabel2");
 
@@ -177,6 +182,12 @@ public class AdministratörHuvudmeny extends javax.swing.JFrame {
         // Tar oss till AdminAgentMeny 
         new AdminAgentMeny().setVisible(true);
     }//GEN-LAST:event_jBtnAdminAgentMenyActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        AdminUtrustningJFrame fonster = new AdminUtrustningJFrame();
+        fonster.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
