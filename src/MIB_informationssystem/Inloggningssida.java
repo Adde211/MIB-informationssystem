@@ -5,8 +5,6 @@ package MIB_informationssystem;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -19,18 +17,20 @@ import javax.swing.JOptionPane;
  */
 public class Inloggningssida extends javax.swing.JFrame {
 
-      private InfDB idb;
+    private InfDB idb;
+
     /**
      * Creates new form Inloggningssida
      */
     public Inloggningssida() {
         initComponents();
+
+        //döljer felmeddelande
         lblFelmeddelande.setVisible(false);
-         
+        //kopplar up oss mot vår DB
         try {
-       idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
-    }
-        catch(InfException ettUndantag){
+            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
+        } catch (InfException ettUndantag) {
             JOptionPane.showMessageDialog(null, "Något gick fel" + ettUndantag);
         }
     }
@@ -124,47 +124,45 @@ public class Inloggningssida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
-        // TODO add your handling code here:
-        
-         String namn = txtWindowUser.getText();
-         String password = txtWindowPassword.getText();
-        
+        // Sparar inmatade rutan för lösen och namn med getText metoden
+
+        String namn = txtWindowUser.getText();
+        String password = txtWindowPassword.getText();
+        //Vi behöver skilja på de olika användarna och admin finns bara hos agenter, dvs null = inte agent
         String input = "SELECT Administrator FROM agent WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + password + "';";
 
-        // JOptionPane.showMessageDialog(null, input + "  att frågan ser rätt ut" );
-        
         // B) Ställer frågan till DB om Admin J / N      
         try {
             String adminJaNej = idb.fetchSingle(input);
 
-// JOptionPane.showMessageDialog(null, adminJaNej + "  är det en admin eller inte");
-
-            // C) Retunerar den Null kollar vi i alien columnen 
+            // C) Retunerar den Null kollar vi i alien columnen och ändrar vår fråga
             if (adminJaNej == null) {
+                //hämtar namn från alien tabellen
                 String input2 = "SELECT Namn FROM alien WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + password + "';";
-                
+                //hämtar oxå alien ID pga. att använda vill använda det i vår alien områdessök i nästa JFRame
                 String input3 = "SELECT Alien_ID FROM alien WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + password + "';";
                 try {
+                    //frågar båda frågorna mot databasen
                     String alienNamn = idb.fetchSingle(input2);
                     String alienID = idb.fetchSingle(input3);
 
-                    // D) Retunerar den fortarande null = ruta att användaern inte finns
+                    // D) Retunerar den fortarande null finns inte användaren eller fel inmmatning = ruta att användaern inte finns
                     if (alienNamn == null) {
 
                         lblFelmeddelande.setText("Hittar inte användaren eller fel lösenord, vänligen försök igen");
+
                         lblFelmeddelande.setVisible(true);
 
                     } // E) Öpnnar Alien rutan och välkomnar Alien
                     else {
-                        
+                        //Skapar ett Alienfonster och visar det samnt skickar med namn, losen, ID via 
+                        //alienJForm metoderna 
 
-                      AlienJForm Alienfonster = new AlienJForm();
-                       Alienfonster.setVisible(true);
-                       Alienfonster.getLosen(password);
-                       Alienfonster.setNamn(alienNamn);
-                       Alienfonster.setID(alienID);
-                       
-                       //alien fönster set namn på menyn ?
+                        AlienJForm Alienfonster = new AlienJForm();
+                        Alienfonster.setVisible(true);
+                        Alienfonster.getLosen(password);
+                        Alienfonster.setNamn(alienNamn);
+                        Alienfonster.setID(alienID);
 
                     }
 
@@ -181,7 +179,10 @@ public class Inloggningssida extends javax.swing.JFrame {
                 String inputAdmin = "SELECT namn FROM agent WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + password + "';";
                 try {
                     String adminNamn = idb.fetchSingle(inputAdmin);
-                    JOptionPane.showMessageDialog(null, "Välkomen Administrator " + adminNamn);
+                    // JOptionPane.showMessageDialog(null, "Välkomen Administrator " + adminNamn);
+                    AdministratörHuvudmeny adminFonster = new AdministratörHuvudmeny();
+                    adminFonster.setVisible(true);
+                    
                     
 
                 } catch (Exception e) {
@@ -198,7 +199,13 @@ public class Inloggningssida extends javax.swing.JFrame {
                 String inputAgent = "SELECT namn FROM agent WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + password + "';";
                 try {
                     String agentNamn = idb.fetchSingle(inputAgent);
-                    JOptionPane.showMessageDialog(null, "Välkomen  " + agentNamn);
+                    // JOptionPane.showMessageDialog(null, "Välkomen  " + agentNamn);
+                    
+                    //Skapar mitt agent fönster objekt och skickar password samt namn
+                    AgentJForm agentFonster = new AgentJForm();
+                    agentFonster.setVisible(true);
+                    agentFonster.getLosen(password);
+                    agentFonster.setNamn(agentNamn);
 
                 } catch (Exception e) {
                     txtWindowUser.setText("något gick fel i agentFrågan frågan");
@@ -210,8 +217,8 @@ public class Inloggningssida extends javax.swing.JFrame {
         } catch (Exception e) {
             txtWindowUser.setText("något gick feli adminfrågan");
         }
-       
-        
+
+
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
     /**
