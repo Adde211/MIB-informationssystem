@@ -5,6 +5,9 @@
  */
 package MIB_informationssystem;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  *
  * @author adamd
@@ -32,7 +35,7 @@ public class TaBortEnAlien extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         tfID = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        taFelmeddelanden = new javax.swing.JTextArea();
+        taInstansData = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         lblTitelBild = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -52,9 +55,15 @@ public class TaBortEnAlien extends javax.swing.JFrame {
 
         jLabel3.setText("Alien ID");
 
-        taFelmeddelanden.setColumns(20);
-        taFelmeddelanden.setRows(5);
-        jScrollPane1.setViewportView(taFelmeddelanden);
+        tfID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfIDActionPerformed(evt);
+            }
+        });
+
+        taInstansData.setColumns(20);
+        taInstansData.setRows(5);
+        jScrollPane1.setViewportView(taInstansData);
 
         jLabel4.setText("jLabel3");
 
@@ -77,14 +86,12 @@ public class TaBortEnAlien extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(32, 32, 32)
-                        .addComponent(tfNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfID, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                    .addComponent(tfNamn))
                 .addGap(129, 129, 129)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -199,15 +206,29 @@ public class TaBortEnAlien extends javax.swing.JFrame {
         // Om det finns minst ett felmeddelanden så skrivs det eller de meddelandena ut, annars så registreras utomjordingen i systemet.
         if(felmeddelanden.size() >= 0) {
             String sammanfogadtext = OvrigaFunktioner.sammanfogaText(felmeddelanden);
-            taFelmeddelanden.append(sammanfogadtext);
+            taInstansData.append(sammanfogadtext);
         }
         else {
             alienInstansData = OvrigaFunktioner.trimHashMap(alienInstansData);
             Alienfunktioner.laggTillEnAlien(alienInstansData);
-            taFelmeddelanden.append("Registreringen lyckades!");
+            taInstansData.append("Registreringen lyckades!");
         }
 
     }//GEN-LAST:event_btnTaBortActionPerformed
+
+    private void tfIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIDActionPerformed
+        // TODO add your handling code here:
+        
+        HashMap<String, String> alienInstansData = Alienfunktioner.getAlienInstansData(tfID.getText(), "Alien_ID");
+        
+        ArrayList<String> alienInstansDataArrayList = OvrigaFunktioner.HashMapToArrayList(alienInstansData);
+        
+        String alienInstansDataString = OvrigaFunktioner.ArrayListToString(alienInstansDataArrayList);
+        
+        taInstansData.append(alienInstansDataString);
+        
+        
+    }//GEN-LAST:event_tfIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,7 +274,7 @@ public class TaBortEnAlien extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitel;
     private javax.swing.JLabel lblTitelBild;
-    private javax.swing.JTextArea taFelmeddelanden;
+    private javax.swing.JTextArea taInstansData;
     private javax.swing.JTextField tfID;
     private javax.swing.JTextField tfNamn;
     // End of variables declaration//GEN-END:variables

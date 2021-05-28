@@ -43,7 +43,7 @@ public class OvrigaFunktioner {
     */
     
     
-    public static String sammanfogaText(ArrayList<String> stringArrayList) {
+    public static String ArrayListToString(ArrayList<String> stringArrayList) {
         
         //Man kan sammanfoga text genom en StringBuilder, vilket man även kan göra med en String, men StringBuilder är ett annat alternativ.
         StringBuilder sammanfogadText = null;
@@ -54,6 +54,22 @@ public class OvrigaFunktioner {
         }
         
         return sammanfogadText.toString();
+    }
+    
+    
+    public static ArrayList<String> HashMapToArrayList(HashMap<String, String> hashMap) {
+        
+        //Man kan sammanfoga text genom en StringBuilder, vilket man även kan göra med en String, men StringBuilder är ett annat alternativ.
+        ArrayList<String> arrayList = null;
+        String value;
+        
+        //Sammanfogar strängarna till en text.
+        for (String key : hashMap.keySet()) {
+            value = hashMap.get(key);
+            arrayList.add(key);
+        }
+        
+        return arrayList;
     }
     
     
