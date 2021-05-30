@@ -204,7 +204,7 @@ public class AgentJForm extends javax.swing.JFrame {
         //Skapar vårt Jframeutrustningsfönster
         
       AdminUtrustningJFrame agentFonster = new AdminUtrustningJFrame();
-      // agentFonster.ejAdmin();
+      agentFonster.ejAdmin();
       agentFonster.setVisible(true);
     }//GEN-LAST:event_btnUtrustningActionPerformed
 
