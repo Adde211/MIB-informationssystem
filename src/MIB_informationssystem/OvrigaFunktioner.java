@@ -74,7 +74,7 @@ public class OvrigaFunktioner {
     
     public static String hashMapArrayListToString(ArrayList<HashMap<String, String>> hashMapArrayList) {
         
-        String sammanfogadText = null;
+        String sammanfogadText = "";
         ArrayList<String> stringArrayList;
                 
                 
@@ -91,7 +91,7 @@ public class OvrigaFunktioner {
             sammanfogadText += "\n";
         }
         
-        return sammanfogadText.toString();
+        return sammanfogadText;
     }
     
     

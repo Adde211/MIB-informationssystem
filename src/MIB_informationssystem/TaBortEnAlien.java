@@ -39,6 +39,9 @@ public class TaBortEnAlien extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         lblTitelBild = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        lblFelmeddelandeNamn = new javax.swing.JLabel();
+        lblFelmeddelandeID = new javax.swing.JLabel();
+        lblMeddelandeTaBort = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +99,8 @@ public class TaBortEnAlien extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblFelmeddelandeID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblFelmeddelandeNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tfID, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                     .addComponent(tfNamn))
                 .addGap(129, 129, 129)
@@ -108,7 +113,9 @@ public class TaBortEnAlien extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(342, 342, 342)
-                .addComponent(btnTaBort)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnTaBort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblMeddelandeTaBort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -118,24 +125,28 @@ public class TaBortEnAlien extends javax.swing.JFrame {
                 .addComponent(lblTitel)
                 .addGap(40, 40, 40)
                 .addComponent(lblTitelBild)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(74, 74, 74)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
-                        .addGap(48, 48, 48)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblFelmeddelandeID, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(tfNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblFelmeddelandeNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(btnTaBort)
-                .addGap(56, 56, 56))
+                .addGap(18, 18, 18)
+                .addComponent(lblMeddelandeTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -144,97 +155,54 @@ public class TaBortEnAlien extends javax.swing.JFrame {
     private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
         // TODO add your handling code here:
         
-/*
-        HashMap<String, String> alienInstansData = new HashMap<>();
-        ArrayList<String> felmeddelanden = null;
-        String felmeddelande = null;
-        boolean minstEttFelmeddelande = false;
-
-        if(!Validering.isHeltal(tfID.getText())) {
-            felmeddelande = "ID:et behöver vara ett heltal.";
-            felmeddelanden.add(felmeddelande);
+        if(tfID.getText().isEmpty()) {
+            String felmeddelande = "Skriv in ett alien-ID.";
+            lblFelmeddelandeID.setText(felmeddelande);
         }
         else {
-            alienInstansData.put("ID", tfID.getText());
-        }
+            
+            if(!Validering.isHeltal(tfID.getText())) {
+                String felmeddelande = "Skriv in ett heltal i alien-ID-inmatningsfönstret.";
+                lblFelmeddelandeID.setText(felmeddelande);
+            }
+             else {
+                AlienFunktioner.taBortEnAlien(tfID.getText());
 
-        if(!Validering.kollaOmEttNamnArGiltigt(tfNamn.getText()).isEmpty()) {
-            felmeddelande = Validering.kollaOmEttNamnArGiltigt(tfNamn.getText());
-            felmeddelanden.add(felmeddelande);
-        }
-        else {
-            alienInstansData.put("Namn", tfNamn.getText());
-        }
-
-        if(!Validering.kollaEttTelefonnummer(tfTelefonnummer.getText()).isEmpty()) {
-            felmeddelande = Validering.kollaEttTelefonnummer(tfTelefonnummer.getText());
-            felmeddelanden.add(felmeddelande);
-        }
-        else {
-            alienInstansData.put("Telefonnummer", tfTelefonnummer.getText());
-        }
-
-        if(!Validering.platsArRegistrerad(tfPlats.getText()).isEmpty()) {
-
-            felmeddelande = Validering.platsArRegistrerad(tfPlats.getText());
-            felmeddelanden.add(felmeddelande);
-        }
-        else {
-            alienInstansData.put("Plats", tfPlats.getText());
-        }
-
-        if(!Validering.agentArRegistrerad(tfAgent.getText()).isEmpty()) {
-
-            felmeddelande = Validering.platsArRegistrerad(tfAgent.getText());
-            felmeddelanden.add(felmeddelande);
-        }
-        else {
-            alienInstansData.put("Agent", tfAgent.getText());
-        }
-
-        if(!Validering.kollaOmLosenordetArGiltigt(tfLosenord.getText()).isEmpty()) {
-
-            felmeddelande = Validering.kollaOmEttDatumArGiltigt(tfLosenord.getText());
-            felmeddelanden.add(felmeddelande);
-        }
-        else {
-            alienInstansData.put("Losenord", tfLosenord.getText());
-        }
-
-        if(!Validering.kollaOmEttDatumArGiltigt(tfRegistreringsdatum.getText()).isEmpty()) {
-
-            felmeddelande = Validering.kollaOmEttDatumArGiltigt(tfRegistreringsdatum.getText());
-            felmeddelanden.add(felmeddelande);
-        }
-        else {
-            alienInstansData.put("Registreringsdatum", tfRegistreringsdatum.getText());
-        }
-
-        // Om det finns minst ett felmeddelanden så skrivs det eller de meddelandena ut, annars så registreras utomjordingen i systemet.
-        if(felmeddelanden.size() >= 0) {
-            String sammanfogadtext = OvrigaFunktioner.ArrayListToString(felmeddelanden);
-            taInstansData.append(sammanfogadtext);
-        }
-        else {
-            alienInstansData = OvrigaFunktioner.trimHashMap(alienInstansData);
-            Alienfunktioner.laggTillEnAlien(alienInstansData);
-            taInstansData.append("Registreringen lyckades!");
-        }
+                if(!AlienFunktioner.taBortEnAlien(tfID.getText()).isEmpty()) {
+                    taInstansData.append("");
+                    String meddelande = AlienFunktioner.taBortEnAlien(tfID.getText());
+                    lblMeddelandeTaBort.setText(meddelande);
+                }
+            }
         
-        */
-
     }//GEN-LAST:event_btnTaBortActionPerformed
 
     private void tfIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIDActionPerformed
         // TODO add your handling code here:
         
-        HashMap<String, String> alienInstansData = AlienFunktioner.getAlienInstansData(tfID.getText(), "Alien_ID");
         
-        ArrayList<String> alienInstansDataArrayList = OvrigaFunktioner.HashMapToArrayList(alienInstansData);
-        
-        String alienInstansDataString = OvrigaFunktioner.ArrayListToString(alienInstansDataArrayList);
-        
-        taInstansData.append(alienInstansDataString);
+        if(tfID.getText().isEmpty()) {
+            String felmeddelande = "Skriv in ett alien-ID.";
+            lblFelmeddelandeID.setText(felmeddelande);
+        }
+        else {
+            
+            if(!Validering.isHeltal(tfID.getText())) {
+                String felmeddelande = "Skriv in ett heltal.";
+                lblFelmeddelandeID.setText(felmeddelande);
+            }
+             else {
+                
+                HashMap<String, String> alienInstansData = AlienFunktioner.getAlienInstans(tfID.getText(), "Alien_ID");
+
+                ArrayList<String> alienInstansDataArrayList = OvrigaFunktioner.HashMapToArrayList(alienInstansData);
+
+                String alienInstansDataString = OvrigaFunktioner.ArrayListToString(alienInstansDataArrayList);
+                
+                taInstansData.append("");
+                taInstansData.append(alienInstansDataString);
+            }
+        }
         
         
     }//GEN-LAST:event_tfIDActionPerformed
@@ -242,11 +210,35 @@ public class TaBortEnAlien extends javax.swing.JFrame {
     private void tfNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNamnActionPerformed
         // TODO add your handling code here:
         
-        ArrayList<HashMap<String, String>> alienInstanser = AlienFunktioner.getAlienInstanser(tfNamn.getText());
+        if(tfNamn.getText().isEmpty()) {
+            String felmeddelande = "Skriv in ett namn.";
+            lblFelmeddelandeNamn.setText(felmeddelande);
+        }
+        else {
+            
+            if(!Validering.kollaOmEttNamnArGiltigt(tfNamn.getText()).isEmpty()) {
+            String felmeddelande = Validering.kollaOmEttNamnArGiltigt(tfNamn.getText());
+            lblFelmeddelandeNamn.setText(felmeddelande);
+            }
+            else {
+                
+                ArrayList<HashMap<String, String>> alienInstanser = AlienFunktioner.getAlienInstanser(tfNamn.getText());
+
+                String sammanfogadtext = OvrigaFunktioner.hashMapArrayListToString(alienInstanser);
+
+                taInstansData.append(sammanfogadtext);
+            }
+        }
         
-        String sammanfogadtext = OvrigaFunktioner.hashMapArrayListToString(alienInstanser);
         
-        taInstansData.append(sammanfogadtext);
+        
+        
+        
+        
+        
+        
+        
+        
         
         
     }//GEN-LAST:event_tfNamnActionPerformed
@@ -293,6 +285,9 @@ public class TaBortEnAlien extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblFelmeddelandeID;
+    private javax.swing.JLabel lblFelmeddelandeNamn;
+    private javax.swing.JLabel lblMeddelandeTaBort;
     private javax.swing.JLabel lblTitel;
     private javax.swing.JLabel lblTitelBild;
     private javax.swing.JTextArea taInstansData;

@@ -31,7 +31,7 @@ public class AlienFunktioner {
 
     @param id ID:et som användaren har skrivit in för att söka på en alien.
     */
-    public static HashMap<String, String> getAlienInstansData(String value, String kolumn) {
+    public static HashMap<String, String> getAlienInstans(String value, String kolumn) {
 
         value = value.trim();
         //kommentarskoden är alternativ kod.
@@ -71,7 +71,8 @@ public class AlienFunktioner {
         }
         catch(InfException ex) {
             //Ett felmeddelande till användaren respektive ett internt felmeddelande skrivs ut.
-            String errorMeddelande = "Ett eller flera värden från mibdb lyckades inte att hämtas.";
+            String errorMeddelande = "Ett eller flera värden från mibdb lyckades inte att hämtas. \n"
+                    + "Detta kan bero på att du har skrivit in fel eller för att det inte finns någon utomjording registrerad med det inmatade värdet.";
             JOptionPane.showMessageDialog(null, errorMeddelande);
             System.out.println("Internt felmeddelande: " + ex.getMessage());
         }
@@ -128,7 +129,7 @@ public class AlienFunktioner {
     public static ArrayList<HashMap<String, String>> getAlienInstanser(String namn) {
         
         ArrayList<HashMap<String, String>> alienInstanser = null;
-        String fraga = "SELECT * FROM alien WHERE Namn = " + namn;        
+        String fraga = "SELECT * FROM alien WHERE Namn = '" + namn + "'";        
         
         try {
             alienInstanser = mibdb.fetchRows(fraga);
@@ -137,10 +138,26 @@ public class AlienFunktioner {
             JOptionPane.showMessageDialog(null, "Hämtningen av instansen/instanserna lyckades inte.");
             System.out.println("Internt felmeddelande: " + ex.getMessage());
         }
+        
         return alienInstanser;
     }
     
-    
+        public static String taBortEnAlien(String id) {
+            
+            String meddelande = null;
+            
+            try {
+                String fraga = "DELETE FROM alien WHERE Alien_ID = " + id;
+                mibdb.delete(fraga);
+                meddelande = "Borttagningen av utomjordingen med Alien-ID " + id + " lyckades.";
+            }
+            catch(InfException ex) {
+                JOptionPane.showMessageDialog(null, "Borttagandet av utomjordingen med alien-ID:et " + id + " lyckades inte.");
+                System.out.println("Internt felmeddelande: " + ex.getMessage());
+            }
+            
+            return meddelande;
+        }
     
     
     

@@ -41,6 +41,8 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lblFelmeddelandeID" max="32767" attributes="0"/>
+                  <Component id="lblFelmeddelandeNamn" max="32767" attributes="0"/>
                   <Component id="tfID" pref="98" max="32767" attributes="0"/>
                   <Component id="tfNamn" max="32767" attributes="0"/>
               </Group>
@@ -58,7 +60,10 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="342" max="-2" attributes="0"/>
-              <Component id="btnTaBort" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnTaBort" max="32767" attributes="0"/>
+                  <Component id="lblMeddelandeTaBort" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -70,29 +75,32 @@
               <Component id="lblTitel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Component id="lblTitelBild" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfID" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblFelmeddelandeID" min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfNamn" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblFelmeddelandeNamn" min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="146" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jScrollPane1" min="-2" pref="146" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="60" max="32767" attributes="0"/>
+              <EmptySpace pref="52" max="32767" attributes="0"/>
               <Component id="btnTaBort" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lblMeddelandeTaBort" min="-2" pref="13" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -160,6 +168,12 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel3"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblFelmeddelandeNamn">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblFelmeddelandeID">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMeddelandeTaBort">
     </Component>
   </SubComponents>
 </Form>

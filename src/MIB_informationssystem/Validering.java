@@ -126,7 +126,7 @@ public class Validering {
         String felmeddelande = null;
         
         if(namn.length() >= 31) {
-            felmeddelande = "Namnet får högst bestå av 30 tecken";
+            felmeddelande = "Ett namn kan högst bestå av 30 tecken.";
         }
         
         return felmeddelande;
