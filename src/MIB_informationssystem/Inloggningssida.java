@@ -50,7 +50,7 @@ public class Inloggningssida extends javax.swing.JFrame {
         lblFelmeddelande = new javax.swing.JLabel();
         lblAnvandarnamn = new javax.swing.JLabel();
         lblLosenord = new javax.swing.JLabel();
-        txtWindowPassword = new javax.swing.JTextField();
+        txtWindowPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,7 +72,6 @@ public class Inloggningssida extends javax.swing.JFrame {
         lblLosenord.setText("Lösenord");
 
         txtWindowPassword.setColumns(10);
-        txtWindowPassword.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,8 +110,8 @@ public class Inloggningssida extends javax.swing.JFrame {
                     .addComponent(txtWindowUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtWindowPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblLosenord))
+                    .addComponent(lblLosenord)
+                    .addComponent(txtWindowPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblFelmeddelande)
                 .addGap(18, 18, 18)
@@ -156,9 +155,9 @@ public class Inloggningssida extends javax.swing.JFrame {
                     } // E) Öpnnar Alien rutan och välkomnar Alien
                     else {
                         //Skapar ett Alienfonster och visar det samnt skickar med namn, losen, ID via 
-                        //alienJForm metoderna 
+                        //AlienHuvudmeny metoderna 
 
-                        AlienJForm Alienfonster = new AlienJForm();
+                        AlienHuvudmeny Alienfonster = new AlienHuvudmeny();
                         Alienfonster.setVisible(true);
                         Alienfonster.getLosen(password);
                         Alienfonster.setNamn(alienNamn);
@@ -202,7 +201,7 @@ public class Inloggningssida extends javax.swing.JFrame {
                     // JOptionPane.showMessageDialog(null, "Välkomen  " + agentNamn);
                     
                     //Skapar mitt agent fönster objekt och skickar password samt namn
-                    AgentJForm agentFonster = new AgentJForm();
+                    AgentHuvudmeny agentFonster = new AgentHuvudmeny();
                     agentFonster.setVisible(true);
                     agentFonster.getLosen(password);
                     agentFonster.setNamn(agentNamn);
@@ -263,7 +262,7 @@ public class Inloggningssida extends javax.swing.JFrame {
     private javax.swing.JLabel lblFelmeddelande;
     private javax.swing.JLabel lblInloggning;
     private javax.swing.JLabel lblLosenord;
-    private javax.swing.JTextField txtWindowPassword;
+    private javax.swing.JPasswordField txtWindowPassword;
     private javax.swing.JTextField txtWindowUser;
     // End of variables declaration//GEN-END:variables
 }

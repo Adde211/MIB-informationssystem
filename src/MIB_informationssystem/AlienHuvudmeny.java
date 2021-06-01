@@ -29,14 +29,14 @@ import oru.inf.InfException;
 
 
 
-public class AlienJForm extends javax.swing.JFrame {
+public class AlienHuvudmeny extends javax.swing.JFrame {
 //Skapar de variabel vi använder genom hela klassen
     private InfDB idb;
     String losen;
     String namn;
     String ID;
 
-    public AlienJForm() {
+    public AlienHuvudmeny() {
        
         //initiearar vår JFrame och visar de knappar vi vill 
         initComponents();
@@ -92,6 +92,9 @@ public class AlienJForm extends javax.swing.JFrame {
         btnAndralosen.setVisible(false);
         btnTillbaka.setVisible(true); 
         txtRubrik.setVisible(false);
+        lbAgentTel.setVisible(false);
+        txtOmrådesAgentNum.setVisible(false);
+        lbAgentNamn.setVisible(false);
        }
        // om visa inte är true gömmer vi alla knappar och fönster etc.
        else {
@@ -104,6 +107,9 @@ public class AlienJForm extends javax.swing.JFrame {
         btnAndralosen.setVisible(true);
         btnTillbaka.setVisible(false);
         txtRubrik.setVisible(true);
+        lbAgentTel.setVisible(true);
+        txtOmrådesAgentNum.setVisible(true);
+        lbAgentNamn.setVisible(true);
        }
         
     }
@@ -324,6 +330,7 @@ public class AlienJForm extends javax.swing.JFrame {
     private void btnAndralosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndralosenActionPerformed
       // F) Knapp för att ändra lösenord = ändrar menyn genom metod högre upp i koden
         bytaLosen(true);
+        
     }//GEN-LAST:event_btnAndralosenActionPerformed
 
     private void btnNyttLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNyttLosenActionPerformed
@@ -383,13 +390,13 @@ public class AlienJForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AlienJForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlienHuvudmeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AlienJForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlienHuvudmeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AlienJForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlienHuvudmeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AlienJForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlienHuvudmeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -397,7 +404,7 @@ public class AlienJForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AlienJForm().setVisible(true);
+                new AlienHuvudmeny().setVisible(true);
 
             }
         });
