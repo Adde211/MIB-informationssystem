@@ -128,6 +128,9 @@ public class AlienJForm extends javax.swing.JFrame {
         btnNyttLosen = new javax.swing.JButton();
         btnLoggUt = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
+        txtOmrådesAgentNum = new javax.swing.JTextField();
+        lbAgentNamn = new javax.swing.JLabel();
+        lbAgentTel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -182,27 +185,23 @@ public class AlienJForm extends javax.swing.JFrame {
             }
         });
 
+        txtOmrådesAgentNum.setColumns(10);
+        txtOmrådesAgentNum.setMinimumSize(new java.awt.Dimension(50, 22));
+
+        lbAgentNamn.setText("Namn:");
+
+        lbAgentTel.setText("Telefon:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtOmrådesAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(btnHämtaAgent)
-                        .addGap(38, 38, 38)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtRubrik)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAndralosen)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(38, 38, 38)
+                .addComponent(btnHämtaAgent)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAndralosen)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnAliensOmrade)
                 .addGap(31, 31, 31))
             .addGroup(layout.createSequentialGroup()
@@ -217,19 +216,36 @@ public class AlienJForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLoggUt)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(242, 242, 242)
+                        .addComponent(txtRubrik))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtOmrådesAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbAgentNamn))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbAgentTel)
+                            .addComponent(txtOmrådesAgentNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(423, 423, 423)
-                        .addComponent(txtRubrik)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(427, Short.MAX_VALUE)
-                        .addComponent(txtOmrådesAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addContainerGap(384, Short.MAX_VALUE)
+                .addComponent(txtRubrik)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbAgentNamn)
+                    .addComponent(lbAgentTel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtOmrådesAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtOmrådesAgentNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHämtaAgent)
                     .addComponent(btnAndralosen)
@@ -261,6 +277,21 @@ public class AlienJForm extends javax.swing.JFrame {
 
             //byter text till agentens namn(vi fått av vår fråga till databasen) på vår textruta txtOmrådesAgent via setText() metoden
             txtOmrådesAgent.setText(hamtaAgent);
+        } catch (Exception e) {
+//en catch för eventuellt fel
+            txtOmrådesAgent.setText("något gick fel");
+        }
+        
+         try {
+            // Vår string fråga som ändras pg.a namn och lösen vår alien har 
+            String sqlOmrade = "SELECT agent.Telefon FROM agent, alien WHERE ansvarig_Agent = Agent_ID AND alien.namn LIKE '" + namn + "' AND alien.losenord LIKE '" + losen + "';";
+            //Ny String som sparar reusltatet av vår fetchsingle() fråga mot databasen
+            String hamtaAgent = idb.fetchSingle(sqlOmrade);
+            
+            
+
+            //byter text till agentens namn(vi fått av vår fråga till databasen) på vår textruta txtOmrådesAgent via setText() metoden
+            txtOmrådesAgentNum.setText(hamtaAgent);
         } catch (Exception e) {
 //en catch för eventuellt fel
             txtOmrådesAgent.setText("något gick fel");
@@ -379,9 +410,12 @@ public class AlienJForm extends javax.swing.JFrame {
     private javax.swing.JButton btnLoggUt;
     private javax.swing.JButton btnNyttLosen;
     private javax.swing.JButton btnTillbaka;
+    private javax.swing.JLabel lbAgentNamn;
+    private javax.swing.JLabel lbAgentTel;
     private javax.swing.JTextField nyttLosen;
     private javax.swing.JLabel txtNyttlos;
     private javax.swing.JTextField txtOmrådesAgent;
+    private javax.swing.JTextField txtOmrådesAgentNum;
     private javax.swing.JLabel txtRubrik;
     // End of variables declaration//GEN-END:variables
 }
