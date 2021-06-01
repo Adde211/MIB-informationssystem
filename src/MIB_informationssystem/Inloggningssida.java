@@ -166,7 +166,7 @@ public class Inloggningssida extends javax.swing.JFrame {
                     }
 
                 } catch (Exception e) {
-                    txtWindowUser.setText("något gick fel i alien frågan");
+                    txtWindowUser.setText("något gick med hämtandet av data");
                 }
 
             }
