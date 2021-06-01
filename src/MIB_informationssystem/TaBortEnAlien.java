@@ -42,6 +42,12 @@ public class TaBortEnAlien extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        tfNamn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNamnActionPerformed(evt);
+            }
+        });
+
         jLabel5.setText("Namn");
 
         lblTitel.setText("Ta bort en Alien");
@@ -222,7 +228,7 @@ public class TaBortEnAlien extends javax.swing.JFrame {
     private void tfIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIDActionPerformed
         // TODO add your handling code here:
         
-        HashMap<String, String> alienInstansData = Alienfunktioner.getAlienInstansData(tfID.getText(), "Alien_ID");
+        HashMap<String, String> alienInstansData = AlienFunktioner.getAlienInstansData(tfID.getText(), "Alien_ID");
         
         ArrayList<String> alienInstansDataArrayList = OvrigaFunktioner.HashMapToArrayList(alienInstansData);
         
@@ -232,6 +238,18 @@ public class TaBortEnAlien extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_tfIDActionPerformed
+
+    private void tfNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNamnActionPerformed
+        // TODO add your handling code here:
+        
+        ArrayList<HashMap<String, String>> alienInstanser = AlienFunktioner.getAlienInstanser(tfNamn.getText());
+        
+        String sammanfogadtext = OvrigaFunktioner.hashMapArrayListToString(alienInstanser);
+        
+        taInstansData.append(sammanfogadtext);
+        
+        
+    }//GEN-LAST:event_tfNamnActionPerformed
 
     /**
      * @param args the command line arguments

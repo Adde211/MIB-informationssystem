@@ -16,11 +16,11 @@ import oru.inf.InfException;
  *
  * @author adamd
  */
-public class Alienfunktioner {
+public class AlienFunktioner {
 
     private static InfDB mibdb;
 
-    public Alienfunktioner(InfDB mibdb) {
+    public AlienFunktioner(InfDB mibdb) {
 
         this.mibdb = mibdb;
     }
@@ -125,7 +125,20 @@ public class Alienfunktioner {
 
     }
             
-    
+    public static ArrayList<HashMap<String, String>> getAlienInstanser(String namn) {
+        
+        ArrayList<HashMap<String, String>> alienInstanser = null;
+        String fraga = "SELECT * FROM alien WHERE Namn = " + namn;        
+        
+        try {
+            alienInstanser = mibdb.fetchRows(fraga);
+        }
+        catch(InfException ex) {
+            JOptionPane.showMessageDialog(null, "Hämtningen av instansen/instanserna lyckades inte.");
+            System.out.println("Internt felmeddelande: " + ex.getMessage());
+        }
+        return alienInstanser;
+    }
     
     
     
