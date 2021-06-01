@@ -42,7 +42,7 @@ public class OvrigaFunktioner {
     }
     */
     
-    
+    //I retursträngen så är det ett värde per rad.
     public static String ArrayListToString(ArrayList<String> stringArrayList) {
         
         //Man kan sammanfoga text genom en StringBuilder, vilket man även kan göra med en String, men StringBuilder är ett annat alternativ.
@@ -66,13 +66,33 @@ public class OvrigaFunktioner {
         //Sammanfogar strängarna till en text.
         for (String key : hashMap.keySet()) {
             value = hashMap.get(key);
-            arrayList.add(key);
+            arrayList.add(value);
         }
         
         return arrayList;
     }
     
-    
+    public static String hashMapArrayListToString(ArrayList<HashMap<String, String>> hashMapArrayList) {
+        
+        String sammanfogadText = null;
+        ArrayList<String> stringArrayList;
+                
+                
+        for(HashMap<String, String> hashMap : hashMapArrayList) {
+            
+            stringArrayList = HashMapToArrayList(hashMap);
+            
+            //Sammanfogar strängarna till en text.
+            for(String string : stringArrayList){
+                
+                sammanfogadText += string + " ";
+            }
+            
+            sammanfogadText += "\n";
+        }
+        
+        return sammanfogadText.toString();
+    }
     
     
     

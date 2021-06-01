@@ -286,7 +286,7 @@ public class SökPåEnAlien extends javax.swing.JFrame {
                 lblFelmeddelandeID.setText("");
             
                 //Hämtar datan om den motsvarande utomjordingen baserat på id:et som användaren skrev in i ID-fältet
-                HashMap<String, String> alienInstansData = Alienfunktioner.getAlienInstansData(tfID.getText(), "Alien_ID");
+                HashMap<String, String> alienInstansData = AlienFunktioner.getAlienInstansData(tfID.getText(), "Alien_ID");
 
                 //Sätter in den hämtade datan i textfälten.
                 tfNamn.setText(alienInstansData.get("Namn"));
@@ -337,7 +337,7 @@ public class SökPåEnAlien extends javax.swing.JFrame {
                 lblFelmeddelandeNamn.setText("");
             
                 //Hämtar datan om den motsvarande utomjordingen baserat på namnet som användaren skrev in i namn-fältet
-                HashMap<String, String> alienInstansData = Alienfunktioner.getAlienInstansData(tfNamn.getText(), "Namn");
+                HashMap<String, String> alienInstansData = AlienFunktioner.getAlienInstansData(tfNamn.getText(), "Namn");
 
                 //Sätter in den hämtade datan i textfälten.
                 tfID.setText(alienInstansData.get("Alien_ID"));

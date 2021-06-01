@@ -312,7 +312,7 @@ public class LäggTillEnAlien extends javax.swing.JFrame {
         }
         else {
             alienInstansData = OvrigaFunktioner.trimHashMap(alienInstansData);
-            Alienfunktioner.laggTillEnAlien(alienInstansData);
+            AlienFunktioner.laggTillEnAlien(alienInstansData);
             taFelmeddelanden.append("Registreringen lyckades!");
         }
         
