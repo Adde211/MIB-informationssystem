@@ -133,6 +133,10 @@ public class AlienFunktioner {
         
         try {
             alienInstanser = mibdb.fetchRows(fraga);
+            alienInstanser = ersattFrammandeNycklarHosAlienInstanser(alienInstanser);
+            
+            
+            
         }
         catch(InfException ex) {
             JOptionPane.showMessageDialog(null, "Hämtningen av instansen/instanserna lyckades inte.");
@@ -141,6 +145,48 @@ public class AlienFunktioner {
         
         return alienInstanser;
     }
+    
+    
+    private static ArrayList<HashMap<String, String>> ersattFrammandeNycklarHosAlienInstanser(ArrayList<HashMap<String, String>> hashMapArrayList) {
+        
+        try {
+            for(HashMap<String, String> hashMap : hashMapArrayList) {
+
+                //Platsnamnet ersätter platsID:et.
+                String value = hashMap.get("Plats");
+                String query = "SELECT Benamning FROM plats WHERE Plats_ID = (SELECT plats FROM alien Where Plats = " + value + ")";
+                String platsnamn = mibdb.fetchSingle(query);
+                
+                hashMap.remove("Plats");
+                hashMap.put("Plats", platsnamn);
+
+                //Agentnamnet ersätter agentID:et.
+                value = hashMap.get("Ansvarig_Agent");
+                query = "SELECT Namn FROM Agent WHERE Agent_ID = (SELECT Ansvarig_agent FROM alien Where Ansvarig_Agent = " + value + ")";
+                String agentnamn = mibdb.fetchSingle(query);
+                
+                hashMap.remove("Ansvarig_Agent");
+                hashMap.put("Ansvarig_Agent", agentnamn);
+            }
+        }
+        catch(InfException ex) {
+            //Ett felmeddelande till användaren respektive ett internt felmeddelande skrivs ut.
+            String errorMeddelande = "En eller flera av de främmande nycklarna lyckades inte ersättas.";
+            JOptionPane.showMessageDialog(null, errorMeddelande);
+            System.out.println("Internt felmeddelande: " + ex.getMessage());
+        }
+        
+        return hashMapArrayList;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
         public static String taBortEnAlien(String id) {
             

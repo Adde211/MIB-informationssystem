@@ -42,6 +42,7 @@ public class TaBortEnAlien extends javax.swing.JFrame {
         lblFelmeddelandeNamn = new javax.swing.JLabel();
         lblFelmeddelandeID = new javax.swing.JLabel();
         lblMeddelandeTaBort = new javax.swing.JLabel();
+        btnSok = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +81,13 @@ public class TaBortEnAlien extends javax.swing.JFrame {
 
         jLabel6.setText("jLabel3");
 
+        btnSok.setText("Sök");
+        btnSok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSokActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,21 +97,39 @@ public class TaBortEnAlien extends javax.swing.JFrame {
                 .addComponent(lblTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(345, 345, 345))
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblFelmeddelandeID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblFelmeddelandeNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tfID, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                    .addComponent(tfNamn))
-                .addGap(129, 129, 129)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblFelmeddelandeNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(tfID)
+                                        .addGap(42, 42, 42)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnTaBort)
+                                    .addComponent(btnSok, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(36, 36, 36))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5)
+                                .addGap(25, 25, 25)
+                                .addComponent(tfNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblMeddelandeTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblFelmeddelandeID, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(122, 122, 122)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -111,12 +137,6 @@ public class TaBortEnAlien extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTitelBild)
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(342, 342, 342)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnTaBort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblMeddelandeTaBort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,28 +145,31 @@ public class TaBortEnAlien extends javax.swing.JFrame {
                 .addComponent(lblTitel)
                 .addGap(40, 40, 40)
                 .addComponent(lblTitelBild)
-                .addGap(74, 74, 74)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
+                        .addGap(74, 74, 74)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addComponent(lblMeddelandeTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblFelmeddelandeID, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(tfNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(btnSok))
                         .addGap(18, 18, 18)
-                        .addComponent(lblFelmeddelandeNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(btnTaBort)
-                .addGap(18, 18, 18)
-                .addComponent(lblMeddelandeTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                        .addComponent(lblFelmeddelandeNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(btnTaBort))
+                        .addGap(157, 157, 157))))
         );
 
         pack();
@@ -169,12 +192,12 @@ public class TaBortEnAlien extends javax.swing.JFrame {
                 AlienFunktioner.taBortEnAlien(tfID.getText());
 
                 if(!AlienFunktioner.taBortEnAlien(tfID.getText()).isEmpty()) {
-                    taInstansData.append("");
+                    uppdateraTextArean(tfNamn.getText());
                     String meddelande = AlienFunktioner.taBortEnAlien(tfID.getText());
                     lblMeddelandeTaBort.setText(meddelande);
                 }
             }
-        
+        }
     }//GEN-LAST:event_btnTaBortActionPerformed
 
     private void tfIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIDActionPerformed
@@ -199,8 +222,7 @@ public class TaBortEnAlien extends javax.swing.JFrame {
 
                 String alienInstansDataString = OvrigaFunktioner.ArrayListToString(alienInstansDataArrayList);
                 
-                taInstansData.append("");
-                taInstansData.append(alienInstansDataString);
+                taInstansData.setText(alienInstansDataString);
             }
         }
         
@@ -210,6 +232,17 @@ public class TaBortEnAlien extends javax.swing.JFrame {
     private void tfNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNamnActionPerformed
         // TODO add your handling code here:
         
+    }//GEN-LAST:event_tfNamnActionPerformed
+
+    private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
+        // TODO add your handling code here:
+        
+        uppdateraTextArean(tfNamn.getText());
+        lblMeddelandeTaBort.setText("");
+    }//GEN-LAST:event_btnSokActionPerformed
+
+    private void uppdateraTextArean(String namn) {
+        
         if(tfNamn.getText().isEmpty()) {
             String felmeddelande = "Skriv in ett namn.";
             lblFelmeddelandeNamn.setText(felmeddelande);
@@ -217,8 +250,8 @@ public class TaBortEnAlien extends javax.swing.JFrame {
         else {
             
             if(!Validering.kollaOmEttNamnArGiltigt(tfNamn.getText()).isEmpty()) {
-            String felmeddelande = Validering.kollaOmEttNamnArGiltigt(tfNamn.getText());
-            lblFelmeddelandeNamn.setText(felmeddelande);
+                String felmeddelande = Validering.kollaOmEttNamnArGiltigt(tfNamn.getText());
+                lblFelmeddelandeNamn.setText(felmeddelande);
             }
             else {
                 
@@ -226,23 +259,15 @@ public class TaBortEnAlien extends javax.swing.JFrame {
 
                 String sammanfogadtext = OvrigaFunktioner.hashMapArrayListToString(alienInstanser);
 
-                taInstansData.append(sammanfogadtext);
+                taInstansData.setText(sammanfogadtext);
             }
         }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_tfNamnActionPerformed
-
+    }
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -279,6 +304,7 @@ public class TaBortEnAlien extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSok;
     private javax.swing.JButton btnTaBort;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
