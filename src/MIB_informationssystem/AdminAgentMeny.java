@@ -42,14 +42,44 @@ public class AdminAgentMeny extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick fel" + ettUndantag);
         }
        
-        fetchComboBox();
+
+        
+        // Combobox i "Registrera Agent", lista agenter i Redigera Agent.
+        fetchComboBox();   
+        
+        // Combobox i "redigera agent", lista agenter i Redigera agent.
         fetchComboBoxAgent();
+              
+        // Konstruktorn för combox för kontorchef combobox.
+        //---------------------------
+        // Combobox i "mer inställningar", lista Agenter i Kontorchef inställningen.
         fetchComboBoxen();
+        
+        // Combobox i "mer inställningar", lista kontor som alternativ.
+        listaComboBoxAndraKontor();
+        //---------------------------
+        
+        
+        
+        
+        
+        
+        
+        
+        // OMRÅDESCHEF I MER INSTÄLLINGAR - KOD VÄLJ AGENT / OMRÅDE
+        // ---------------------------------
+        // ComboBox i "mer inställnigar", lista Agenter i Områdes inställningen.
+        listaComboBoxAgenterTillOmrade();
+        // Combox i "mer inställningar", listar områden i områdes inställningen.
+        listaComboBoxOmradenChef();
+        //----------------------------------
+        
+        
         
 
     }
-
-    private void fetchComboBox() {
+        // TILL AGENT REGISTERING, COMBOBOXEN FÖR HÄMTA OMRÅDE I PANELEN.
+        private void fetchComboBox() {
 
         String fetchOmrade = "SELECT BENAMNING FROM OMRADE";
         ArrayList<String> comboList;
@@ -61,34 +91,39 @@ public class AdminAgentMeny extends javax.swing.JFrame {
             for (String list : comboList) {
                 jComboBoxOmrade.addItem(list);
             }
-        } catch (InfException ex) {
-            System.out.println("y");
-            JOptionPane.showMessageDialog(null, "Felmeddelande:" + ex);
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null,"Fel i systemet, kontakta IT-avdelning");
 
         }
     }
-    
-    
+        // ----------------------------------
+     
+        
+        
+        
+        // TILL REDIGERA AGENT
+        //-----------------------------------
         private void fetchComboBoxAgent() {
 
         String fetchAgent = "SELECT NAMN FROM AGENT";
         ArrayList<String> comboAgentList;
         try {
-
             comboAgentList = idb.fetchColumn(fetchAgent);
-
-            System.out.println(fetchAgent);
             for (String listan : comboAgentList) {
                 jComboBoxAgentFetch.addItem(listan);
             }
-        } catch (InfException ex) {
+        } catch (InfException e) {
             
-            JOptionPane.showMessageDialog(null, "Felmeddelande:" + ex);
-
-        }
+            JOptionPane.showMessageDialog(null, "Fel i systemet, kontakta IT-avdelning");
         }
         
-                private void fetchComboBoxen() {
+    }
+        //-----------------------------------
+
+        
+        //KONTORSCHEF
+        //-----------------------------------
+        private void fetchComboBoxen() {
 
         String fetchAgent = "SELECT NAMN FROM AGENT";
         ArrayList<String> comboAgentList;
@@ -98,18 +133,71 @@ public class AdminAgentMeny extends javax.swing.JFrame {
 
             System.out.println(fetchAgent);
             for (String listan : comboAgentList) {
-                fetchComboBoxAgent1.addItem(listan);
+                fetchComboBoxAgentKCF.addItem(listan);
             }
-        } catch (InfException ex) {
+        } catch (InfException e) {
             
-            JOptionPane.showMessageDialog(null, "Felmeddelande:" + ex);
+            JOptionPane.showMessageDialog(null, "Fel i systemet, kontakta IT-avdelning");
 
+            }
         }
         
-        
-        
-        
+        private void listaComboBoxAndraKontor() { 
+
+        String fraga = "SELECT KONTORSBETECKNING FROM KONTORSCHEF";
+        ArrayList<String> ComboBoxAndraKontorList;
+        try {
+            ComboBoxAndraKontorList = idb.fetchColumn(fraga);
+            for (String s : ComboBoxAndraKontorList) {
+                jComboBoxListaOmrade.addItem(s);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Fel i systemet, kontakta IT-avdelning");
+
+        }
+  
     }
+        //-----------------------------------
+    
+        
+        //OMRÅDESCHEF
+        //-------------------------------
+        // Metod som fyller Combobox med agenter, hittas i " mer inställningar, gäller område stalpen, hämtar agenter"
+        private void listaComboBoxAgenterTillOmrade() {
+
+        String fetchAgent = "SELECT NAMN FROM AGENT";
+        ArrayList<String> comboAgentList;
+        try {
+
+            comboAgentList = idb.fetchColumn(fetchAgent);
+            for (String listan : comboAgentList) {
+                jComboBoxOmradesChef1.addItem(listan);
+            }
+        } catch (InfException e) {
+            
+            JOptionPane.showMessageDialog(null, "Fel i systemet, kontakta IT-avdelning");
+            
+            }
+        }
+        
+        private void listaComboBoxOmradenChef(){
+        
+        String fetchBanmning = "SELECT BENAMNING FROM OMRADE";
+        ArrayList<String> comboListChefOmrade;
+        
+        try {
+            
+            comboListChefOmrade = idb.fetchColumn(fetchBanmning);
+            for (String s : comboListChefOmrade) {
+                jComboBoxOmradesChef2.addItem(s);
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Fel i systemet, kontakta IT-avdelning");
+            
+        }
+            
+    }
+        //-------------------------------
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -140,12 +228,12 @@ public class AdminAgentMeny extends javax.swing.JFrame {
         jTextFieldAgentRegNamn = new javax.swing.JTextField();
         jTextFieldAgentRegTelNr = new javax.swing.JTextField();
         jTextFieldAgentRegPW = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jButtonSparaAgentRegistrering = new javax.swing.JButton();
         jButtonAgentRegRensa = new javax.swing.JButton();
         jComboBoxAdmin = new javax.swing.JComboBox<>();
         jComboBoxOmrade = new javax.swing.JComboBox<>();
         jTextFieldDatum = new javax.swing.JTextField();
-        jTextFieldResultatReg = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
         jPanelDelAgent = new javax.swing.JPanel();
         jLabelDelAgent = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -166,9 +254,22 @@ public class AdminAgentMeny extends javax.swing.JFrame {
         jButtonRedAgentMerInställningar = new javax.swing.JButton();
         jPanelMerInställningar = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        fetchComboBoxAgent1 = new javax.swing.JComboBox<>();
-        jComboBoxAlternativ = new javax.swing.JComboBox<>();
+        jButtonSparaKontorChef = new javax.swing.JButton();
+        fetchComboBoxAgentKCF = new javax.swing.JComboBox<>();
+        jComboBoxListaOmrade = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jComboBoxOmradesChef2 = new javax.swing.JComboBox<>();
+        jComboBoxOmradesChef1 = new javax.swing.JComboBox<>();
+        jComboBoxSeAnsvarsOmrade = new javax.swing.JComboBox<>();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jButtonSparaOmradesChef = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jButtonTillbaka = new javax.swing.JButton();
         jButtonMerInställningar = new javax.swing.JButton();
 
@@ -217,10 +318,10 @@ public class AdminAgentMeny extends javax.swing.JFrame {
 
         jLabel7.setText("Område");
 
-        jButton1.setText("Spara");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSparaAgentRegistrering.setText("Spara");
+        jButtonSparaAgentRegistrering.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonSparaAgentRegistreringActionPerformed(evt);
             }
         });
 
@@ -231,7 +332,16 @@ public class AdminAgentMeny extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxAdmin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "J", "N" }));
+        jComboBoxAdmin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JA", "NEJ" }));
+
+        jTextFieldDatum.setMaximumSize(new java.awt.Dimension(8, 1));
+        jTextFieldDatum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldDatumActionPerformed(evt);
+            }
+        });
+
+        jLabel21.setText("YYYY/MM/DD");
 
         javax.swing.GroupLayout jPanelRegAgentLayout = new javax.swing.GroupLayout(jPanelRegAgent);
         jPanelRegAgent.setLayout(jPanelRegAgentLayout);
@@ -246,7 +356,7 @@ public class AdminAgentMeny extends javax.swing.JFrame {
                         .addGap(77, 77, 77)
                         .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanelRegAgentLayout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(jButtonSparaAgentRegistrering)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonAgentRegRensa))
                             .addGroup(jPanelRegAgentLayout.createSequentialGroup()
@@ -266,12 +376,15 @@ public class AdminAgentMeny extends javax.swing.JFrame {
                                     .addComponent(jTextFieldAgentRegPW)
                                     .addComponent(jComboBoxOmrade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanelRegAgentLayout.createSequentialGroup()
-                                        .addComponent(jComboBoxAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 8, Short.MAX_VALUE))
-                                    .addComponent(jTextFieldResultatReg))))))
-                .addContainerGap(67, Short.MAX_VALUE))
+                                        .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jComboBoxAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanelRegAgentLayout.createSequentialGroup()
+                                                .addGap(12, 12, 12)
+                                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jTextFieldDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanelRegAgentLayout.setVerticalGroup(
             jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,28 +405,26 @@ public class AdminAgentMeny extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addComponent(jTextFieldAgentRegTelNr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelRegAgentLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jComboBoxAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextFieldAgentRegPW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jComboBoxOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel21)
                     .addComponent(jTextFieldDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(jTextFieldResultatReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jComboBoxAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextFieldAgentRegPW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(jComboBoxOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(jPanelRegAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAgentRegRensa)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonSparaAgentRegistrering))
                 .addGap(112, 112, 112))
         );
 
@@ -344,7 +455,7 @@ public class AdminAgentMeny extends javax.swing.JFrame {
                         .addGroup(jPanelDelAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonTaBortAgent)
                             .addComponent(txtFieldTaBortAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanelDelAgentLayout.setVerticalGroup(
             jPanelDelAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -430,7 +541,7 @@ public class AdminAgentMeny extends javax.swing.JFrame {
                                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(33, 33, 33))
                                         .addGroup(jPanelAlterAgentLayout.createSequentialGroup()
-                                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                     .addGroup(jPanelAlterAgentLayout.createSequentialGroup()
                                         .addComponent(jLabel13)
@@ -440,7 +551,7 @@ public class AdminAgentMeny extends javax.swing.JFrame {
                                     .addComponent(jComboBoxAgentFetch, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelAlterAgentLayout.createSequentialGroup()
                                         .addComponent(jComboBoxRedigeraAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 10, Short.MAX_VALUE)))))
+                                        .addGap(0, 26, Short.MAX_VALUE)))))
                         .addGap(15, 15, 15))))
         );
         jPanelAlterAgentLayout.setVerticalGroup(
@@ -460,7 +571,7 @@ public class AdminAgentMeny extends javax.swing.JFrame {
                 .addGroup(jPanelAlterAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTxtRedigeraAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonUppdateraAgent)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonRensaRedigeraAgent)
@@ -468,20 +579,52 @@ public class AdminAgentMeny extends javax.swing.JFrame {
                 .addGroup(jPanelAlterAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnRedigeraAgentBacka)
                     .addComponent(jButtonRedAgentMerInställningar))
-                .addGap(17, 17, 17))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel10.setText("Mer inställningar");
 
-        jButton2.setText("SPARA");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSparaKontorChef.setText("SPARA");
+        jButtonSparaKontorChef.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonSparaKontorChefActionPerformed(evt);
             }
         });
 
-        jComboBoxAlternativ.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "J, N" }));
+        jLabel11.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel11.setText("Kontorschef");
+
+        jLabel14.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel14.setText("Områdeschef");
+
+        jComboBoxSeAnsvarsOmrade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel15.setText("Välj en områdeschef och se vilket ansvarsområde");
+
+        jLabel16.setText("Ändra information om vilken agent som är kontorschef/områdeschef");
+
+        jButtonSparaOmradesChef.setText("SPARA");
+        jButtonSparaOmradesChef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSparaOmradesChefActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Välj agent");
+
+        jLabel18.setText("Område");
+
+        jLabel19.setText("Välj agent");
+
+        jLabel20.setText("Område");
+
+        jButton1.setText("Uppdatera");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelMerInställningarLayout = new javax.swing.GroupLayout(jPanelMerInställningar);
         jPanelMerInställningar.setLayout(jPanelMerInställningarLayout);
@@ -490,30 +633,93 @@ public class AdminAgentMeny extends javax.swing.JFrame {
             .addGroup(jPanelMerInställningarLayout.createSequentialGroup()
                 .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMerInställningarLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addContainerGap()
                         .addComponent(jLabel10))
                     .addGroup(jPanelMerInställningarLayout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBoxAlternativ, 0, 85, Short.MAX_VALUE)
-                            .addComponent(fetchComboBoxAgent1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel15)))
                     .addGroup(jPanelMerInställningarLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(91, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jLabel11)
+                        .addGap(311, 311, 311)
+                        .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxOmradesChef1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanelMerInställningarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelMerInställningarLayout.createSequentialGroup()
+                        .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelMerInställningarLayout.createSequentialGroup()
+                                .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(fetchComboBoxAgentKCF, javax.swing.GroupLayout.Alignment.LEADING, 0, 115, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxListaOmrade, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanelMerInställningarLayout.createSequentialGroup()
+                                .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonSparaKontorChef, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel17))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)))
+                        .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxOmradesChef2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelMerInställningarLayout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel19))
+                            .addComponent(jButtonSparaOmradesChef, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54))
+                    .addGroup(jPanelMerInställningarLayout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel20)
+                        .addGap(84, 84, 84))))
+            .addGroup(jPanelMerInställningarLayout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxSeAnsvarsOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelMerInställningarLayout.setVerticalGroup(
             jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMerInställningarLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addContainerGap()
                 .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(fetchComboBoxAgent1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBoxAlternativ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jButton2)
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addComponent(jComboBoxSeAnsvarsOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addComponent(jLabel16)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fetchComboBoxAgentKCF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxOmradesChef1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxListaOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxOmradesChef2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelMerInställningarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSparaKontorChef)
+                    .addComponent(jButtonSparaOmradesChef))
+                .addGap(84, 84, 84))
         );
 
         jLayeredPane1.setLayer(jPanelRegAgent, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -533,9 +739,9 @@ public class AdminAgentMeny extends javax.swing.JFrame {
                         .addComponent(jPanelMerInställningar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelAlterAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelDelAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(129, 129, 129))
+                    .addComponent(jPanelDelAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelAlterAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(112, 112, 112))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -543,12 +749,12 @@ public class AdminAgentMeny extends javax.swing.JFrame {
                 .addComponent(jPanelRegAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelMerInställningar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addComponent(jPanelDelAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelAlterAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(98, 98, 98))
+                .addGap(81, 81, 81))
         );
 
         jButtonTillbaka.setText("Tillbaka");
@@ -589,7 +795,7 @@ public class AdminAgentMeny extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -607,7 +813,7 @@ public class AdminAgentMeny extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addGap(129, 129, 129))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -641,10 +847,10 @@ public class AdminAgentMeny extends javax.swing.JFrame {
         jPanelMerInställningar.setVisible(false);
     }//GEN-LAST:event_jButtonRegAgentActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonSparaAgentRegistreringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSparaAgentRegistreringActionPerformed
         // TODO add your handling code here:
         
-        // Insert agent to database
+        // skriv kod
         
         String id = jTextFieldAgentRegAgentID.getText();
         String datum = jTextFieldDatum.getText();
@@ -661,13 +867,20 @@ public class AdminAgentMeny extends javax.swing.JFrame {
                 String fraga = "INSERT INTO AGENT (AGENT_ID, NAMN, TELEFON, ANSTALLNINGSDATUM, ADMINISTRATOR, LOSENORD, OMRADE) VALUES"
                 + " (" + agentID + "," + namn + "," + telefon + "," + datum  + "," + admin + "," + losenord + "," + omradesID + ")";
                 idb.insert(fraga);
-                jTextFieldResultatReg.setText("Agenten tillagd i databasen!");
+                JOptionPane.showMessageDialog(null, "Agenten tillagd i databasen!");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Det blev något fel när du försökte regga en Alien," + "\n"
+                    + "Regler;" + "\n" 
+                    + "Inga tomma rutor" + "\n" 
+                    + "Datum måste vara i rätt format tex 20210517" + "\n" 
+                    + "Agent ID måste vara en siffra" + "\n" 
+                    +  "Telefonnummer måste vara siffror" + "\n" 
+                    + "vänligen försök igen");
+            
         }
              
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonSparaAgentRegistreringActionPerformed
 
     private void jButtonAgentRegRensaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgentRegRensaActionPerformed
         // rensar textfält.
@@ -684,15 +897,16 @@ public class AdminAgentMeny extends javax.swing.JFrame {
 
     private void jButtonTaBortAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTaBortAgentActionPerformed
         // Tar bort agent från databasen, kontroll om agent har en alien.
+        // fixa combofox ist för textstring
         String agentNamn = "'" + txtFieldTaBortAgent.getText() + "'";
         String fragaDB = "DELETE FROM AGENT WHERE AGENT.NAMN = " + agentNamn;
 
         try {
             String agentID = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + agentNamn);
             String agentAnsvarig = idb.fetchSingle("SELECT ALIEN_ID FROM ALIEN WHERE ANSVARIG_AGENT =" + agentID);
-            System.out.println(agentID);
-            System.out.println(agentAnsvarig);
-            System.out.println(agentNamn);
+           // System.out.println(agentID);
+          //  System.out.println(agentAnsvarig);
+          //  System.out.println(agentNamn);
 
             if (agentAnsvarig != null) {
                 JOptionPane.showMessageDialog(null, "Agenten du försöker ta bort ansvarar över en Alien!");
@@ -716,6 +930,7 @@ public class AdminAgentMeny extends javax.swing.JFrame {
         jTxtRedigeraAgent.setText("");
     }//GEN-LAST:event_jButtonRensaRedigeraAgentActionPerformed
 
+    
     private void jButtonMerInställningarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMerInställningarActionPerformed
         // För nå respektive layer i panelen kan man sätta diverse saker till boolean värde true/false,
         // i detta fallet visas mer inställningar och allt annat göms.
@@ -726,36 +941,29 @@ public class AdminAgentMeny extends javax.swing.JFrame {
         jPanelMerInställningar.setVisible(true);
     }//GEN-LAST:event_jButtonMerInställningarActionPerformed
 
+    
+    // Uppdaterar redigera Agent
     private void jButtonUppdateraAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUppdateraAgentActionPerformed
            // hämtar agent, hämtar vad man vill byta i combobox, i textrutan fyller man i nya värdet.
           
             String agentNamn = "'" + jComboBoxAgentFetch.getSelectedItem().toString() + "'";      
             String nyttVärde = jTxtRedigeraAgent.getText();          
             String attUppdatera = jComboBoxRedigeraAgent.getSelectedItem().toString();
-            System.out.println("1");
-            
+    
             SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
             Date parsed = null;
-
 
              try {
              parsed = format.parse("20110210");
              } catch (ParseException ex) {
             Logger.getLogger(AdminAgentMeny.class.getName()).log(Level.SEVERE, null, ex);
              }
-             java.sql.Date sql = new java.sql.Date(parsed.getTime());
-            
-            
-            
-            
+            java.sql.Date sql = new java.sql.Date(parsed.getTime());
+
             
             try {
             String agentID = idb.fetchSingle("SELECT Agent_ID FROM AGENT WHERE NAMN = " + agentNamn);
-            System.out.println("2");
-          
-            
-            System.out.println("3");    
-              //  String input = "UPDATE AGENT SET" + txtFieldNamn + "WHERE Agent_ID = " + agentID;  
+  
                 String input = "UPDATE AGENT SET " + attUppdatera + " = '" + nyttVärde + "' WHERE Agent_ID = " + agentID;
                 updateDB(input);
         
@@ -764,44 +972,68 @@ public class AdminAgentMeny extends javax.swing.JFrame {
             
             
         } catch (InfException ex) {
-            System.out.println("4");
             Logger.getLogger(AdminAgentMeny.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jButtonUppdateraAgentActionPerformed
 
+    // Backa från mer inställningar i redigera agent
     private void jBtnRedigeraAgentBackaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRedigeraAgentBackaActionPerformed
-        // TODO add your handling code here:
+        // Backa funktion
+        
         dispose();
     }//GEN-LAST:event_jBtnRedigeraAgentBackaActionPerformed
-
+ 
+    // gör Mer inställningar i redigera agent synlig
     private void jButtonRedAgentMerInställningarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRedAgentMerInställningarActionPerformed
-        // TODO add your handling code here:
-        // merInställningar mI = new merInställningar
+        // gör panelen synlig
         new RedAgentMerInställnigar().setVisible(true);
     }//GEN-LAST:event_jButtonRedAgentMerInställningarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    // spara knappen till mer inställningar kontorstalpen
+    private void jButtonSparaKontorChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSparaKontorChefActionPerformed
+    // jButton som hämtar valda saker i respektive combobox och uppdaterar databasen. 
+        String fetchAgent = "'" + fetchComboBoxAgentKCF.getSelectedItem().toString() + "'";
+        String fetchKontorOmrade = "'" + jComboBoxListaOmrade.getSelectedItem().toString() + "'"; 
+        try {
+        String omradesID = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING = " + fetchKontorOmrade);
+        String agentID = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + fetchAgent);  
+        
+        idb.update("UPDATE OMRADESCHEF SET AGENT_ID = " + agentID + " WHERE OMRADE = " + omradesID); 
+        
+        JOptionPane.showMessageDialog(null, "Kontorchefen är uppdaterad");    
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Fel i systemet, kontakta IT-avdelning");
+        }
+    }//GEN-LAST:event_jButtonSparaKontorChefActionPerformed
+    
+    // spara knappen till mer inställningar områdeschefstalpen
+    private void jButtonSparaOmradesChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSparaOmradesChefActionPerformed
         // TODO add your handling code here:
-        String fetchAgent = fetchComboBoxAgent1.getSelectedItem().toString();
-        String status = "'" + jComboBoxAlternativ.getSelectedItem().toString() + "'";
-     
+        String fetchAgent = "'" + jComboBoxOmradesChef1.getSelectedItem().toString() + "'";
+        String fetchOmrade = "'" + jComboBoxOmradesChef2.getSelectedItem().toString() + "'"; 
+        try {
+        String omradesID = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING = " + fetchOmrade);
+        String agentID = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + fetchAgent);
+      
+        idb.update("UPDATE OMRADESCHEF SET AGENT_ID = " + agentID + " WHERE OMRADE = " + omradesID); 
+       
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Fel i systemet, kontakta IT-avdelning");
+        }
+    }//GEN-LAST:event_jButtonSparaOmradesChefActionPerformed
+
+    // onödig ta bort
+    private void jTextFieldDatumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDatumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDatumActionPerformed
+    
+    
+    // JbuttonPerformed metod, används för se områdeschef över ett område
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
         
-        
-            try{
-                String agentID = idb.fetchSingle("Select Agent_id from agent where agent.namn = " + "'" + fetchAgent + "'");
-                
-                String query = "Update agent set administrator =" + status + " " + "Where agent_id =" + "'" + agentID + "'";
-                idb.update(query);
-                JOptionPane.showMessageDialog(null, "Ändring är gjord");
-            
-            }
-            catch(InfException e){
-                JOptionPane.showMessageDialog(null, "Fel");
-                System.out.println(e);
-            
-            }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -839,10 +1071,9 @@ public class AdminAgentMeny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> fetchComboBoxAgent1;
+    private javax.swing.JComboBox<String> fetchComboBoxAgentKCF;
     private javax.swing.JButton jBtnRedigeraAgentBacka;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonAgentRegRensa;
     private javax.swing.JButton jButtonAlterAgent;
@@ -851,19 +1082,34 @@ public class AdminAgentMeny extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRedAgentMerInställningar;
     private javax.swing.JButton jButtonRegAgent;
     private javax.swing.JButton jButtonRensaRedigeraAgent;
+    private javax.swing.JButton jButtonSparaAgentRegistrering;
+    private javax.swing.JButton jButtonSparaKontorChef;
+    private javax.swing.JButton jButtonSparaOmradesChef;
     private javax.swing.JButton jButtonTaBortAgent;
     private javax.swing.JButton jButtonTillbaka;
     private javax.swing.JButton jButtonUppdateraAgent;
     private javax.swing.JComboBox<String> jComboBoxAdmin;
     private javax.swing.JComboBox<String> jComboBoxAgentFetch;
-    private javax.swing.JComboBox<String> jComboBoxAlternativ;
+    private javax.swing.JComboBox<String> jComboBoxListaOmrade;
     private javax.swing.JComboBox<String> jComboBoxOmrade;
+    private javax.swing.JComboBox<String> jComboBoxOmradesChef1;
+    private javax.swing.JComboBox<String> jComboBoxOmradesChef2;
     private javax.swing.JComboBox<String> jComboBoxRedigeraAgent;
+    private javax.swing.JComboBox<String> jComboBoxSeAnsvarsOmrade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -886,7 +1132,6 @@ public class AdminAgentMeny extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldAgentRegPW;
     private javax.swing.JTextField jTextFieldAgentRegTelNr;
     private javax.swing.JTextField jTextFieldDatum;
-    private javax.swing.JTextField jTextFieldResultatReg;
     private javax.swing.JTextField jTextFieldSvar;
     private javax.swing.JTextField jTxtRedigeraAgent;
     private javax.swing.JTextField txtFieldTaBortAgent;
