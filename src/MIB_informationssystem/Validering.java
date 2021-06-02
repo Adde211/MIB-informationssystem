@@ -63,7 +63,7 @@ public class Validering {
     */
     public static String kollaEttTelefonnummer(String telenum) {
         
-        String felmeddelande = null;
+        String felmeddelande = "";
         char[] telenumChars = telenum.toCharArray();
         int numOfNonInts = 0;
         
@@ -91,7 +91,7 @@ public class Validering {
     public static String kollaOmEttDatumArGiltigt(String datum) {
         
         String[] substrings = datum.split("-");
-        String felmeddelande = null;
+        String felmeddelande = "";
         
         /*  
             Kollar om datumet har fler än två bindesstreck i rad på minst ett ställe.
@@ -123,10 +123,10 @@ public class Validering {
     */
     public static String kollaOmEttNamnArGiltigt(String namn) {
         
-        String felmeddelande = null;
+        String felmeddelande = "";
         
         if(namn.length() >= 31) {
-            felmeddelande = "Namnet får högst bestå av 30 tecken";
+            felmeddelande = "Ett namn kan högst bestå av 30 tecken.";
         }
         
         return felmeddelande;
@@ -144,7 +144,7 @@ public class Validering {
         int numOfSecialChars = 0;
         
         char[] losenChars = losen.toCharArray();
-        String felmeddelande = null;
+        String felmeddelande = "";
         
         // Går igenom den inmatade strängen och räknar på hur många tecken det finns av typerna siffror, versaler och specialtecken.
         for(char character : losenChars) {
@@ -183,7 +183,7 @@ public class Validering {
     */
     public static String platsArRegistrerad(String platsnamn) {
         
-        String felmeddelande = null;
+        String felmeddelande = "";
         
         try {
             mibdb.fetchSingle("SELECT Plats_ID FROM Plats WHERE Benamning = " + platsnamn);
@@ -202,7 +202,7 @@ public class Validering {
     */
     public static String agentArRegistrerad(String agentnamn) {
         
-        String felmeddelande = null;
+        String felmeddelande = "";
         
         try {
             mibdb.fetchSingle("SELECT Agent_ID FROM Agent WHERE Namn = " + agentnamn);

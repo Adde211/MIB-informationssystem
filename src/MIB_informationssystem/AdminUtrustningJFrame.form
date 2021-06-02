@@ -50,23 +50,22 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnTillbakaTabort" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="lbForklaraTaBort1" alignment="0" min="-2" pref="316" max="-2" attributes="0"/>
+                          <Component id="lbForklaraTaBort2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="txtArea" min="-2" pref="369" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="btnStorTaBort" pref="143" max="32767" attributes="0"/>
                                   <Component id="btnNyUtrustning" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lbTillagd" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnVäljUtrustning" min="-2" pref="103" max="-2" attributes="0"/>
-                              </Group>
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="btnVäljUtrustning" min="-2" pref="103" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
@@ -97,9 +96,11 @@
                                       <Component id="txtNyTvå" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="lbTillagd" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="219" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -122,10 +123,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnNyUtrustning" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
-                              <Component id="lbTillagd" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btnNyUtrustning" min="-2" pref="60" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="btnVäljUtrustning" min="-2" pref="22" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -135,6 +133,7 @@
                                   <Component id="txtNyTvå" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lbNyEtt" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lbNyTvå" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbTillagd" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -149,28 +148,33 @@
                       <Component id="btnTillbakaNy" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnStorTaBort" min="-2" pref="65" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtBortEtt" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbBortEtt" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnTaBort" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lbBorttagen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnTillbakaTabort" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="btnStorTaBort" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="comboTaBort" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                               <Component id="lbBortTvå" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                      <Component id="lbForklaraTaBort1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lbForklaraTaBort2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtBortEtt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbBortEtt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnTaBort" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lbBorttagen" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnTillbakaTabort" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Component id="txtArea" alignment="1" min="-2" pref="230" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                      <Component id="txtArea" min="-2" pref="230" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="btnAvsluta" min="-2" max="-2" attributes="0"/>
@@ -345,5 +349,15 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="lbForklaraTaBort1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Listan till h&#xf6;ger visar unika ID&apos;n f&#xf6;r varje Utrustning"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbForklaraTaBort2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lj en Utrustning du vill ta bort med matchande nummer"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
