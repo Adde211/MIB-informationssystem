@@ -115,7 +115,7 @@ public class Validering {
             Om något av dessa inte stämmer så kommer ett felmeddelande att returneras.
         */
         if(felmeddelande.isEmpty()) {
-            if(datum.endsWith("-") || !(substrings[0].length() == 4 && substrings[0].length() == 2 && substrings[0].length() == 2)) {
+            if(datum.endsWith("-") || !(substrings[0].length() == 4 && substrings[1].length() == 2 && substrings[2].length() == 2)) {
                 
                 felmeddelande = "Datumet behöver ha formatet ÅÅÅÅ-MM-DD";
             }
