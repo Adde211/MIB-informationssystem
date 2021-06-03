@@ -5,6 +5,7 @@
  */
 package MIB_informationssystem;
 
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -16,9 +17,15 @@ public class Validering {
     
     private static InfDB mibdb;
 
-    public Validering(InfDB mibdb) {
-
-        this.mibdb = mibdb;
+    public Validering()
+    {
+        try {
+            mibdb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
+        }
+        catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Databasen mibdb nåddes inte.");
+            System.out.println("Internt felmeddelande: " + ex.getMessage());
+        }
     }
     
     

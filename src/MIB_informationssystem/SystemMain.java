@@ -29,13 +29,11 @@ public class SystemMain {
             System.out.println("Internt felmeddelande: " + ex.getMessage());
         }
         
-        new AlienFunktioner(mibdb);
-        new Validering(mibdb);
         
         //new SökPåEnAlien().setVisible(true);
-        new LäggTillEnAlien().setVisible(true);
+        //new LäggTillEnAlien().setVisible(true);
         //new UppdateraEnAlien().setVisible(true);
-        //new TaBortEnAlien().setVisible(true);
+        new TaBortEnAlien().setVisible(true);
         
     }
     
