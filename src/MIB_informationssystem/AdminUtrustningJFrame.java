@@ -32,7 +32,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
         btnTillbakaNy.setVisible(false);
 
         lbBorttagen.setVisible(false);
-//skapar en infDB klass mot vår databas
+//skapar en ny infDB klass mot vår databas
         try {
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
         } catch (InfException ettUndantag) {
@@ -68,7 +68,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
 
         } catch (Exception e) {
 //vårt catch scenario om något blir fel i frågan
-            JOptionPane.showMessageDialog(null, "ID nummeret är upptaget, Försök igen med ett annat ");
+            JOptionPane.showMessageDialog(null, "Alt 1. Utrustnings nummret är upptaget eller ogilitgt, Försök igen med ett heltal \n Alt 2. Vid Fordons registrering ange registreringsdatum i format: ÅÅÅÅ-MM-DD");
             lbTillagd.setVisible(false);
             btnTillbakaNy.setVisible(false);
         }
@@ -88,7 +88,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             return null;
         }
     }
-    
+    //för att automatiskt sätta Id på varje inser
     private String setID(String antalFråga){
     //skapar en lista
         ArrayList<HashMap<String, String>> lista = new ArrayList<HashMap<String, String>>();
@@ -509,11 +509,12 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             btnTillbakaNy.setVisible(true);
 
             // Ger de namnen jag vill till labels
-            lbNyEtt.setText("Fordons ID:");
+            lbNyEtt.setText("Registreringsskylt:");
             lbNyTvå.setText("Fordonsbeskrivning:");
             lbNyTre.setText("Registreringsdatum:");
             lbNyFyra.setText("Årsmodell:");
             txtNyTre.setText("ÅÅÅÅ-MM-DD");
+         
             
             
 
@@ -530,7 +531,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             btnTillbakaNy.setVisible(true);
 
             // Ger de namnen jag vill och döljer 3 samt 4
-            lbNyEtt.setText("Utrustnings_ID:");
+            lbNyEtt.setText("Utrustnings Nummer:");
             lbNyTvå.setText("Överforingsteknik:");
             lbNyTre.setVisible(false);
             lbNyFyra.setVisible(false);
@@ -549,7 +550,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             btnTillbakaNy.setVisible(true);
 
             // Ger de namnen jag vill
-            lbNyEtt.setText("Utrustnings_ID:");
+            lbNyEtt.setText("Utrustnings Nummer:");
             lbNyTvå.setText("Kraftkalla:");
             lbNyTre.setVisible(false);
             lbNyFyra.setVisible(false);
@@ -568,7 +569,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             ntbOKutrustning.setVisible(true);
 
             // Ger de namnen jag vill
-            lbNyEtt.setText("Utrustnings_ID:");
+            lbNyEtt.setText("Utrustnings Nummer:");
             lbNyTvå.setText("Benämning:");
             lbNyTre.setVisible(false);
             lbNyFyra.setVisible(false);
@@ -584,14 +585,15 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
             txtNyEtt.setVisible(true);
             txtNyTvå.setVisible(true);
             txtNyTre.setVisible(false);
-            txtNyFyra.setVisible(false);
+            txtNyFyra.setVisible(true);
             ntbOKutrustning.setVisible(true);
 
             // Ger de namnen jag vill
-            lbNyEtt.setText("Utrustnings_ID:");
+            lbNyEtt.setText("Utrustnings Nummer:");
             lbNyTvå.setText("Kaliber:");
+            lbNyFyra.setText("Namn:");
             lbNyTre.setVisible(false);
-            lbNyFyra.setVisible(false);
+            lbNyFyra.setVisible(true);
             lbNyEtt.setVisible(true);
             lbNyTvå.setVisible(true);
             btnTillbakaNy.setVisible(true);
@@ -634,7 +636,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
 
             String input = "INSERT INTO fordon VALUES ('" + txtEtt + "','" + txtTvå + "','" + txtTre + "', '" + txtFyra + "');";
 
-            JOptionPane.showMessageDialog(null, "frågan  " + input);
+            //JOptionPane.showMessageDialog(null, "frågan  " + input);
 //metoden insertDB anropas med vår spefika SQL-fråga sparat i ett string input
             insertDB(input);
 
@@ -642,10 +644,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
 // Stegen som ovan if (fordon) scenariot repeteras  rad 591  
         if ("Kommunikation".equals(utrustning)) {
             
-            String IDfraga = "SELECT * FROM Kommunikation;";
-            
-            String ID = setID(IDfraga);
-
+           
             String input = "INSERT INTO kommunikation VALUES ('" + txtEtt + "','" + txtTvå + "');";
 
             insertDB(input);
@@ -671,8 +670,12 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
         if ("Vapen".equals(utrustning)) {
 
             String input = "INSERT INTO vapen VALUES ('" + txtEtt + "','" + txtTvå + "');";
-
+            
+            String input2 = "INSERT INTO utrustning VALUES ('" + txtEtt + "','" + txtFyra + "');";
+            
+            insertDB(input2);
             insertDB(input);
+            
 
         }
 // När det är klar rensar vi våra textrutor cleartxtWindow samt döljer utrustnings jframeobjekten döljNyUtrustning
@@ -890,6 +893,7 @@ public class AdminUtrustningJFrame extends javax.swing.JFrame {
         // Väljer vilka jFrame-objekt som ska visas, datta fall döljer via tillbaka knappen
 
         döljNyUtrustning();
+        lbTillagd.setVisible(false);
 
         btnTillbakaNy.setVisible(false);
     }//GEN-LAST:event_btnTillbakaNyActionPerformed
