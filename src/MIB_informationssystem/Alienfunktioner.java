@@ -20,9 +20,15 @@ public class AlienFunktioner {
 
     private static InfDB mibdb;
 
-    public AlienFunktioner(InfDB mibdb) {
-
-        this.mibdb = mibdb;
+    public AlienFunktioner()
+    {
+        try {
+            mibdb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
+        }
+        catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Databasen mibdb nåddes inte.");
+            System.out.println("Internt felmeddelande: " + ex.getMessage());
+        }
     }
 
 
