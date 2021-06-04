@@ -5,7 +5,7 @@ package MIB_informationssystem;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import javax.swing.JOptionPane;
+
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
