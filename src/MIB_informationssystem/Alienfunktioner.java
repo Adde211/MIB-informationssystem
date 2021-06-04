@@ -19,8 +19,10 @@ import oru.inf.InfException;
 public class AlienFunktioner {
 
     private static InfDB mibdb;
+    
+    
 
-    public AlienFunktioner()
+    public static AlienFunktioner()
     {
         try {
             mibdb = new InfDB("mibdb", "3306", "mibdba", "mibkey");

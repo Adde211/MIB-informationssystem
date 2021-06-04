@@ -108,6 +108,12 @@ public class ListaAliensPaEnPlats extends javax.swing.JFrame {
         taAlienInstanser.setRows(5);
         jScrollPane1.setViewportView(taAlienInstanser);
 
+        cbValjPlats.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbValjPlatsActionPerformed(evt);
+            }
+        });
+
         bildTitel.setIcon(new javax.swing.ImageIcon("C:\\Users\\adamd\\OneDrive\\Dokument\\NetBeansProjects\\MIB informationssystem\\src\\MIB_informationssystem\\Stad.jpg")); // NOI18N
         bildTitel.setText("jLabel1");
 
@@ -202,6 +208,10 @@ public class ListaAliensPaEnPlats extends javax.swing.JFrame {
         taAlienInstanser.setText("");
 
     }//GEN-LAST:event_btnNollstallActionPerformed
+
+    private void cbValjPlatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValjPlatsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbValjPlatsActionPerformed
 
     /**
      * @param args the command line arguments
