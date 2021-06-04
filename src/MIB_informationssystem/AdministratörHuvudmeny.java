@@ -32,10 +32,6 @@ public class AdministratörHuvudmeny extends javax.swing.JFrame {
         jBtnAdminAgentMeny = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-<<<<<<< Updated upstream
-=======
-        jLabel5 = new javax.swing.JLabel();
->>>>>>> Stashed changes
         jLabel6 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
 
@@ -71,11 +67,6 @@ public class AdministratörHuvudmeny extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< Updated upstream
-=======
-        jLabel5.setText("jLabel2");
-
->>>>>>> Stashed changes
         jLabel6.setText("God morgon xx!");
 
         jButton7.setText("Edit profile");
@@ -90,11 +81,7 @@ public class AdministratörHuvudmeny extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-<<<<<<< Updated upstream
                 .addGap(237, 237, 237)
-=======
-                .addGap(230, 230, 230)
->>>>>>> Stashed changes
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,8 +138,6 @@ public class AdministratörHuvudmeny extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
-        new Inloggningssida().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -216,10 +201,6 @@ public class AdministratörHuvudmeny extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
-<<<<<<< Updated upstream
-=======
-    private javax.swing.JLabel jLabel5;
->>>>>>> Stashed changes
     private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }
