@@ -22,7 +22,7 @@ public class AlienFunktioner {
     
     
 
-    public AlienFunktioner()
+    public static AlienFunktioner()
     {
         try {
             mibdb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
