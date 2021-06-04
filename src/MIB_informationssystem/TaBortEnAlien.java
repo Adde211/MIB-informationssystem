@@ -7,18 +7,33 @@ package MIB_informationssystem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
  * @author adamd
  */
 public class TaBortEnAlien extends javax.swing.JFrame {
+    
+    private static InfDB mibdb;
 
     /**
      * Creates new form TaBortEnAlien
      */
     public TaBortEnAlien() {
         initComponents();
+        
+        try
+        {
+            mibdb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
+        }
+        catch (InfException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Databasen mibdb nåddes inte.");
+            System.out.println("Internt felmeddelande: " + ex.getMessage());
+        }
     }
 
     /**
@@ -302,7 +317,9 @@ public class TaBortEnAlien extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSok;
     private javax.swing.JButton btnTaBort;

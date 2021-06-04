@@ -7,18 +7,33 @@ package MIB_informationssystem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
  * @author adamd
  */
 public class UppdateraEnAlien extends javax.swing.JFrame {
+    
+    private static InfDB mibdb;
 
     /**
      * Creates new form UppdateraEnAlien
      */
     public UppdateraEnAlien() {
         initComponents();
+        
+        try
+        {
+            mibdb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
+        }
+        catch (InfException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Databasen mibdb nåddes inte.");
+            System.out.println("Internt felmeddelande: " + ex.getMessage());
+        }
     }
 
     /**
@@ -350,7 +365,7 @@ public class UppdateraEnAlien extends javax.swing.JFrame {
                 lblFelmeddelandeID.setText("");
             
                 //Hämtar datan om den motsvarande utomjordingen baserat på id:et som användaren skrev in i ID-fältet
-                HashMap<String, String> alienInstansData = AlienFunktioner.getAlienInstansData(tfID.getText(), "Alien_ID");
+                HashMap<String, String> alienInstansData = AlienFunktioner.getAlienInstans(tfID.getText(), "Alien_ID");
 
                 //Sätter in den hämtade datan i textfälten.
                 tfNamn.setText(alienInstansData.get("Namn"));
@@ -374,7 +389,7 @@ public class UppdateraEnAlien extends javax.swing.JFrame {
                 lblFelmeddelandeNamn.setText("");
             
                 //Hämtar datan om den motsvarande utomjordingen baserat på namnet som användaren skrev in i namn-fältet
-                HashMap<String, String> alienInstansData = AlienFunktioner.getAlienInstansData(tfNamn.getText(), "Namn");
+                HashMap<String, String> alienInstansData = AlienFunktioner.getAlienInstans(tfNamn.getText(), "Namn");
 
                 //Sätter in den hämtade datan i textfälten.
                 tfID.setText(alienInstansData.get("Alien_ID"));
@@ -388,6 +403,41 @@ public class UppdateraEnAlien extends javax.swing.JFrame {
     }//GEN-LAST:event_tfNamnActionPerformed
 
     
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ListaAliensPaEnPlats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ListaAliensPaEnPlats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ListaAliensPaEnPlats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ListaAliensPaEnPlats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new UppdateraEnAlien().setVisible(true);
+            }
+        });
+    }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
