@@ -72,7 +72,6 @@ public class UppdateraEnAlien extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         lblFelmeddelandeNamn = new javax.swing.JLabel();
         lblFelmeddelandeID = new javax.swing.JLabel();
-        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,13 +132,6 @@ public class UppdateraEnAlien extends javax.swing.JFrame {
         jLabel4.setText("jLabel3");
 
         jLabel11.setText("Ansvarig agent");
-
-        btnExit.setText("Exit");
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -209,9 +201,7 @@ public class UppdateraEnAlien extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(389, 389, 389)
                 .addComponent(btnUppdatera)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,9 +260,7 @@ public class UppdateraEnAlien extends javax.swing.JFrame {
                     .addComponent(tfRegistreringsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addGap(66, 66, 66)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUppdatera)
-                    .addComponent(btnExit))
+                .addComponent(btnUppdatera)
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -414,13 +402,6 @@ public class UppdateraEnAlien extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tfNamnActionPerformed
 
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        // TODO add your handling code here:
-        
-        new AdminUtomjordingsmeny().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnExitActionPerformed
-
     
     
     /**
@@ -460,7 +441,6 @@ public class UppdateraEnAlien extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnUppdatera;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

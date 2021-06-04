@@ -74,7 +74,6 @@ public class SökPåEnAlien extends javax.swing.JFrame {
         lblFelmeddelandeNamn = new javax.swing.JLabel();
         btnSok1 = new javax.swing.JButton();
         btnSok2 = new javax.swing.JButton();
-        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(850, 525));
@@ -170,13 +169,6 @@ public class SökPåEnAlien extends javax.swing.JFrame {
             }
         });
 
-        btnExit.setText("Exit");
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -257,10 +249,7 @@ public class SökPåEnAlien extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(tfNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblFelmeddelandeNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(139, 139, 139))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96))))
+                        .addGap(139, 139, 139))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,9 +295,7 @@ public class SökPåEnAlien extends javax.swing.JFrame {
                     .addComponent(jLabel15)
                     .addComponent(tfRegistreringsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
-                .addGap(90, 90, 90)
-                .addComponent(btnExit)
-                .addGap(65, 65, 65))
+                .addGap(178, 178, 178))
         );
 
         pack();
@@ -427,13 +414,6 @@ public class SökPåEnAlien extends javax.swing.JFrame {
                 tfRegistreringsdatum.setText(alienInstansData.get("Registreringsdatum"));
         }
     }//GEN-LAST:event_btnSok2ActionPerformed
-
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        // TODO add your handling code here:
-        
-        new AdminUtomjordingsmeny().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnExitActionPerformed
     
     
     
@@ -475,7 +455,6 @@ public class SökPåEnAlien extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnSok1;
     private javax.swing.JButton btnSok2;
     private javax.swing.JLabel jLabel1;
