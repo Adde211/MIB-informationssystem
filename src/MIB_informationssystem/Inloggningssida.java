@@ -124,12 +124,28 @@ public class Inloggningssida extends javax.swing.JFrame {
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
         // Sparar inmatade rutan för lösen och namn med getText metoden
+        
+       
 
         String namn = txtWindowUser.getText();
         String password = txtWindowPassword.getText();
         //Vi behöver skilja på de olika användarna och admin finns bara hos agenter, dvs null = inte agent
         String input = "SELECT Administrator FROM agent WHERE namn LIKE '" + namn + "' AND losenord LIKE '" + password + "';";
-
+        //skapar scenario där användaeren inte fyllt i txt fönstren, det genom att räkna längden på password sedan namn
+        int langd = password.length();
+        if (langd < 1)
+        {
+            if(namn.length() < 1){
+                lblFelmeddelande.setText("Vänligen fyll i både namn och lösenord ");
+            }
+            else{
+                lblFelmeddelande.setText("Vänligen fyll i lösenord");
+            }
+        
+        lblFelmeddelande.setVisible(true);
+        }
+      
+        if (langd > 1) {
         // B) Ställer frågan till DB om Admin J / N      
         try {
             String adminJaNej = idb.fetchSingle(input);
@@ -216,6 +232,9 @@ public class Inloggningssida extends javax.swing.JFrame {
         } catch (Exception e) {
             txtWindowUser.setText("något gick feli adminfrågan");
         }
+        
+        }
+        
 
 
     }//GEN-LAST:event_btnLoggaInActionPerformed
