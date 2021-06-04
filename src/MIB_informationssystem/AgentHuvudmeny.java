@@ -76,6 +76,7 @@ public class AgentHuvudmeny extends javax.swing.JFrame {
         nyttLosen = new javax.swing.JTextField();
         btnNyttLosen = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
+        btnOmrodesChef = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -127,6 +128,13 @@ public class AgentHuvudmeny extends javax.swing.JFrame {
             }
         });
 
+        btnOmrodesChef.setText("Visa Områdes Chef");
+        btnOmrodesChef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOmrodesChefActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -138,12 +146,15 @@ public class AgentHuvudmeny extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(67, Short.MAX_VALUE)
+                        .addContainerGap(27, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnBytLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUtomjording, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(339, 339, 339))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnUtomjording, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(118, 118, 118)
+                                .addComponent(btnOmrodesChef, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(txtNyttlos)
@@ -168,7 +179,9 @@ public class AgentHuvudmeny extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(txtRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addComponent(btnUtomjording, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnOmrodesChef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnUtomjording, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))
                         .addGap(36, 36, 36)
                         .addComponent(btnUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
@@ -245,6 +258,12 @@ public class AgentHuvudmeny extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
+    private void btnOmrodesChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOmrodesChefActionPerformed
+        // TODO add your handling code here:
+        SokPaOmradesChef ny = new SokPaOmradesChef();
+        ny.setVisible(true);
+    }//GEN-LAST:event_btnOmrodesChefActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -290,6 +309,7 @@ public class AgentHuvudmeny extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBytLosen;
     private javax.swing.JButton btnNyttLosen;
+    private javax.swing.JButton btnOmrodesChef;
     private javax.swing.JButton btnTillbaka;
     private javax.swing.JButton btnUtomjording;
     private javax.swing.JButton btnUtrustning;
